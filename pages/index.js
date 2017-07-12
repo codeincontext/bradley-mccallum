@@ -1,5 +1,13 @@
+import Head from 'next/head'
+import Header from '~/components/header'
+
 export default () => (
   <div>
+    <Head>
+      <title>Home</title>
+    </Head>
+    <Header />
+
     Hello world
     <p>scoped!</p>
     <style jsx>{`
@@ -14,11 +22,6 @@ export default () => (
           background: blue;
         }
       }
-      `}</style>
-    <style global jsx>{`
-      body {
-        background: black;
-      }
-      `}</style>
+    `}</style>
   </div>
 )
