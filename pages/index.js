@@ -1,13 +1,12 @@
-import Head from 'next/head'
-import Header from '~/components/header'
+import Head from "next/head";
+import Header from "~/components/header";
 
-export default () => (
+export default () =>
   <div>
     <Head>
       <title>Home</title>
     </Head>
     <Header />
-
     Hello world
     <p>scoped!</p>
     <style jsx>{`
@@ -23,5 +22,4 @@ export default () => (
         }
       }
     `}</style>
-  </div>
-)
+  </div>;

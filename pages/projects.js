@@ -1,23 +1,23 @@
-import { Component } from 'react'
-import Head from 'next/head'
+import { Component } from "react";
+import Head from "next/head";
 
-import contentful from '~/lib/contentful'
-import Header from '~/components/header'
+import contentful from "~/lib/contentful";
+import Header from "~/components/header";
 
 export default class extends Component {
-  static async getInitialProps ({ req }) {
-    return contentful.getEntries({
-      content_type: 'project',
-      'fields.slug': 'weights-and-measures',
-      limit: 1
-    })
-      .then((entries) => ({
-        project: entries.items[0].fields
-      }))
+  static async getInitialProps({ req }) {
+    const entries = await contentful.getEntries({
+      content_type: "project",
+      "fields.slug": "weights-and-measures",
+      limit: 1,
+    });
+    return {
+      project: entries.items[0].fields,
+    };
   }
 
-  render () {
-    const { project } = this.props
+  render() {
+    const { project } = this.props;
 
     return (
       <div>
@@ -26,7 +26,9 @@ export default class extends Component {
         </Head>
         <Header />
 
-        <p>{project.introduction}</p>
+        <p>
+          {project.introduction}
+        </p>
         <style jsx>{`
           p {
             color: blue;
@@ -41,6 +43,6 @@ export default class extends Component {
           }
         `}</style>
       </div>
-    )
+    );
   }
 }
