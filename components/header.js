@@ -7,7 +7,6 @@ export default () =>
     </Head>
     <style global jsx>{`
       body {
-        background: black;
       }
     `}</style>
   </header>;

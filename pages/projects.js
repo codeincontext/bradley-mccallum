@@ -2,7 +2,8 @@ import { Component } from "react";
 import Head from "next/head";
 
 import contentful from "~/lib/contentful";
-import Header from "~/components/header";
+import Header from "~/components/Header";
+import ContentItem from "~/components/ContentItem";
 
 export default class extends Component {
   static async getInitialProps({ req }) {
@@ -26,20 +27,32 @@ export default class extends Component {
         </Head>
         <Header />
 
+        <h1>
+          {project.title}
+        </h1>
         <p>
-          {project.introduction}
+          {project.materials}
         </p>
+        <p>
+          {project.collaborators}
+        </p>
+        <p>
+          {project.date}
+        </p>
+        <p>
+          {project.acknowledgements}
+        </p>
+
+        {project.content.map(contentItem =>
+          <ContentItem item={contentItem} key={contentItem.sys.id} />
+        )}
+
         <style jsx>{`
           p {
             color: blue;
           }
           div {
-            background: red;
-          }
-          @media (max-width: 600px) {
-            div {
-              background: blue;
-            }
+            background: #ddd;
           }
         `}</style>
       </div>
