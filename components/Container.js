@@ -6,6 +6,7 @@ export default ({ children }) =>
     <style jsx>{`
       div {
         max-width: ${MAX_WIDTH}px;
+        margin: 0 auto;
       }
     `}</style>
   </div>;
