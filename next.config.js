@@ -14,6 +14,9 @@ module.exports = {
         "process.env.CONTENTFUL_ACCESS_TOKEN": JSON.stringify(
           process.env.CONTENTFUL_ACCESS_TOKEN
         ),
+        "process.env.CONTENTFUL_PREVIEW_TOKEN": JSON.stringify(
+          process.env.CONTENTFUL_PREVIEW_TOKEN
+        ),
       })
     );
 
