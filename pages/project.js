@@ -32,25 +32,42 @@ export default class extends Component {
           <h1>
             {project.title}
           </h1>
-          <p>
+          <p className="materials">
             {project.materials}
           </p>
-          <p>
+          <p className="collaborators">
             {project.collaborators}
           </p>
-          <p>
+          <p className="year">
             {project.date}
           </p>
-          <p>
-            {project.acknowledgements}
-          </p>
+          {project.website &&
+            <p className="website">
+              Project website: {project.website}
+            </p>}
 
           {project.content.map(contentItem =>
             <ContentItem item={contentItem} key={contentItem.sys.id} />
           )}
         </Container>
 
-        <style jsx>{``}</style>
+        <style jsx>{`
+          h1 {
+            font-weight: bold;
+          }
+          .materials {
+            text-transform: uppercase;
+          }
+          .year {
+            font-weight: bold;
+          }
+          .collaborators {
+            text-transform: uppercase;
+          }
+          .website {
+            text-transform: uppercase;
+          }
+        `}</style>
       </div>
     );
   }

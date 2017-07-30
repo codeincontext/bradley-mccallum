@@ -1,6 +1,6 @@
 export default ({ image }) =>
   <div>
-    <img src={image.fields.file.url} />
+    <img src={image && image.fields.file.url} />
     <style jsx>{`
       img {
         max-width: 100%;
