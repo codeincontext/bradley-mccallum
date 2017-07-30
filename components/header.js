@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 import Container from "~/components/Container";
-import { colors } from "~/components/theme";
+import { colors, weights } from "~/components/theme";
 
 export default () =>
   <header>
@@ -17,7 +17,7 @@ export default () =>
     <style global jsx>{`
       body {
         font-family: 'Lato', sans-serif;
-        font-weight: 300;
+        font-weight: ${weights.light};
       }
     `}</style>
 

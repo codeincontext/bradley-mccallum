@@ -8,6 +8,17 @@ import ImageSlider from "~/components/ImageSlider";
 import ProjectPreview from "~/components/ProjectPreview";
 import Sidebar from "~/components/Sidebar";
 
+const scrollNameForYear = year => `year-${year}`;
+
+const scrollNameForProject = project => {
+  const year = new Date(project.date).getFullYear();
+  const closestYear = YEARS.find(y => y <= year);
+  return scrollNameForYear(closestYear);
+};
+
+const thisYear = new Date().getFullYear();
+const YEARS = [thisYear, 2010, 2005, 2000, 1995, 1990];
+
 export default class extends Component {
   static async getInitialProps({ query }) {
     const entries = await getClient({ preview: !!query.preview }).getEntries(
@@ -31,26 +42,24 @@ export default class extends Component {
         <Header />
 
         <Sidebar
-          items={[
-            { label: "2017" },
-            { label: "2010" },
-            { label: "2005" },
-            { label: "2000" },
-            { label: "1995" },
-            { label: "1990" },
-          ]}
+          items={YEARS.map(year => ({
+            label: year,
+            scrollName: scrollNameForYear(year),
+          }))}
         />
 
         <Container>
           <ImageSlider item={{ images: [] }} />
 
-          {projects.map(project => <ProjectPreview project={project} />)}
+          {projects.map(project =>
+            <ProjectPreview
+              project={project}
+              scrollName={scrollNameForProject(project)}
+            />
+          )}
         </Container>
 
-        <style jsx>{`
-          li {
-          }
-        `}</style>
+        <style jsx>{``}</style>
       </div>
     );
   }
