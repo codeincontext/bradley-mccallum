@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import Image from "~/components/Image";
 
 export default ({ project }) =>
@@ -16,7 +17,6 @@ export default ({ project }) =>
 
     <style jsx>{`
       .root {
-        width: 33.33%;
       }
     `}</style>
   </div>;

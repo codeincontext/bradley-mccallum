@@ -3,13 +3,12 @@ import Head from "next/head";
 import { Element as ScrollElement } from "react-scroll";
 
 import { getClient } from "~/lib/contentful";
+import { scrollNameForExhibition } from "~/lib/scrollNames";
 import Header from "~/components/Header";
 import Container from "~/components/Container";
 import ContentItem from "~/components/ContentItem";
 import Sidebar from "~/components/Sidebar";
 import { weights } from "~/components/theme";
-
-const scrollNameForExhibition = exhibition => `exhibition-${exhibition.slug}`;
 
 export default class extends Component {
   static async getInitialProps({ query }) {
@@ -152,11 +151,8 @@ export default class extends Component {
           }
           .acknowledgements {
             /* Ensure enough footer space to scroll to the bottom */
-            height: 100vh;
+            min-height: 100vh;
           }
-          // .acknowledgements:after {
-          //   height: calc(100vh - 100%);
-          // }
         `}</style>
       </div>
     );
