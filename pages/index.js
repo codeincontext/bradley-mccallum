@@ -2,7 +2,8 @@ import { Component } from "react";
 import Head from "next/head";
 import { Element as ScrollElement } from "react-scroll";
 
-import { getClient } from "~/lib/contentful";
+import Prismic from "prismic-javascript";
+import { getApi } from "~/lib/prismic";
 import { scrollNameForYear, YEARS } from "~/lib/scrollNames";
 import Container from "~/components/Container";
 import PageMeta from "~/components/PageMeta";

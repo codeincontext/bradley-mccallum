@@ -1,0 +1,29 @@
+{
+  "Main" : {
+    "publication" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Publication"
+      }
+    },
+    "title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Title"
+      }
+    },
+    "link" : {
+      "type" : "Link",
+      "config" : {
+        "label" : "Link"
+      }
+    },
+    "date" : {
+      "type" : "Date",
+      "config" : {
+        "label" : "Date"
+      }
+    }
+  }
+}
