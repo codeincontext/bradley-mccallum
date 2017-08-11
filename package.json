@@ -27,7 +27,7 @@
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --trailing-comma es5 --write",
-    "precommit": "lint-staged"
+    "//precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,json,css}": ["npm run prettier", "git add"]
