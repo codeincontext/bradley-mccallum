@@ -1,4 +1,8 @@
+import Container from "~/components/Container";
+
 export default ({ item }) =>
-  <p>
-    {item.text}
-  </p>;
+  <Container>
+    <p>
+      {item.text}
+    </p>
+  </Container>;

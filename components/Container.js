@@ -1,4 +1,4 @@
-const MAX_WIDTH = 960;
+import { MAX_WIDTH } from "~/components/theme";
 
 export default ({ children }) =>
   <div>

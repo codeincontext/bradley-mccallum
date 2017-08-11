@@ -1,4 +1,8 @@
+import Container from "~/components/Container";
+
 export default subHeading =>
-  <p>
-    {subHeading.text}
-  </p>;
+  <Container>
+    <p>
+      {subHeading.text}
+    </p>
+  </Container>;

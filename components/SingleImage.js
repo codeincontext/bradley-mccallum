@@ -1,9 +1,10 @@
 import Image from "~/components/Image";
+import Container from "~/components/Container";
 
 export default ({ item }) =>
-  <div>
+  <Container>
     <Image image={item.image} />
     <p>
       {item.caption}
     </p>
-  </div>;
+  </Container>;

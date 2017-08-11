@@ -37,20 +37,18 @@ export default class extends Component {
           items={[
             { label: project.title, scrollName: "title" },
             { label: "Exhibitions", scrollName: "exhibitions" },
-            ...project.exhibitions
-              .map(exhibition => exhibition.fields)
-              .map(exhibition => ({
-                label: exhibition.location,
-                scrollName: scrollNameForExhibition(exhibition),
-              })),
+            ...project.exhibitions.map(exhibition => ({
+              label: exhibition.fields.location,
+              scrollName: scrollNameForExhibition(exhibition.sys.id),
+            })),
             { label: "Press", scrollName: "press" },
             { label: "Acknowledgements", scrollName: "acknowledgements" },
           ]}
         />
 
-        <Container>
-          <ScrollElement name="title">
-            <section className="firstSection">
+        <ScrollElement name="title">
+          <section className="firstSection">
+            <Container>
               <h1>
                 {project.title}
               </h1>
@@ -67,14 +65,16 @@ export default class extends Component {
                 <p className="website">
                   Project website: {project.website}
                 </p>}
+            </Container>
 
-              {(project.content || [])
-                .map(contentItem =>
-                  <ContentItem item={contentItem} key={contentItem.sys.id} />
-                )}
-            </section>
-          </ScrollElement>
+            {(project.content || [])
+              .map(contentItem =>
+                <ContentItem item={contentItem} key={contentItem.sys.id} />
+              )}
+          </section>
+        </ScrollElement>
 
+        <Container>
           <ScrollElement name="exhibitions">
             <section>
               <h2>Exhibitions</h2>
@@ -85,39 +85,42 @@ export default class extends Component {
                 )}
             </section>
           </ScrollElement>
+        </Container>
 
-          {(project.exhibitions || [])
-            .map(exhibition => exhibition.fields)
-            .map(exhibition =>
-              <ScrollElement
-                name={scrollNameForExhibition(exhibition)}
-                key={exhibition.slug}
-              >
-                <section>
+        {(project.exhibitions || [])
+          .map(exhibition => exhibition.fields)
+          .map(exhibition =>
+            <ScrollElement
+              name={scrollNameForExhibition(exhibition)}
+              key={exhibition.slug}
+            >
+              <section>
+                <Container>
                   <h3>
                     {exhibition.location}
                   </h3>
                   <p>
                     {exhibition.year}
                   </p>
-                  {(exhibition.content || [])
-                    .map(contentItem =>
-                      <ContentItem
-                        item={contentItem}
-                        key={contentItem.sys.id}
-                      />
-                    )}
-                </section>
-              </ScrollElement>
-            )}
+                </Container>
+                {(exhibition.content || [])
+                  .map(contentItem =>
+                    <ContentItem item={contentItem} key={contentItem.sys.id} />
+                  )}
+              </section>
+            </ScrollElement>
+          )}
 
+        <Container>
           <ScrollElement name="press">
             <section>
               <h2>Press</h2>
               {(project.pressItems || []).map(contentItem => null)}
             </section>
           </ScrollElement>
+        </Container>
 
+        <Container>
           <ScrollElement name="acknowledgements">
             <section className="acknowledgements">
               <h2>Acknowledgements</h2>

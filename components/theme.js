@@ -1,3 +1,7 @@
+export const MAX_WIDTH = 960;
+
+export const CALLOUT_WIDTH = 400;
+
 export const colors = {
   white: "#FFF",
 };
