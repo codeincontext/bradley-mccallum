@@ -12,7 +12,8 @@
     "lodash.zip": "^4.2.0",
     "next": "^3.0.1-beta.13",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-images": "^0.5.5"
   },
   "devDependencies": {
     "babel-plugin-root-import": "^5.1.0",
@@ -25,10 +26,10 @@
     "dev": "node .",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --trailing-comma es5",
+    "prettier": "prettier --trailing-comma es5 --write",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["npm run prettier -- --write", "git add"]
+    "*.{js,json,css}": ["npm run prettier", "git add"]
   }
 }
