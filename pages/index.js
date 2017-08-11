@@ -64,6 +64,7 @@ export default class extends Component {
             height: 100vh;
           }
           .firstSection {
+            // So the first section is active in the nav at the top of the page
             padding-top: 300px;
             margin-top: -300px;
           }

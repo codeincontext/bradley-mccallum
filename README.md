@@ -11,6 +11,7 @@ Populate `.env` with the following keys:
 ```bash
 CONTENTFUL_SPACE=
 CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_TOKEN=
 ```
 
 ## Development
