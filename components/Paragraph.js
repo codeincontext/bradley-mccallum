@@ -5,4 +5,9 @@ export default ({ item }) =>
     <p>
       {item.text}
     </p>
+    <style jsx>{`
+      p {
+        line-height: 24px;
+      }
+    `}</style>
   </Container>;
