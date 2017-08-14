@@ -2,6 +2,7 @@ import { Component } from "react";
 import Image from "~/components/Image";
 import Lightbox from "react-images";
 import Container from "~/components/Container";
+import { spacing } from "~/components/theme";
 
 // We can either define a number of columns or a minimum image size a-la https://github.com/neptunian/react-photo-gallery#user-guide--best-practice
 
@@ -56,9 +57,14 @@ export default class ImageGrid extends Component {
           .root {
             display: flex;
             flex-wrap: wrap;
+            margin-bottom: ${spacing.s2};
+          }
+          .image:first-of-type {
+            margin-left: 0;
           }
           .image {
-            width: 25%;
+            width: 12.5%;
+            margin-left: 10px;
           }
         `}</style>
       </Container>

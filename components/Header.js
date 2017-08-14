@@ -1,62 +1,57 @@
-import Head from "next/head";
 import Link from "next/link";
 
 import Container from "~/components/Container";
-import { colors, weights } from "~/components/theme";
+import { fonts, colors, weights, spacing } from "~/components/theme";
 
 export default () =>
   <header>
-    <Head>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700"
-        rel="stylesheet"
-      />
-    </Head>
+    <Link href="/" prefetch>
+      <div className="name">Bradley McCallum</div>
+    </Link>
 
-    <style global jsx>{`
-      body {
-        font-family: 'Lato', sans-serif;
-        font-weight: ${weights.light};
-      }
-    `}</style>
-
-    <Container>
-      <div>Bradley McCallum</div>
-
-      <nav>
-        <Link href="/" prefetch>
-          <a>Artworks</a>
-        </Link>
-        <Link href="/exhibitions" prefetch>
-          <a>Exhibitions</a>
-        </Link>
-        <Link href="/bibliography" prefetch>
-          <a>Bibliography</a>
-        </Link>
-        <Link href="/about" prefetch>
-          <a>About</a>
-        </Link>
-        <Link href="/contact" prefetch>
-          <a>Contact</a>
-        </Link>
-      </nav>
-    </Container>
+    <nav>
+      <Link href="/" prefetch activeClass="active-nav-link">
+        <a>Home</a>
+      </Link>
+      <Link href="/" prefetch activeClass="active-nav-link">
+        <a>Artworks</a>
+      </Link>
+      <Link href="/exhibitions" prefetch activeClass="active-nav-link">
+        <a>Exhibitions</a>
+      </Link>
+      <Link href="/bibliography" prefetch activeClass="active-nav-link">
+        <a>Bibliography</a>
+      </Link>
+      <Link href="/about" prefetch activeClass="active-nav-link">
+        <a>About</a>
+      </Link>
+      <Link href="/contact" prefetch activeClass="active-nav-link">
+        <a>Contact</a>
+      </Link>
+    </nav>
 
     <style jsx>{`
       header {
-        background: ${colors.white};
+        display: flex;
+        justify-content: space-between;
+        background: ${colors.lightGrey};
+        position: relative;
+      }
+      .name {
+        padding: ${spacing.s2};
+        font-weight: ${weights.bold};
+        font-size: ${fonts.f20};
+        letter-spacing: 1.75px;
       }
       nav {
-        width: 400px;
-        display: flex;
-        align-items: space-between;
+        padding: ${spacing.s2} ${spacing.s2} 0;
       }
-      a {
+      nav a {
+        padding-left: ${spacing.s2};
         text-transform: uppercase;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 0;
+      }
+      .active-nav-link {
+        font-weight: ${weights.bold};
       }
     `}</style>
   </header>;

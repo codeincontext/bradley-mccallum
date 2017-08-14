@@ -3,12 +3,13 @@ import Head from "next/head";
 import { Element as ScrollElement } from "react-scroll";
 
 import { getClient } from "~/lib/contentful";
-import { scrollNameForExhibition } from "~/lib/scrollNames";
+import { scrollNameForExhibitionId } from "~/lib/scrollNames";
+import PageMeta from "~/components/PageMeta";
 import Header from "~/components/Header";
 import Container from "~/components/Container";
 import ContentItem from "~/components/ContentItem";
 import Sidebar from "~/components/Sidebar";
-import { weights } from "~/components/theme";
+import { fonts, weights, spacing, colors } from "~/components/theme";
 
 export default class extends Component {
   static async getInitialProps({ query }) {
@@ -31,125 +32,157 @@ export default class extends Component {
         <Head>
           <title>Projects</title>
         </Head>
+        <PageMeta />
         <Header />
-
-        <Sidebar
-          items={[
-            { label: project.title, scrollName: "title" },
-            { label: "Exhibitions", scrollName: "exhibitions" },
-            ...project.exhibitions.map(exhibition => ({
-              label: exhibition.fields.location,
-              scrollName: scrollNameForExhibition(exhibition.sys.id),
-            })),
-            { label: "Press", scrollName: "press" },
-            { label: "Acknowledgements", scrollName: "acknowledgements" },
-          ]}
-        />
-
-        <ScrollElement name="title">
-          <section className="firstSection">
-            <Container>
-              <h1>
-                {project.title}
-              </h1>
-              <p className="materials">
-                {project.materials}
-              </p>
-              <p className="collaborators">
-                {project.collaborators}
-              </p>
-              <p className="year">
-                {project.date}
-              </p>
-              {project.website &&
-                <p className="website">
-                  Project website: {project.website}
-                </p>}
-            </Container>
-
-            {(project.content || [])
-              .map(contentItem =>
-                <ContentItem item={contentItem} key={contentItem.sys.id} />
-              )}
-          </section>
-        </ScrollElement>
-
-        <Container>
-          <ScrollElement name="exhibitions">
-            <section>
-              <h2>Exhibitions</h2>
-
-              {(project.exhibitionsContent || [])
-                .map(contentItem =>
-                  <ContentItem item={contentItem} key={contentItem.sys.id} />
-                )}
-            </section>
-          </ScrollElement>
-        </Container>
-
-        {(project.exhibitions || [])
-          .map(exhibition => exhibition.fields)
-          .map(exhibition =>
-            <ScrollElement
-              name={scrollNameForExhibition(exhibition)}
-              key={exhibition.slug}
-            >
-              <section>
+        <div className="project-page">
+          <div className="sidebar">
+            <Sidebar
+              items={[
+                { label: project.title, scrollName: "artwork" },
+                { label: "Exhibitions", scrollName: "exhibitions" },
+                ...project.exhibitions.map(exhibition => ({
+                  label: exhibition.fields.location,
+                  scrollName: scrollNameForExhibitionId(exhibition.sys.id),
+                })),
+                { label: "Press", scrollName: "press" },
+                { label: "Acknowledgements", scrollName: "acknowledgements" },
+              ]}
+            />
+          </div>
+          <div className="project-content">
+            <ScrollElement name="artwork">
+              <section className="first-section">
                 <Container>
-                  <h3>
-                    {exhibition.location}
-                  </h3>
+                  <h1>
+                    {project.title}
+                  </h1>
                   <p>
-                    {exhibition.year}
+                    {project.materials}
+                  </p>
+                  <p>
+                    {project.date}
+                  </p>
+                  <p>
+                    Collabortor/s: {project.collaborators}
+                  </p>
+                  <p>
+                    Project website:{" "}
+                    <a href="{project.websiteLinkUrl}">
+                      {project.websiteLinkText}
+                    </a>
                   </p>
                 </Container>
-                {(exhibition.content || [])
+
+                {(project.content || [])
                   .map(contentItem =>
                     <ContentItem item={contentItem} key={contentItem.sys.id} />
                   )}
               </section>
             </ScrollElement>
-          )}
+            <Container>
+              <ScrollElement name="exhibitions">
+                <section>
+                  <div className="heading">
+                    <h2>Exhibitions</h2>
+                  </div>
 
-        <Container>
-          <ScrollElement name="press">
-            <section>
-              <h2>Press</h2>
-              {(project.pressItems || []).map(contentItem => null)}
-            </section>
-          </ScrollElement>
-        </Container>
+                  {(project.exhibitionsContent || [])
+                    .map(contentItem =>
+                      <ContentItem
+                        item={contentItem}
+                        key={contentItem.sys.id}
+                      />
+                    )}
+                </section>
+              </ScrollElement>
+            </Container>
 
-        <Container>
-          <ScrollElement name="acknowledgements">
-            <section className="acknowledgements">
-              <h2>Acknowledgements</h2>
-            </section>
-          </ScrollElement>
-        </Container>
-
+            {(project.exhibitions || []).map(exhibition =>
+              <ScrollElement
+                name={scrollNameForExhibitionId(exhibition.sys.id)}
+                key={exhibition.fields.slug}
+              >
+                <section>
+                  <Container>
+                    <h3>
+                      {exhibition.fields.location}
+                    </h3>
+                    <p>
+                      {exhibition.fields.year}
+                    </p>
+                  </Container>
+                  {(exhibition.fields.content || [])
+                    .map(contentItem =>
+                      <ContentItem
+                        item={contentItem}
+                        key={contentItem.sys.id}
+                      />
+                    )}
+                </section>
+              </ScrollElement>
+            )}
+            <Container>
+              <ScrollElement name="press">
+                <section>
+                  <div className="heading">
+                    <h2>Press</h2>
+                  </div>
+                  {(project.pressItems || []).map(contentItem => null)}
+                </section>
+              </ScrollElement>
+            </Container>
+            <Container>
+              <ScrollElement name="acknowledgements">
+                <section>
+                  <div className="heading">
+                    <h2>Acknowledgements</h2>
+                  </div>
+                  {project.acknowledgements}
+                </section>
+              </ScrollElement>
+            </Container>
+          </div>
+        </div>
         <style jsx>{`
+          .project-page {
+            display: flex;
+          }
+          .project-content {
+            margin-left: ${spacing.s5};
+          }
+          .sidebar {
+            width: 30%;
+          }
           h1 {
             font-weight: ${weights.bold};
+          }
+          .heading {
+            background: radial-gradient(${colors.black} 15%, transparent 16%),
+              radial-gradient(${colors.black} 15%, transparent 16%),
+              ${colors.lightGrey};
+            background-size: 7px 7px;
+            padding-top: ${spacing.s2};
+            margin-bottom: ${spacing.s2};
+          }
+          .heading h2 {
+            font-weight: ${weights.light};
+            font-size: ${fonts.f24};
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin: 0;
+            padding: ${spacing.s05};
+            background-color: ${colors.lightGrey};
           }
           section {
             /* Contain heading margin in section to prevent a gap between sections */
             overflow: auto;
           }
-          .firstSection {
+          .first-section {
             padding-top: 300px;
-            margin-top: -300px;
+            margin-top: -332px;
           }
           .materials {
-            text-transform: uppercase;
-          }
-          .year {
-            font-weight: ${weights.bold};
-          }
-          .collaborators {
-            text-transform: uppercase;
-          }
-          .website {
             text-transform: uppercase;
           }
           .acknowledgements {

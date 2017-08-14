@@ -2,6 +2,7 @@ import chunk from "lodash.chunk";
 import zip from "lodash.zip";
 // import { scrollNameForProject } from '~/lib/scrollNames';
 import ProjectPreview from "~/components/ProjectPreview";
+import { spacing, COLUMN_SPACING } from "~/components/theme";
 
 export default ({ projects }) =>
   <div className="root">
@@ -12,10 +13,9 @@ export default ({ projects }) =>
     )}
     <style jsx>{`
       .root {
-        // height: calc(5010px/3);
         display: flex;
-        // flex-direction: column;
-        // flex-wrap: wrap;
+        margin-left: -${COLUMN_SPACING}px;
+        margin-right: -${COLUMN_SPACING}px;
       }
       .column {
         width: calc(100% / 3);

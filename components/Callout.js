@@ -1,13 +1,19 @@
 import { CALLOUT_WIDTH } from "~/components/theme";
+import Container from "~/components/Container";
+import { weights, fonts, spacing } from "~/components/theme";
 
 export default ({ item }) =>
-  <p className="root">
-    {item.text}
-    <style jsx>{`
-      .root {
-        max-width: ${CALLOUT_WIDTH};
-        margin-left: auto;
-        margin-right: auto;
-      }
-    `}</style>
-  </p>;
+  <Container>
+    <blockquote>
+      {item.text}
+      <style jsx>{`
+        blockquote {
+          max-width: ${CALLOUT_WIDTH}%;
+          margin: ${spacing.s3} auto;
+          font-size: ${fonts.f24};
+          font-weight: ${weights.bold};
+          letter-spacing: 0;
+        }
+      `}</style>
+    </blockquote>
+  </Container>;
