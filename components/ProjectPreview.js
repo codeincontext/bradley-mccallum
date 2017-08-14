@@ -1,21 +1,23 @@
 import Link from "next/link";
+import { RichText } from "prismic-dom";
+
 import Image from "~/components/Image";
 import { weights, spacing, colors, COLUMN_SPACING } from "~/components/theme";
 
 export default ({ project }) =>
   <div className="root">
     <Link
-      as={`/project/${project.slug}`} // URL exposed to the browser
-      href={`/project?slug=${project.slug}`} // simplified URL for next.js client routing
+      as={`/project/${project.uid}`} // URL exposed to the browser
+      href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
       prefetch
     >
       <a className="project-preview">
-        <Image image={project.thumbnailImage} />
+        <Image image={project.main_image} />
         <p className="date">
           {project.date}
         </p>
         <p className="project-title">
-          {project.title}
+          {RichText.asText(project.title)}
         </p>
       </a>
     </Link>

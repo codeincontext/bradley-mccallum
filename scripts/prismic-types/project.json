@@ -82,34 +82,20 @@
     }
   },
   "Exhibitions": {
-    "exhibition1": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": [
-          "exhibition"
-        ],
-        "label": "Exhibition 1"
-      }
-    },
-    "exhibition2": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": [
-          "exhibition"
-        ],
-        "label": "Exhibition 2"
-      }
-    },
-    "exhibition3": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": [
-          "exhibition"
-        ],
-        "label": "Exhibition 3"
+    "exhibitions" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "exhibition" : {
+            "type" : "Link",
+            "config" : {
+              "select" : "document",
+              "customtypes" : [ "exhibition" ],
+              "label" : "Exhibition"
+            }
+          }
+        },
+        "label" : "Exhibitions"
       }
     }
   }

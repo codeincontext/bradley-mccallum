@@ -1,8 +1,9 @@
 import Container from "~/components/Container";
+import PrismicDom from "prismic-dom";
 
-export default subHeading =>
+export default ({ item }) =>
   <Container>
-    <p>
-      {subHeading.text}
-    </p>
+    <h3>
+      {PrismicDom.RichText.asText(item.text)}
+    </h3>
   </Container>;

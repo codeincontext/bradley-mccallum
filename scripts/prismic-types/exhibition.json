@@ -13,6 +13,12 @@
         "label" : "URL"
       }
     },
+    "location": {
+      "type": "Text",
+      "config": {
+        "label": "Location"
+      }
+    },
     "date" : {
       "type" : "Date",
       "config" : {

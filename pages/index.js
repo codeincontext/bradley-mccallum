@@ -14,18 +14,23 @@ import Sidebar from "~/components/Sidebar";
 import { spacing, colors } from "~/components/theme";
 
 export default class extends Component {
-  static async getInitialProps({ query }) {
-    const entries = await getClient({ preview: !!query.preview }).getEntries({
-      content_type: "project",
-      order: "-fields.date",
-    });
+  static async getInitialProps({ req, query }) {
+    const api = await getApi(req);
+    const projects = await api.query(
+      Prismic.Predicates.at("document.type", "project"),
+      { orderings: "[my.project.date desc]" }
+    );
+
+    console.log(projects);
+
     return {
-      projects: entries.items.map(item => item.fields),
+      projects: projects.results.map(r => ({ uid: r.uid, ...r.data })),
     };
   }
 
   render() {
     const { sliderImages, projects } = this.props;
+    console.log(projects[0]);
 
     return (
       <div>

@@ -35,6 +35,9 @@
     "build-prismic-type:press-item": "node scripts/build-prismic-type scripts/prismic-types/press-item.json"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["npm run prettier", "git add"]
+    "*.{js,json,css}": [
+      "npm run prettier",
+      "git add"
+    ]
   }
 }

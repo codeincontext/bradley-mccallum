@@ -4,6 +4,6 @@ import Container from "~/components/Container";
 export default ({ item }) =>
   <Container>
     <div>
-      {item.images.map(image => <Image image={image} />)}
+      {item.items.map(image => <Image image={image} />)}
     </div>
   </Container>;

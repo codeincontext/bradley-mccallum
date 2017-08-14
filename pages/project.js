@@ -1,31 +1,39 @@
 import { Component } from "react";
 import Head from "next/head";
 import { Element as ScrollElement } from "react-scroll";
+import Prismic from "prismic-javascript";
+import PrismicDom from "prismic-dom";
 
-import { getClient } from "~/lib/contentful";
+import { getApi } from "~/lib/prismic";
 import { scrollNameForExhibitionId } from "~/lib/scrollNames";
 import PageMeta from "~/components/PageMeta";
 import Header from "~/components/Header";
 import Container from "~/components/Container";
 import ContentItem from "~/components/ContentItem";
 import Sidebar from "~/components/Sidebar";
+import RichText from "~/components/RichText";
 import { fonts, weights, spacing, colors } from "~/components/theme";
 
 export default class extends Component {
-  static async getInitialProps({ query }) {
-    const entries = await getClient({ preview: !!query.preview }).getEntries({
-      content_type: "project",
-      "fields.slug": query.slug,
-      include: 2,
-      limit: 1,
-    });
+  static async getInitialProps({ req, query }) {
+    const api = await getApi(req);
+    const project = await api.getByUID("project", query.slug);
+    const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
+    const exhibitions = (await api.getByIDs(exhibitionIds)).results.map(e => ({
+      uid: e.uid,
+      ...e.data,
+    }));
+
     return {
-      project: entries.items[0].fields,
+      project: { uid: project.uid, ...project.data },
+      exhibitions,
     };
   }
 
   render() {
-    const { project } = this.props;
+    const { project, exhibitions } = this.props;
+    console.log(project);
+    console.log(exhibitions);
 
     return (
       <div>
@@ -34,15 +42,19 @@ export default class extends Component {
         </Head>
         <PageMeta />
         <Header />
+
         <div className="project-page">
           <div className="sidebar">
             <Sidebar
               items={[
-                { label: project.title, scrollName: "artwork" },
+                {
+                  label: PrismicDom.RichText.asText(project.title),
+                  scrollName: "artwork",
+                },
                 { label: "Exhibitions", scrollName: "exhibitions" },
-                ...project.exhibitions.map(exhibition => ({
-                  label: exhibition.fields.location,
-                  scrollName: scrollNameForExhibitionId(exhibition.sys.id),
+                ...exhibitions.map(exhibition => ({
+                  label: exhibition.location,
+                  scrollName: scrollNameForExhibitionId(exhibition.uid),
                 })),
                 { label: "Press", scrollName: "press" },
                 { label: "Acknowledgements", scrollName: "acknowledgements" },
@@ -54,17 +66,18 @@ export default class extends Component {
               <section className="first-section">
                 <Container>
                   <h1>
-                    {project.title}
+                    {PrismicDom.RichText.asText(project.title)}
                   </h1>
                   <p>
                     {project.materials}
                   </p>
                   <p>
-                    {project.date}
+                    {new Date(project.date).getFullYear()}
                   </p>
-                  <p>
-                    Collabortor/s: {project.collaborators}
-                  </p>
+                  {project.collaborators &&
+                    <p>
+                      {project.collaborators}
+                    </p>}
                   <p>
                     Project website:{" "}
                     <a href="{project.websiteLinkUrl}">
@@ -73,9 +86,11 @@ export default class extends Component {
                   </p>
                 </Container>
 
-                {(project.content || [])
+                {(project.body || [])
                   .map(contentItem =>
-                    <ContentItem item={contentItem} key={contentItem.sys.id} />
+                    <ContentItem
+                      item={contentItem} /* key={contentItem.sys.id} */
+                    />
                   )}
               </section>
             </ScrollElement>
@@ -85,39 +100,30 @@ export default class extends Component {
                   <div className="heading">
                     <h2>Exhibitions</h2>
                   </div>
-
-                  {(project.exhibitionsContent || [])
-                    .map(contentItem =>
-                      <ContentItem
-                        item={contentItem}
-                        key={contentItem.sys.id}
-                      />
-                    )}
                 </section>
               </ScrollElement>
             </Container>
 
-            {(project.exhibitions || []).map(exhibition =>
+            {exhibitions.map(exhibition =>
               <ScrollElement
-                name={scrollNameForExhibitionId(exhibition.sys.id)}
-                key={exhibition.fields.slug}
+                name={scrollNameForExhibitionId(exhibition.uid)}
+                key={exhibition.uid}
               >
                 <section>
                   <Container>
                     <h3>
-                      {exhibition.fields.location}
+                      {exhibition.location}
                     </h3>
                     <p>
-                      {exhibition.fields.year}
+                      {new Date(exhibition.date).getFullYear()}
                     </p>
                   </Container>
-                  {(exhibition.fields.content || [])
-                    .map(contentItem =>
-                      <ContentItem
-                        item={contentItem}
-                        key={contentItem.sys.id}
-                      />
-                    )}
+                  {(exhibition.body || []).map(contentItem =>
+                    <ContentItem
+                      item={contentItem}
+                      // key={contentItem.sys.id}
+                    />
+                  )}
                 </section>
               </ScrollElement>
             )}
@@ -137,7 +143,7 @@ export default class extends Component {
                   <div className="heading">
                     <h2>Acknowledgements</h2>
                   </div>
-                  {project.acknowledgements}
+                  <RichText text={project.acknowledgements} />
                 </section>
               </ScrollElement>
             </Container>

@@ -35,7 +35,7 @@ export default class ImageGrid extends Component {
             return (
               <div
                 className="image"
-                key={image.sys.id}
+                // key={image.sys.id}
                 onClick={this.openLightbox}
               >
                 <Image image={image} />
@@ -44,7 +44,7 @@ export default class ImageGrid extends Component {
           })}
 
           <Lightbox
-            images={images.map(image => ({ src: image.fields.file.url }))}
+            images={images.map(image => ({ src: image.url }))}
             isOpen={this.state.lightboxIsOpen}
             // currentImage={this.state.currentImage}
             onClickPrev={this.gotoPrevious}

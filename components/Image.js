@@ -2,7 +2,7 @@ import { fonts } from "~/components/theme";
 
 export default ({ image }) =>
   <div>
-    <img src={image && image.fields.file.url} alt={image.fields.title} />
+    <img src={image.url} alt={image.alt} />
 
     <style jsx>{`
       img {

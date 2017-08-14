@@ -108,6 +108,20 @@
                 "config": {
                   "label": "Embed"
                 }
+              },
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "text",
+                    "hard_break"
+                  ],
+                  "isAuthorized": {}
+                }
               }
             },
             "repeat": {}
@@ -173,6 +187,19 @@
             "icon": "burst_mode",
             "non-repeat": {},
             "repeat": {
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "text"
+                  ],
+                  "isAuthorized": {}
+                }
+              },
               "image": {
                 "type": "Image",
                 "config": {
@@ -185,5 +212,13 @@
                 }
               }
             }
+          },
+          "divider": {
+            "type": "Slice",
+            "fieldset": "Divider",
+            "description": "A line across the page",
+            "icon": "vertical_align_center",
+            "non-repeat": {},
+            "repeat": {}
           }
         }
