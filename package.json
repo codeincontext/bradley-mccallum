@@ -2,7 +2,6 @@
   "name": "bradley-mccallum",
   "version": "0.1.0",
   "description": "",
-  "main": "server.js",
   "author": "Adam Howard",
   "dependencies": {
     "contentful": "^4.5.0",
@@ -25,9 +24,10 @@
     "react-scroll": "^1.5.4"
   },
   "scripts": {
-    "dev": "node .",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
     "prettier": "prettier --trailing-comma es5 --write",
     "//commented precommit": "lint-staged",
     "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
@@ -40,7 +40,7 @@
       "git add"
     ]
   },
-    "now": {
+  "now": {
     "alias": "bradley-mccallum.now.sh"
   }
 }
