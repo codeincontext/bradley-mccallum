@@ -10,7 +10,7 @@
     "express": "^4.15.3",
     "lodash.chunk": "^4.2.0",
     "lodash.zip": "^4.2.0",
-    "next": "^3.0.1-beta.13",
+    "next": "^3.0.6",
     "prismic-dom": "^1.2.8",
     "prismic-javascript": "^1.1.6",
     "react": "^15.6.1",
@@ -39,5 +39,8 @@
       "npm run prettier",
       "git add"
     ]
+  },
+    "now": {
+    "alias": "bradley-mccallum.now.sh"
   }
 }

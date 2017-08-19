@@ -48,8 +48,7 @@ export default class extends Component {
         />
 
         <Container>
-          <ImageSlider item={{ images: [] }} />
-
+          {/*<ImageSlider item={{ images: [] }} /> TODO*/}
           {YEARS.map((year, i) =>
             <ScrollElement name={scrollNameForYear(year)}>
               <div className="project-collection">

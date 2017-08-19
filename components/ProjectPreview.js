@@ -14,7 +14,7 @@ export default ({ project }) =>
       <a className="project-preview">
         <Image image={project.main_image} />
         <p className="date">
-          {project.date}
+          {new Date(project.date).getFullYear()}
         </p>
         <p className="project-title">
           {RichText.asText(project.title)}
