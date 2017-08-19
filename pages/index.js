@@ -21,8 +21,6 @@ export default class extends Component {
       { orderings: "[my.project.date desc]" }
     );
 
-    console.log(projects);
-
     return {
       projects: projects.results.map(r => ({ uid: r.uid, ...r.data })),
     };
@@ -30,7 +28,6 @@ export default class extends Component {
 
   render() {
     const { sliderImages, projects } = this.props;
-    console.log(projects[0]);
 
     return (
       <div>
@@ -59,6 +56,7 @@ export default class extends Component {
                       const nextYear = YEARS[i + 1] || 1900;
                       return projectYear <= year && projectYear > nextYear;
                     })}
+                    firstSection={i === 0}
                   />
                 </div>
               </div>

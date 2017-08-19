@@ -19,21 +19,16 @@ export default class extends Component {
     const api = await getApi(req);
     const project = await api.getByUID("project", query.slug);
     const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
-    const exhibitions = (await api.getByIDs(exhibitionIds)).results.map(e => ({
-      uid: e.uid,
-      ...e.data,
-    }));
+    const exhibitions = (await api.getByIDs(exhibitionIds)).results;
 
     return {
       project: { uid: project.uid, ...project.data },
-      exhibitions,
+      exhibitions: exhibitions.map(e => ({ uid: e.uid, ...e.data })),
     };
   }
 
   render() {
     const { project, exhibitions } = this.props;
-    console.log(project);
-    console.log(exhibitions);
 
     return (
       <div>

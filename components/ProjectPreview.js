@@ -4,12 +4,12 @@ import { RichText } from "prismic-dom";
 import Image from "~/components/Image";
 import { weights, spacing, colors, COLUMN_SPACING } from "~/components/theme";
 
-export default ({ project }) =>
+export default ({ project, firstSection }) =>
   <div className="root">
     <Link
       as={`/project/${project.uid}`} // URL exposed to the browser
       href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
-      prefetch
+      prefetch={firstSection}
     >
       <a className="project-preview">
         <Image image={project.main_image} />
