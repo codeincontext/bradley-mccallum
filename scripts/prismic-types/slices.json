@@ -1,0 +1,224 @@
+        {
+          "heading": {
+            "type": "Slice",
+            "fieldset": "Heading",
+            "description": "A heading",
+            "icon": "format_color_text",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading3, heading4",
+                  "label": "Title"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "text": {
+            "type": "Slice",
+            "fieldset": "Text",
+            "description": "Rich Text Section",
+            "icon": "text_fields",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item",
+                  "label": "Text",
+                  "placeholder": "Your content here",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "strong",
+                    "em",
+                    "hyperlink",
+                    "list-item",
+                    "o-list-item",
+                    "text",
+                    "hard_break"
+                  ],
+                  "isAuthorized": {}
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "callout": {
+            "type": "Slice",
+            "fieldset": "Callout",
+            "description": "A bold callout like a quote",
+            "icon": "format_quote",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "label": "Text",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "strong",
+                    "em",
+                    "hyperlink",
+                    "text",
+                    "hard_break"
+                  ],
+                  "isAuthorized": {}
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "image": {
+            "type": "Slice",
+            "fieldset": "Image",
+            "description": "Single Image",
+            "icon": "image",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null,
+                    "height": null
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "embed": {
+            "type": "Slice",
+            "fieldset": "Embed",
+            "description": "Video, audio, etc",
+            "icon": "ondemand_video",
+            "non-repeat": {
+              "embed": {
+                "type": "Embed",
+                "config": {
+                  "label": "Embed"
+                }
+              },
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "text",
+                    "hard_break"
+                  ],
+                  "isAuthorized": {}
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "image_banner": {
+            "type": "Slice",
+            "fieldset": "Image Banner",
+            "description": "Full width banner without captions",
+            "icon": "view_column",
+            "non-repeat": {},
+            "repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null,
+                    "height": null
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            }
+          },
+          "image_grid": {
+            "type": "Slice",
+            "fieldset": "Image Grid",
+            "description": "Grid with clickable images",
+            "icon": "apps",
+            "non-repeat": {},
+            "repeat": {
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "text",
+                    "hard_break"
+                  ],
+                  "isAuthorized": {}
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null,
+                    "height": null
+                  },
+                  "thumbnails": [],
+                  "label": "image"
+                }
+              }
+            }
+          },
+          "image_carousel": {
+            "type": "Slice",
+            "fieldset": "Image Carousel",
+            "description": "One image at a time",
+            "icon": "burst_mode",
+            "non-repeat": {},
+            "repeat": {
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": [
+                    "paragraph",
+                    "text"
+                  ],
+                  "isAuthorized": {}
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null,
+                    "height": null
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            }
+          },
+          "divider": {
+            "type": "Slice",
+            "fieldset": "Divider",
+            "description": "A line across the page",
+            "icon": "vertical_align_center",
+            "non-repeat": {},
+            "repeat": {}
+          }
+        }

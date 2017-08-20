@@ -2,7 +2,8 @@ import { Component } from "react";
 import Head from "next/head";
 import { Element as ScrollElement } from "react-scroll";
 
-import { getClient } from "~/lib/contentful";
+import Prismic from "prismic-javascript";
+import { getApi } from "~/lib/prismic";
 import { scrollNameForYear, YEARS } from "~/lib/scrollNames";
 import Container from "~/components/Container";
 import PageMeta from "~/components/PageMeta";
@@ -13,13 +14,15 @@ import Sidebar from "~/components/Sidebar";
 import { spacing, colors } from "~/components/theme";
 
 export default class extends Component {
-  static async getInitialProps({ query }) {
-    const entries = await getClient({ preview: !!query.preview }).getEntries({
-      content_type: "project",
-      order: "-fields.date",
-    });
+  static async getInitialProps({ req, query }) {
+    const api = await getApi(req);
+    const projects = await api.query(
+      Prismic.Predicates.at("document.type", "project"),
+      { orderings: "[my.project.date desc]" }
+    );
+
     return {
-      projects: entries.items.map(item => item.fields),
+      projects: projects.results.map(r => ({ uid: r.uid, ...r.data })),
     };
   }
 
@@ -42,8 +45,7 @@ export default class extends Component {
         />
 
         <Container>
-          <ImageSlider item={{ images: [] }} />
-
+          {/*<ImageSlider item={{ images: [] }} /> TODO*/}
           {YEARS.map((year, i) =>
             <ScrollElement name={scrollNameForYear(year)}>
               <div className="project-collection">
@@ -54,6 +56,7 @@ export default class extends Component {
                       const nextYear = YEARS[i + 1] || 1900;
                       return projectYear <= year && projectYear > nextYear;
                     })}
+                    firstSection={i === 0}
                   />
                 </div>
               </div>

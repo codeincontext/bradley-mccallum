@@ -2,13 +2,17 @@ import Image from "~/components/Image";
 
 export default ({ item }) =>
   <div className="root">
-    {item.images.map(image => {
-      const { width, height } = image.fields.file.details.image;
+    {item.items.map(({ image }) => {
+      if (!image.url) {
+        return null;
+      }
+
+      const { width, height } = image.dimensions;
       return (
         <div
           className="image"
           style={{ flexGrow: width / height }}
-          key={image.sys.id}
+          // key={image.sys.id}
         >
           <Image image={image} />
         </div>

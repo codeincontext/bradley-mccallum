@@ -1,0 +1,42 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Title"
+      }
+    },
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "URL"
+      }
+    },
+    "location": {
+      "type": "Text",
+      "config": {
+        "label": "Location"
+      }
+    },
+    "date" : {
+      "type" : "Date",
+      "config" : {
+        "label" : "Date"
+      }
+    },
+    "curator" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Curator"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Body",
+      "config": {
+        "choices": %%CHOICES%%
+      }
+    }
+  }
+}

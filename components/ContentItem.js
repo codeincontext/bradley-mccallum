@@ -9,18 +9,19 @@ import ImageSlider from "~/components/ImageSlider";
 import ImageGrid from "~/components/ImageGrid";
 
 const componentMap = {
-  paragraph: Paragraph,
-  subheading: Subheading,
+  text: Paragraph,
+  heading: Subheading,
   callout: Callout,
+  image: SingleImage,
   embed: Embed,
-  singleImage: SingleImage,
-  imageBanner: ImageBanner,
-  imageSlider: ImageSlider,
-  imageGrid: ImageGrid,
+  image_banner: ImageBanner,
+  image_grid: ImageGrid,
+  image_carousel: ImageSlider,
 };
 
 export default ({ item }) => {
-  const contentType = item.sys.contentType.sys.id;
-  const component = componentMap[contentType];
-  return React.createElement(component, { item: item.fields });
+  const component = componentMap[item.slice_type];
+  return React.createElement(component, {
+    item: { ...item.primary, items: item.items },
+  });
 };

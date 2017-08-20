@@ -4,11 +4,15 @@ import zip from "lodash.zip";
 import ProjectPreview from "~/components/ProjectPreview";
 import { spacing, COLUMN_SPACING } from "~/components/theme";
 
-export default ({ projects }) =>
+export default ({ projects, firstSection }) =>
   <div className="root">
     {zip(...chunk(projects, 3)).map(column =>
       <div className="column">
-        {column.map(project => project && <ProjectPreview project={project} />)}
+        {column.map(
+          project =>
+            project &&
+            <ProjectPreview project={project} firstSection={firstSection} />
+        )}
       </div>
     )}
     <style jsx>{`

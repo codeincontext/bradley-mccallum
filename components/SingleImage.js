@@ -3,7 +3,7 @@ import Container from "~/components/Container";
 
 export default ({ item }) =>
   <Container>
-    <Image image={item.image} />
+    <Image image={item.image.url} />
     <p>
       {item.caption}
     </p>

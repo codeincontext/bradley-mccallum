@@ -2,7 +2,6 @@
   "name": "bradley-mccallum",
   "version": "0.1.0",
   "description": "",
-  "main": "server.js",
   "author": "Adam Howard",
   "dependencies": {
     "contentful": "^4.5.0",
@@ -10,7 +9,9 @@
     "express": "^4.15.3",
     "lodash.chunk": "^4.2.0",
     "lodash.zip": "^4.2.0",
-    "next": "^3.0.1-beta.13",
+    "next": "^3.0.6",
+    "prismic-dom": "^1.2.8",
+    "prismic-javascript": "^1.1.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-images": "^0.5.5"
@@ -23,13 +24,23 @@
     "react-scroll": "^1.5.4"
   },
   "scripts": {
-    "dev": "node .",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
     "prettier": "prettier --trailing-comma es5 --write",
-    "//precommit": "lint-staged"
+    "//commented precommit": "lint-staged",
+    "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
+    "build-prismic-type:exhibition": "node scripts/build-prismic-type scripts/prismic-types/exhibition.json",
+    "build-prismic-type:press-item": "node scripts/build-prismic-type scripts/prismic-types/press-item.json"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["npm run prettier", "git add"]
+    "*.{js,json,css}": [
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "now": {
+    "alias": "bradley-mccallum.now.sh"
   }
 }
