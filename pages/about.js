@@ -5,6 +5,7 @@ import Prismic from "prismic-javascript";
 import { getApi } from "~/lib/prismic";
 import PageMeta from "~/components/PageMeta";
 import Header from "~/components/Header";
+import MainHeading from "~/components/MainHeading";
 
 export default class extends Component {
   static async getInitialProps({ req, query }) {
@@ -27,6 +28,8 @@ export default class extends Component {
         <Header />
 
         <div />
+
+        <MainHeading>About</MainHeading>
         <style jsx>{``}</style>
       </div>
     );
