@@ -52,12 +52,20 @@
       }
     },
     "press_items": {
-      "type": "Link",
+      "type": "Group",
       "config": {
-        "select": "document",
-        "customtypes": [
-          "press_item"
-        ],
+        "fields": {
+          "press_item": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "press_item"
+              ],
+              "label": "Press Item"
+            }
+          }
+        },
         "label": "Press Items"
       }
     },
