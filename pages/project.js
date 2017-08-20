@@ -8,6 +8,7 @@ import { getApi } from "~/lib/prismic";
 import { scrollNameForExhibitionId } from "~/lib/scrollNames";
 import PageMeta from "~/components/PageMeta";
 import Header from "~/components/Header";
+import MainHeading from "~/components/MainHeading";
 import Container from "~/components/Container";
 import ContentItem from "~/components/ContentItem";
 import Sidebar from "~/components/Sidebar";
@@ -39,23 +40,22 @@ export default class extends Component {
         <Header />
 
         <div className="project-page">
-          <div className="sidebar">
-            <Sidebar
-              items={[
-                {
-                  label: PrismicDom.RichText.asText(project.title),
-                  scrollName: "artwork",
-                },
-                { label: "Exhibitions", scrollName: "exhibitions" },
-                ...exhibitions.map(exhibition => ({
-                  label: exhibition.location,
-                  scrollName: scrollNameForExhibitionId(exhibition.uid),
-                })),
-                { label: "Press", scrollName: "press" },
-                { label: "Acknowledgements", scrollName: "acknowledgements" },
-              ]}
-            />
-          </div>
+          <Sidebar
+            className="sidebar"
+            items={[
+              {
+                label: PrismicDom.RichText.asText(project.title),
+                scrollName: "artwork",
+              },
+              { label: "Exhibitions", scrollName: "exhibitions" },
+              ...exhibitions.map(exhibition => ({
+                label: exhibition.location,
+                scrollName: scrollNameForExhibitionId(exhibition.uid),
+              })),
+              { label: "Press", scrollName: "press" },
+              { label: "Acknowledgements", scrollName: "acknowledgements" },
+            ]}
+          />
           <div className="project-content">
             <ScrollElement name="artwork">
               <section className="first-section">
@@ -92,9 +92,7 @@ export default class extends Component {
             <Container>
               <ScrollElement name="exhibitions">
                 <section>
-                  <div className="heading">
-                    <h2>Exhibitions</h2>
-                  </div>
+                  <MainHeading>Exhibitions</MainHeading>
                 </section>
               </ScrollElement>
             </Container>
@@ -125,9 +123,7 @@ export default class extends Component {
             <Container>
               <ScrollElement name="press">
                 <section>
-                  <div className="heading">
-                    <h2>Press</h2>
-                  </div>
+                  <MainHeading>Press</MainHeading>
                   {(project.pressItems || []).map(contentItem => null)}
                 </section>
               </ScrollElement>
@@ -135,9 +131,7 @@ export default class extends Component {
             <Container>
               <ScrollElement name="acknowledgements">
                 <section>
-                  <div className="heading">
-                    <h2>Acknowledgements</h2>
-                  </div>
+                  <MainHeading>Acknowledgements</MainHeading>
                   <RichText text={project.acknowledgements} />
                 </section>
               </ScrollElement>
@@ -157,24 +151,7 @@ export default class extends Component {
           h1 {
             font-weight: ${weights.bold};
           }
-          .heading {
-            background: radial-gradient(${colors.black} 15%, transparent 16%),
-              radial-gradient(${colors.black} 15%, transparent 16%),
-              ${colors.lightGrey};
-            background-size: 7px 7px;
-            padding-top: ${spacing.s2};
-            margin-bottom: ${spacing.s2};
-          }
-          .heading h2 {
-            font-weight: ${weights.light};
-            font-size: ${fonts.f24};
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin: 0;
-            padding: ${spacing.s05};
-            background-color: ${colors.lightGrey};
-          }
+
           section {
             /* Contain heading margin in section to prevent a gap between sections */
             overflow: auto;
