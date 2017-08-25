@@ -1,4 +1,6 @@
 import { Component } from "react";
+import PrismicDom from "prismic-dom";
+
 import Image from "~/components/Image";
 import Lightbox from "react-images";
 import Container from "~/components/Container";
@@ -11,19 +13,26 @@ export default class ImageGrid extends Component {
     super();
   }
 
-  state = {};
+  state = {
+    currentImage: 0,
+    lightboxIsOpen: false,
+  };
 
-  openLightbox = () => {
-    this.setState({ lightboxIsOpen: true });
+  openLightbox = index => {
+    this.setState({ lightboxIsOpen: true, currentImage: index });
   };
 
   closeLightbox = () => {
     this.setState({ lightboxIsOpen: false });
   };
 
-  // goToPrevious = () => {};
+  goToPrevious = () => {
+    this.setState({ currentImage: this.state.currentImage - 1 });
+  };
 
-  // goToNext = () => {};
+  goToNext = () => {
+    this.setState({ currentImage: this.state.currentImage + 1 });
+  };
 
   render() {
     const { item: { items } } = this.props;
@@ -31,24 +40,27 @@ export default class ImageGrid extends Component {
     return (
       <Container>
         <div className="root">
-          {items.map(image => {
+          {items.map((item, i) => {
             return (
               <div
                 className="image"
                 // key={image.sys.id}
-                onClick={this.openLightbox}
+                onClick={e => this.openLightbox(i, e)}
               >
-                <Image image={image} />
+                <Image image={item.image} />
               </div>
             );
           })}
 
           <Lightbox
-            images={items.map(image => ({ src: image.url }))}
+            images={items.map(item => ({
+              src: item.image.url,
+              caption: PrismicDom.RichText.asText(item.caption),
+            }))}
             isOpen={this.state.lightboxIsOpen}
-            // currentImage={this.state.currentImage}
-            onClickPrev={this.gotoPrevious}
-            onClickNext={this.gotoNext}
+            currentImage={this.state.currentImage}
+            onClickPrev={this.goToPrevious}
+            onClickNext={this.goToNext}
             onClose={this.closeLightbox}
           />
         </div>
