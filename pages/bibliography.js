@@ -21,7 +21,7 @@ export default class extends Component {
     return (
       <div>
         <Head>
-          <title>Bibliography</title>
+          <title>Bibliography | Bradley McCallum</title>
         </Head>
         <PageMeta />
         <Header />
