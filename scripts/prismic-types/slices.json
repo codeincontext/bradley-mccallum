@@ -115,11 +115,7 @@
                   "multi": "paragraph",
                   "label": "Caption",
                   "isEverythingAuthorized": false,
-                  "authorized": [
-                    "paragraph",
-                    "text",
-                    "hard_break"
-                  ],
+                  "authorized": ["paragraph", "text", "hard_break"],
                   "isAuthorized": {}
                 }
               }
@@ -151,7 +147,15 @@
             "fieldset": "Image Grid",
             "description": "Grid with clickable images",
             "icon": "apps",
-            "non-repeat": {},
+            "non-repeat": {
+              "min_width": {
+                "type": "Select",
+                "config": {
+                  "options": ["100px", "200px", "400px"],
+                  "label": "Min Width"
+                }
+              }
+            },
             "repeat": {
               "caption": {
                 "type": "StructuredText",
@@ -159,11 +163,7 @@
                   "multi": "paragraph",
                   "label": "Caption",
                   "isEverythingAuthorized": false,
-                  "authorized": [
-                    "paragraph",
-                    "text",
-                    "hard_break"
-                  ],
+                  "authorized": ["paragraph", "text", "hard_break"],
                   "isAuthorized": {}
                 }
               },
@@ -193,10 +193,7 @@
                   "multi": "paragraph",
                   "label": "Caption",
                   "isEverythingAuthorized": false,
-                  "authorized": [
-                    "paragraph",
-                    "text"
-                  ],
+                  "authorized": ["paragraph", "text"],
                   "isAuthorized": {}
                 }
               },

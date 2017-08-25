@@ -35,22 +35,34 @@ export default class ImageGrid extends Component {
   };
 
   render() {
-    const { item: { items } } = this.props;
+    const { item: { items, min_width = "100px" } } = this.props;
 
     return (
       <Container>
         <div className="root">
-          {items.map((item, i) => {
-            return (
+          <div className="images">
+            {items.map((item, i) =>
               <div
                 className="image"
+                style={{ flexBasis: min_width }}
                 // key={image.sys.id}
                 onClick={e => this.openLightbox(i, e)}
               >
                 <Image image={item.image} />
               </div>
-            );
-          })}
+            )}
+            {/* We want images on all lines to have the same width.
+              If the last line has fewer items, flex-griw will try to grow them
+              Adding 0 height elements to the end preents this
+          */}
+            {Array.from({ length: 10 }).map(i =>
+              <div
+                className="image spacer"
+                style={{ flexBasis: min_width }}
+                key={i}
+              />
+            )}
+          </div>
 
           <Lightbox
             images={items.map(item => ({
@@ -67,16 +79,20 @@ export default class ImageGrid extends Component {
 
         <style jsx>{`
           .root {
-            display: flex;
-            flex-wrap: wrap;
             margin-bottom: ${spacing.s2};
           }
-          .image:first-of-type {
-            margin-left: 0;
+          .images {
+            margin: -5px;
+            display: flex;
+            flex-wrap: wrap;
           }
           .image {
-            width: 12.5%;
-            margin-left: 10px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            margin: 5px;
+          }
+          .spacer {
+            height: 0;
           }
         `}</style>
       </Container>

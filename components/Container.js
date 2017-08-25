@@ -7,6 +7,7 @@ export default ({ children }) =>
       div {
         max-width: ${MAX_WIDTH}px;
         margin: 0 auto;
+        padding: 0 20px;
       }
     `}</style>
   </div>;
