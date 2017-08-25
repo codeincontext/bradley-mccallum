@@ -34,7 +34,9 @@ export default class extends Component {
     return (
       <div>
         <Head>
-          <title>Projects</title>
+          <title>
+            {PrismicDom.RichText.asText(project.title)} | Bradley McCallum
+          </title>
         </Head>
         <PageMeta />
         <Header />
