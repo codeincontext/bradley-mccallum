@@ -16,7 +16,7 @@ export default class extends Component {
   }
 
   render() {
-    const { pressItems } = this.props;
+    const { pressItems, url } = this.props;
 
     return (
       <div>
@@ -24,7 +24,7 @@ export default class extends Component {
           <title>Bibliography</title>
         </Head>
         <PageMeta />
-        <Header />
+        <Header pathname={url.pathname} />
 
         <div />
         <style jsx>{``}</style>

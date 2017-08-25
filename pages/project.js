@@ -28,7 +28,7 @@ export default class extends Component {
   }
 
   render() {
-    const { project, exhibitions } = this.props;
+    const { project, exhibitions, url } = this.props;
 
     return (
       <div>
@@ -36,7 +36,7 @@ export default class extends Component {
           <title>Projects</title>
         </Head>
         <PageMeta />
-        <Header />
+        <Header pathname={url.pathname} />
 
         <div className="project-page">
           <div className="sidebar">
@@ -181,7 +181,7 @@ export default class extends Component {
           }
           .first-section {
             padding-top: 300px;
-            margin-top: -332px;
+            margin-top: -300px;
           }
           .materials {
             text-transform: uppercase;

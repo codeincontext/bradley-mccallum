@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Link, scrollSpy } from "react-scroll";
+import { Link as ScrollLink, scrollSpy } from "react-scroll";
 import { fonts, weights, spacing } from "~/components/theme";
 
 // TODO: Assume first item is active if nothing else is yet
@@ -19,7 +19,7 @@ export default class extends Component {
         <ul>
           {items.map(item =>
             <li key={item.label}>
-              <Link
+              <ScrollLink
                 to={item.scrollName}
                 activeClass="active-sidebar-link"
                 spy
@@ -27,7 +27,7 @@ export default class extends Component {
                 duration={500}
               >
                 {item.label}
-              </Link>
+              </ScrollLink>
             </li>
           )}
 
@@ -35,7 +35,7 @@ export default class extends Component {
             ul {
               position: fixed;
               left: ${spacing.s2};
-              top: ${spacing.s5};
+              top: ${spacing.s8};
               margin: 0;
               padding: 0;
             }

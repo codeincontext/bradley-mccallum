@@ -14,7 +14,7 @@ import Sidebar from "~/components/Sidebar";
 import { spacing, colors } from "~/components/theme";
 
 export default class extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
     const projects = await api.query(
       Prismic.Predicates.at("document.type", "project"),
@@ -23,11 +23,12 @@ export default class extends Component {
 
     return {
       projects: projects.results.map(r => ({ uid: r.uid, ...r.data })),
+      pathname,
     };
   }
 
   render() {
-    const { sliderImages, projects } = this.props;
+    const { sliderImages, projects, pathname } = this.props;
 
     return (
       <div>
@@ -35,7 +36,7 @@ export default class extends Component {
           <title>Home</title>
         </Head>
         <PageMeta />
-        <Header />
+        <Header pathname={pathname} />
 
         <Sidebar
           items={YEARS.map((year, i) => ({
@@ -46,9 +47,17 @@ export default class extends Component {
 
         <Container>
           {/*<ImageSlider item={{ images: [] }} /> TODO*/}
+          <ScrollElement name="home-header">
+            <div
+              className="header"
+              style={{ height: "300px", background: "red" }}
+            />
+          </ScrollElement>
+
           {YEARS.map((year, i) =>
             <ScrollElement name={scrollNameForYear(year)}>
               <div className="project-collection">
+                {/*TODO not used classname */}
                 <div className={i === 0 ? "firstSection" : null}>
                   <Masonry
                     projects={projects.filter(p => {
@@ -70,7 +79,7 @@ export default class extends Component {
           .spacer {
             // height: 100vh;
           }
-          .firstSection {
+          .header {
             // So the first section is active in the nav at the top of the page
             padding-top: 300px;
             margin-top: -300px;

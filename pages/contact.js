@@ -16,7 +16,7 @@ export default class extends Component {
   }
 
   render() {
-    const { exhibitions } = this.props;
+    const { exhibitions, url } = this.props;
 
     return (
       <div>
@@ -24,7 +24,7 @@ export default class extends Component {
           <title>Contact</title>
         </Head>
         <PageMeta />
-        <Header />
+        <Header pathname={url.pathname} />
 
         <div />
         <style jsx>{``}</style>

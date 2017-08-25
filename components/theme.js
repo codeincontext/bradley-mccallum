@@ -31,3 +31,7 @@ export const spacing = {
   s5: "5rem",
   s8: "8rem",
 };
+
+export const zIndex = {
+  header: 1,
+};
