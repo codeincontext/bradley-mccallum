@@ -20,19 +20,19 @@ import { fonts, weights, spacing, colors } from '~/components/theme';
 export default class Project extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
-    const project = await api.getByUID('project', query.slug, {
-      fetchLinks:
-        'press_item.publication,press_item.title,press_item.link,press_item.date',
-    });
+    const project = await api.getByUID('project', query.slug);
 
     const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
     const exhibitions = (await api.getByIDs(exhibitionIds)).results;
 
+    const pressItemIds = project.data.press_items.map(
+      item => item.press_item.id
+    );
+    const pressItemsResponse = await api.getByIDs(pressItemIds, {
+      orderings: '[my.press_item.date desc]',
+    });
     const pressItems = groupBy(
-      project.data.press_items.map(item => ({
-        id: item.press_item.id,
-        ...item.press_item.data,
-      })),
+      pressItemsResponse.results.map(item => ({ id: item.id, ...item.data })),
       item => new Date(item.date).getFullYear()
     );
 
