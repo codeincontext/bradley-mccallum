@@ -21,7 +21,7 @@ export default ({ children }) => {
           letter-spacing: 2px;
           display: inline-block;
           margin: 0;
-          padding: ${spacing.s05};
+          padding: ${spacing.s05} ${spacing.s1} 0 ${spacing.s025};
           background-color: ${colors.lightGrey};
         }
       `}</style>

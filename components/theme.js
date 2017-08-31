@@ -23,6 +23,7 @@ export const weights = {
 };
 
 export const spacing = {
+  s025: '.25rem',
   s05: '.5rem',
   s1: '1rem',
   s2: '2rem',
