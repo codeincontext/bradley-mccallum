@@ -16,7 +16,7 @@ import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
 import RichText from '~/components/RichText';
 import PressItem from '~/components/PressItem';
-import { fonts, weights, spacing, colors } from '~/components/theme';
+import { fonts, weights, spacing, colors } from '~/lib/theme';
 
 export default class Project extends Component {
   static async getInitialProps({ req, query }) {

@@ -11,7 +11,7 @@ import Header from '~/components/Header';
 import ImageSlider from '~/components/ImageSlider';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
-import { spacing, colors } from '~/components/theme';
+import { spacing, colors } from '~/lib/theme';
 
 export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {

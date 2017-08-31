@@ -4,7 +4,7 @@ import PrismicDom from 'prismic-dom';
 import Image from '~/components/Image';
 import Lightbox from 'react-images';
 import Container from '~/components/Container';
-import { spacing } from '~/components/theme';
+import { spacing } from '~/lib/theme';
 
 // We can either define a number of columns or a minimum image size a-la https://github.com/neptunian/react-photo-gallery#user-guide--best-practice
 

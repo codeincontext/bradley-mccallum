@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
-import { fonts, weights, spacing } from '~/components/theme';
+import { fonts, weights, spacing } from '~/lib/theme';
 
 // TODO: Assume first item is active if nothing else is yet
 // We can use onActive and onInactive for this and store values here

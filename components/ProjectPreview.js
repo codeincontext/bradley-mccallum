@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { RichText } from 'prismic-dom';
 
 import Image from '~/components/Image';
-import { weights, spacing, colors, COLUMN_SPACING } from '~/components/theme';
+import { weights, spacing, colors, COLUMN_SPACING } from '~/lib/theme';
 
 export default ({ project, firstSection }) => (
   <div className="root">

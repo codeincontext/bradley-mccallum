@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Header from '~/components/Header';
-import { colors, weights } from '~/components/theme';
+import { colors, weights } from '~/lib/theme';
 
 export default () => (
   <div>
