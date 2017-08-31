@@ -2,7 +2,7 @@ import chunk from 'lodash.chunk';
 import zip from 'lodash.zip';
 // import { scrollNameForProject } from '~/lib/scrollNames';
 import ProjectPreview from '~/components/ProjectPreview';
-import { spacing, COLUMN_SPACING } from '~/components/theme';
+import { spacing, COLUMN_SPACING } from '~/lib/theme';
 
 export default ({ projects, firstSection }) => (
   <div className="root">

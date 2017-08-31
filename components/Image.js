@@ -1,4 +1,4 @@
-import { fonts } from '~/components/theme';
+import { fonts } from '~/lib/theme';
 
 export default ({ image }) => {
   if (!image) return null;

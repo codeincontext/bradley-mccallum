@@ -1,4 +1,4 @@
-import { MAX_WIDTH } from '~/components/theme';
+import { MAX_WIDTH } from '~/lib/theme';
 
 export default ({ children }) => (
   <div>

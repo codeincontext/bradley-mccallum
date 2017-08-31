@@ -1,6 +1,6 @@
-import { CALLOUT_WIDTH } from '~/components/theme';
+import { CALLOUT_WIDTH } from '~/lib/theme';
 import Container from '~/components/Container';
-import { weights, fonts, spacing } from '~/components/theme';
+import { weights, fonts, spacing } from '~/lib/theme';
 import RichText from '~/components/RichText';
 
 export default ({ item }) => (

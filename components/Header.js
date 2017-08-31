@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
 import Container from '~/components/Container';
-import { fonts, colors, weights, spacing, zIndex } from '~/components/theme';
+import { fonts, colors, weights, spacing, zIndex } from '~/lib/theme';
 
 export default ({ pathname }) => (
   <div>

@@ -1,4 +1,4 @@
-import { fonts, colors, weights, spacing } from '~/components/theme';
+import { fonts, colors, weights, spacing } from '~/lib/theme';
 
 export default ({ children }) => {
   return (
