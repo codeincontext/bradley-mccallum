@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
+import groupBy from 'lodash.groupby';
 
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
@@ -13,23 +14,41 @@ import Container from '~/components/Container';
 import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
 import RichText from '~/components/RichText';
+import PressItem from '~/components/PressItem';
 import { fonts, weights, spacing, colors } from '~/components/theme';
 
 export default class Project extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
-    const project = await api.getByUID('project', query.slug);
+    const project = await api.getByUID('project', query.slug, {
+      fetchLinks:
+        'press_item.publication,press_item.title,press_item.link,press_item.date',
+    });
+
     const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
     const exhibitions = (await api.getByIDs(exhibitionIds)).results;
+
+    const pressItems = groupBy(
+      project.data.press_items.map(item => ({
+        id: item.press_item.id,
+        ...item.press_item.data,
+      })),
+      item => new Date(item.date).getFullYear()
+    );
 
     return {
       project: { uid: project.uid, ...project.data },
       exhibitions: exhibitions.map(e => ({ uid: e.uid, ...e.data })),
+      pressItems,
     };
   }
 
   render() {
-    const { project, exhibitions, url } = this.props;
+    const { project, exhibitions, pressItems, url } = this.props;
+
+    const pressItemYears = Object.entries(pressItems).sort(
+      ([year1], [year2]) => year2 - year1
+    );
 
     return (
       <div>
@@ -58,6 +77,7 @@ export default class Project extends Component {
               { label: 'Acknowledgements', scrollName: 'acknowledgements' },
             ]}
           />
+
           <div className="project-content">
             <ScrollElement name="artwork">
               <section className="first-section">
@@ -82,6 +102,7 @@ export default class Project extends Component {
                   ))}
               </section>
             </ScrollElement>
+
             <Container>
               <ScrollElement name="exhibitions">
                 <section>
@@ -109,14 +130,21 @@ export default class Project extends Component {
                 </section>
               </ScrollElement>
             ))}
+
             <Container>
               <ScrollElement name="press">
                 <section>
                   <MainHeading>Press</MainHeading>
-                  {(project.pressItems || []).map(contentItem => null)}
+                  {pressItemYears.map(([year, items]) => (
+                    <div>
+                      <h4>{year}</h4>
+                      <ul>{items.map(item => <PressItem item={item} />)}</ul>
+                    </div>
+                  ))}
                 </section>
               </ScrollElement>
             </Container>
+
             <Container>
               <ScrollElement name="acknowledgements">
                 <section>
@@ -127,6 +155,7 @@ export default class Project extends Component {
             </Container>
           </div>
         </div>
+
         <style jsx>{`
           .project-page {
             display: flex;
@@ -151,6 +180,9 @@ export default class Project extends Component {
           }
           .materials {
             text-transform: uppercase;
+          }
+          ul {
+            padding-left: 0;
           }
           .acknowledgements {
             /* Ensure enough footer space to scroll to the bottom */

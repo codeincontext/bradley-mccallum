@@ -36,7 +36,7 @@ export default class Index extends Component {
     return (
       <div>
         <Head>
-          <title>Home</title>
+          <title>Home | Bradley McCallum</title>
         </Head>
         <PageMeta />
         <Header pathname={pathname} />
