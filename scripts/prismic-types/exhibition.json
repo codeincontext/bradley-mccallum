@@ -13,6 +13,18 @@
         "label" : "URL"
       }
     },
+    "venue": {
+      "type": "Text",
+      "config": {
+        "label": "Venue"
+      }
+    },
+    "venue_link": {
+      "type": "Link",
+      "config": {
+        "label": "Venue Link"
+      }
+    },
     "location": {
       "type": "Text",
       "config": {
@@ -29,6 +41,16 @@
       "type" : "Text",
       "config" : {
         "label" : "Curator"
+      }
+    },
+    "exhibition_type": {
+      "type": "Select",
+      "config": {
+        "options": [
+          "group"
+        ],
+        "label": "Solo or group",
+        "placeholder": "solo"
       }
     },
     "body": {
