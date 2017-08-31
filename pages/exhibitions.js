@@ -37,7 +37,10 @@ export default class Exhibitions extends Component {
     const api = await getApi(req);
     const exhibitionsResponse = await api.query(
       Prismic.Predicates.at('document.type', 'exhibition'),
-      { orderings: '[my.exhibition.date desc]' }
+      {
+        orderings: '[my.exhibition.date desc]',
+        pageSize: 100,
+      }
     );
     const exhibitions = exhibitionsResponse.results.map(r => ({
       uid: r.uid,
