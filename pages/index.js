@@ -13,7 +13,7 @@ import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import { spacing, colors } from '~/components/theme';
 
-export default class extends Component {
+export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
     const projects = await api.query(

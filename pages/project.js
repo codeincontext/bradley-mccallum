@@ -15,7 +15,7 @@ import Sidebar from '~/components/Sidebar';
 import RichText from '~/components/RichText';
 import { fonts, weights, spacing, colors } from '~/components/theme';
 
-export default class extends Component {
+export default class Project extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
     const project = await api.getByUID('project', query.slug);

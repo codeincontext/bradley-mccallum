@@ -7,7 +7,7 @@ import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 
-export default class extends Component {
+export default class Bibliography extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
 

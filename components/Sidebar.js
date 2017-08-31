@@ -6,7 +6,7 @@ import { fonts, weights, spacing } from '~/components/theme';
 // We can use onActive and onInactive for this and store values here
 // Can then remove padding on .firstSection in project.js
 
-export default class extends Component {
+export default class Sidebar extends Component {
   componentDidMount() {
     setImmediate(() => scrollSpy.update());
   }
