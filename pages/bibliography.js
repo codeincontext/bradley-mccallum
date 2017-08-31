@@ -4,6 +4,7 @@ import Prismic from 'prismic-javascript';
 import groupBy from 'lodash.groupby';
 
 import { getApi } from '~/lib/prismic';
+import { groupByYear } from '~/lib/utils';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
@@ -21,12 +22,12 @@ export default class Bibliography extends Component {
       }
     );
 
-    const pressItems = groupBy(
-      pressItemResponse.results.map(item => ({ uid: item.uid, ...item.data })),
-      item => new Date(item.date).getFullYear()
-    );
-
-    return { pressItems };
+    return {
+      pressItems: pressItemResponse.results.map(item => ({
+        uid: item.uid,
+        ...item.data,
+      })),
+    };
   }
 
   render() {
@@ -48,7 +49,7 @@ export default class Bibliography extends Component {
           <MainHeading>Bibliography</MainHeading>
 
           <h2>Reviews</h2>
-          {pressItemYears.map(([year, items]) => (
+          {groupByYear(pressItems).map(([year, items]) => (
             <div>
               <h4>{year}</h4>
               <ul>{items.map(item => <PressItem item={item} />)}</ul>
