@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { RichText } from "prismic-dom";
+import Link from 'next/link';
+import { RichText } from 'prismic-dom';
 
-import Image from "~/components/Image";
-import { weights, spacing, colors, COLUMN_SPACING } from "~/components/theme";
+import Image from '~/components/Image';
+import { weights, spacing, colors, COLUMN_SPACING } from '~/components/theme';
 
-export default ({ project, firstSection }) =>
+export default ({ project, firstSection }) => (
   <div className="root">
     <Link
       as={`/project/${project.uid}`} // URL exposed to the browser
@@ -13,12 +13,8 @@ export default ({ project, firstSection }) =>
     >
       <a className="project-preview">
         <Image image={project.main_image} />
-        <p className="date">
-          {new Date(project.date).getFullYear()}
-        </p>
-        <p className="project-title">
-          {RichText.asText(project.title)}
-        </p>
+        <p className="date">{new Date(project.date).getFullYear()}</p>
+        <p className="project-title">{RichText.asText(project.title)}</p>
       </a>
     </Link>
     <style jsx>{`
@@ -51,4 +47,5 @@ export default ({ project, firstSection }) =>
         text-transform: uppercase;
       }
     `}</style>
-  </div>;
+  </div>
+);

@@ -20,7 +20,7 @@
     "babel-plugin-root-import": "^5.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.2",
-    "prettier": "^1.5.2",
+    "prettier": "^1.6.1",
     "react-scroll": "^1.5.4"
   },
   "scripts": {
@@ -28,7 +28,7 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
-    "prettier": "prettier --trailing-comma es5 --write",
+    "prettier": "prettier --write pages/* components/*",
     "//commented precommit": "lint-staged",
     "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
     "build-prismic-type:exhibition": "node scripts/build-prismic-type scripts/prismic-types/exhibition.json",
@@ -36,9 +36,13 @@
   },
   "lint-staged": {
     "*.{js,json,css}": [
-      "npm run prettier",
+      "prettier ---write",
       "git add"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "now": {
     "alias": "bradley-mccallum.now.sh"

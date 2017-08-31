@@ -1,13 +1,13 @@
-import React from "react";
-import Paragraph from "~/components/Paragraph";
-import Subheading from "~/components/Subheading";
-import Callout from "~/components/Callout";
-import Embed from "~/components/Embed";
-import SingleImage from "~/components/SingleImage";
-import ImageBanner from "~/components/ImageBanner";
-import ImageSlider from "~/components/ImageSlider";
-import ImageGrid from "~/components/ImageGrid";
-import Divider from "~/components/Divider";
+import React from 'react';
+import Paragraph from '~/components/Paragraph';
+import Subheading from '~/components/Subheading';
+import Callout from '~/components/Callout';
+import Embed from '~/components/Embed';
+import SingleImage from '~/components/SingleImage';
+import ImageBanner from '~/components/ImageBanner';
+import ImageSlider from '~/components/ImageSlider';
+import ImageGrid from '~/components/ImageGrid';
+import Divider from '~/components/Divider';
 
 const componentMap = {
   text: Paragraph,

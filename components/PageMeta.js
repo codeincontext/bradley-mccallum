@@ -1,8 +1,8 @@
-import Head from "next/head";
-import Header from "~/components/Header";
-import { colors, weights } from "~/components/theme";
+import Head from 'next/head';
+import Header from '~/components/Header';
+import { colors, weights } from '~/components/theme';
 
-export default () =>
+export default () => (
   <div>
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -25,4 +25,5 @@ export default () =>
         text-decoration: none;
       }
     `}</style>
-  </div>;
+  </div>
+);

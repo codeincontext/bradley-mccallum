@@ -1,24 +1,24 @@
-import { Component } from "react";
-import Head from "next/head";
-import { Element as ScrollElement } from "react-scroll";
-import Prismic from "prismic-javascript";
-import PrismicDom from "prismic-dom";
+import { Component } from 'react';
+import Head from 'next/head';
+import { Element as ScrollElement } from 'react-scroll';
+import Prismic from 'prismic-javascript';
+import PrismicDom from 'prismic-dom';
 
-import { getApi } from "~/lib/prismic";
-import { scrollNameForExhibitionId } from "~/lib/scrollNames";
-import PageMeta from "~/components/PageMeta";
-import Header from "~/components/Header";
-import MainHeading from "~/components/MainHeading";
-import Container from "~/components/Container";
-import ContentItem from "~/components/ContentItem";
-import Sidebar from "~/components/Sidebar";
-import RichText from "~/components/RichText";
-import { fonts, weights, spacing, colors } from "~/components/theme";
+import { getApi } from '~/lib/prismic';
+import { scrollNameForExhibitionId } from '~/lib/scrollNames';
+import PageMeta from '~/components/PageMeta';
+import Header from '~/components/Header';
+import MainHeading from '~/components/MainHeading';
+import Container from '~/components/Container';
+import ContentItem from '~/components/ContentItem';
+import Sidebar from '~/components/Sidebar';
+import RichText from '~/components/RichText';
+import { fonts, weights, spacing, colors } from '~/components/theme';
 
 export default class extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
-    const project = await api.getByUID("project", query.slug);
+    const project = await api.getByUID('project', query.slug);
     const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
     const exhibitions = (await api.getByIDs(exhibitionIds)).results;
 
@@ -47,36 +47,27 @@ export default class extends Component {
             items={[
               {
                 label: PrismicDom.RichText.asText(project.title),
-                scrollName: "artwork",
+                scrollName: 'artwork',
               },
-              { label: "Exhibitions", scrollName: "exhibitions" },
+              { label: 'Exhibitions', scrollName: 'exhibitions' },
               ...exhibitions.map(exhibition => ({
                 label: exhibition.location,
                 scrollName: scrollNameForExhibitionId(exhibition.uid),
               })),
-              { label: "Press", scrollName: "press" },
-              { label: "Acknowledgements", scrollName: "acknowledgements" },
+              { label: 'Press', scrollName: 'press' },
+              { label: 'Acknowledgements', scrollName: 'acknowledgements' },
             ]}
           />
           <div className="project-content">
             <ScrollElement name="artwork">
               <section className="first-section">
                 <Container>
-                  <h1>
-                    {PrismicDom.RichText.asText(project.title)}
-                  </h1>
+                  <h1>{PrismicDom.RichText.asText(project.title)}</h1>
+                  <p>{project.materials}</p>
+                  <p>{new Date(project.date).getFullYear()}</p>
+                  {project.collaborators && <p>{project.collaborators}</p>}
                   <p>
-                    {project.materials}
-                  </p>
-                  <p>
-                    {new Date(project.date).getFullYear()}
-                  </p>
-                  {project.collaborators &&
-                    <p>
-                      {project.collaborators}
-                    </p>}
-                  <p>
-                    Project website:{" "}
+                    Project website:{' '}
                     <a href="{project.websiteLinkUrl}">
                       {project.websiteLinkText}
                     </a>
@@ -84,11 +75,11 @@ export default class extends Component {
                 </Container>
 
                 {(project.body || [])
-                  .map(contentItem =>
+                  .map(contentItem => (
                     <ContentItem
                       item={contentItem} /* key={contentItem.sys.id} */
                     />
-                  )}
+                  ))}
               </section>
             </ScrollElement>
             <Container>
@@ -99,29 +90,25 @@ export default class extends Component {
               </ScrollElement>
             </Container>
 
-            {exhibitions.map(exhibition =>
+            {exhibitions.map(exhibition => (
               <ScrollElement
                 name={scrollNameForExhibitionId(exhibition.uid)}
                 key={exhibition.uid}
               >
                 <section>
                   <Container>
-                    <h3>
-                      {exhibition.location}
-                    </h3>
-                    <p>
-                      {new Date(exhibition.date).getFullYear()}
-                    </p>
+                    <h3>{exhibition.location}</h3>
+                    <p>{new Date(exhibition.date).getFullYear()}</p>
                   </Container>
-                  {(exhibition.body || []).map(contentItem =>
+                  {(exhibition.body || []).map(contentItem => (
                     <ContentItem
                       item={contentItem}
                       // key={contentItem.sys.id}
                     />
-                  )}
+                  ))}
                 </section>
               </ScrollElement>
-            )}
+            ))}
             <Container>
               <ScrollElement name="press">
                 <section>
