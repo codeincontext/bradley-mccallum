@@ -7,6 +7,7 @@ import groupBy from 'lodash.groupby';
 
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
+import { groupByYear } from '~/lib/utils';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
@@ -31,15 +32,14 @@ export default class Project extends Component {
     const pressItemsResponse = await api.getByIDs(pressItemIds, {
       orderings: '[my.press_item.date desc]',
     });
-    const pressItems = groupBy(
-      pressItemsResponse.results.map(item => ({ id: item.id, ...item.data })),
-      item => new Date(item.date).getFullYear()
-    );
 
     return {
       project: { uid: project.uid, ...project.data },
       exhibitions: exhibitions.map(e => ({ uid: e.uid, ...e.data })),
-      pressItems,
+      pressItems: pressItemsResponse.results.map(item => ({
+        id: item.id,
+        ...item.data,
+      })),
     };
   }
 
@@ -135,7 +135,7 @@ export default class Project extends Component {
               <ScrollElement name="press">
                 <section>
                   <MainHeading>Press</MainHeading>
-                  {pressItemYears.map(([year, items]) => (
+                  {groupByYear(pressItems).map(([year, items]) => (
                     <div>
                       <h4>{year}</h4>
                       <ul>{items.map(item => <PressItem item={item} />)}</ul>
