@@ -15,7 +15,10 @@ export default class Bibliography extends Component {
     const api = await getApi(req);
     const pressItemResponse = await api.query(
       Prismic.Predicates.at('document.type', 'press_item'),
-      { orderings: '[my.press_item.date desc]' }
+      {
+        orderings: '[my.press_item.date desc]',
+        pageSize: 100,
+      }
     );
 
     const pressItems = groupBy(
