@@ -22,9 +22,9 @@ function formatDate(date) {
   return `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
-export default ({ item: { author, title, publication, date } }) => (
+export default ({ item: { author, title, link, publication, date } }) => (
   <li>
-    {author}, &ldquo;<Link>
+    {author}, &ldquo;<Link href={link ? link.url : undefined}>
       <a>{title},</a>
     </Link>&rdquo; {RichText.asText(publication)}, {formatDate(date)}
     <style jsx>{`
