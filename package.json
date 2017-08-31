@@ -28,7 +28,7 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
-    "prettier": "prettier --write pages/* components/*",
+    "prettier": "prettier --write **/*.js",
     "//commented precommit": "lint-staged",
     "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
     "build-prismic-type:exhibition": "node scripts/build-prismic-type scripts/prismic-types/exhibition.json",
