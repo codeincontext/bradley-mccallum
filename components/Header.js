@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { Link as ScrollLink, scrollSpy } from "react-scroll";
-import Container from "~/components/Container";
-import { fonts, colors, weights, spacing, zIndex } from "~/components/theme";
+import Link from 'next/link';
+import { Link as ScrollLink, scrollSpy } from 'react-scroll';
+import Container from '~/components/Container';
+import { fonts, colors, weights, spacing, zIndex } from '~/components/theme';
 
-export default ({ pathname }) =>
+export default ({ pathname }) => (
   <div>
     <header>
       <Link href="/" prefetch>
@@ -11,53 +11,55 @@ export default ({ pathname }) =>
       </Link>
 
       <nav>
-        {pathname === "/"
-          ? <span>
-              <ScrollLink
-                to="home-header"
-                className="nav-link"
-                activeClass="active-nav-link"
-                spy
-                smooth
-                duration={500}
-              >
-                Home
-              </ScrollLink>
-              {/* TODO: This is hard to do because react-scroll only lets you use one scrolllink per scrol element */}
-              <ScrollLink
-                className="nav-link"
-                activeClass="active-nav-link"
-                spy
-                smooth
-                duration={500}
-              >
-                Artworks
-              </ScrollLink>
-            </span>
-          : <span>
-              <Link href="/" prefetch>
-                <a>Home</a>
-              </Link>
-              <Link href="/" prefetch>
-                <a>Artworks</a>
-              </Link>
-            </span>}
+        {pathname === '/' ? (
+          <span>
+            <ScrollLink
+              to="home-header"
+              className="nav-link"
+              activeClass="active-nav-link"
+              spy
+              smooth
+              duration={500}
+            >
+              Home
+            </ScrollLink>
+            {/* TODO: This is hard to do because react-scroll only lets you use one scrolllink per scrol element */}
+            <ScrollLink
+              className="nav-link"
+              activeClass="active-nav-link"
+              spy
+              smooth
+              duration={500}
+            >
+              Artworks
+            </ScrollLink>
+          </span>
+        ) : (
+          <span>
+            <Link href="/" prefetch>
+              <a>Home</a>
+            </Link>
+            <Link href="/" prefetch>
+              <a>Artworks</a>
+            </Link>
+          </span>
+        )}
 
         <Link href="/exhibitions" prefetch>
-          <a className={pathname === "/exhibitions" && "active-nav-link"}>
+          <a className={pathname === '/exhibitions' && 'active-nav-link'}>
             Exhibitions
           </a>
         </Link>
         <Link href="/bibliography" prefetch>
-          <a className={pathname === "/bibliography" && "active-nav-link"}>
+          <a className={pathname === '/bibliography' && 'active-nav-link'}>
             Bibliography
           </a>
         </Link>
         <Link href="/about" prefetch>
-          <a className={pathname === "/about" && "active-nav-link"}>About</a>
+          <a className={pathname === '/about' && 'active-nav-link'}>About</a>
         </Link>
         <Link href="/contact" prefetch>
-          <a className={pathname === "/contact" && "active-nav-link"}>
+          <a className={pathname === '/contact' && 'active-nav-link'}>
             Contact
           </a>
         </Link>
@@ -98,4 +100,5 @@ export default ({ pathname }) =>
         font-weight: ${weights.bold};
       }
     `}</style>
-  </div>;
+  </div>
+);

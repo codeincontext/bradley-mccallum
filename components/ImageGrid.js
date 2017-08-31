@@ -1,10 +1,10 @@
-import { Component } from "react";
-import PrismicDom from "prismic-dom";
+import { Component } from 'react';
+import PrismicDom from 'prismic-dom';
 
-import Image from "~/components/Image";
-import Lightbox from "react-images";
-import Container from "~/components/Container";
-import { spacing } from "~/components/theme";
+import Image from '~/components/Image';
+import Lightbox from 'react-images';
+import Container from '~/components/Container';
+import { spacing } from '~/components/theme';
 
 // We can either define a number of columns or a minimum image size a-la https://github.com/neptunian/react-photo-gallery#user-guide--best-practice
 
@@ -35,13 +35,13 @@ export default class ImageGrid extends Component {
   };
 
   render() {
-    const { item: { items, min_width = "100px" } } = this.props;
+    const { item: { items, min_width = '100px' } } = this.props;
 
     return (
       <Container>
         <div className="root">
           <div className="images">
-            {items.map((item, i) =>
+            {items.map((item, i) => (
               <div
                 className="image"
                 style={{ flexBasis: min_width }}
@@ -50,18 +50,18 @@ export default class ImageGrid extends Component {
               >
                 <Image image={item.image} />
               </div>
-            )}
+            ))}
             {/* We want images on all lines to have the same width.
               If the last line has fewer items, flex-griw will try to grow them
               Adding 0 height elements to the end preents this
           */}
-            {Array.from({ length: 10 }).map(i =>
+            {Array.from({ length: 10 }).map(i => (
               <div
                 className="image spacer"
                 style={{ flexBasis: min_width }}
                 key={i}
               />
-            )}
+            ))}
           </div>
 
           <Lightbox

@@ -1,7 +1,7 @@
-import Container from "~/components/Container";
-import RichText from "~/components/RichText";
+import Container from '~/components/Container';
+import RichText from '~/components/RichText';
 
-export default ({ item }) =>
+export default ({ item }) => (
   <Container>
     <p>
       <RichText text={item.text} />
@@ -12,4 +12,5 @@ export default ({ item }) =>
       }
       // TODO
     `}</style>
-  </Container>;
+  </Container>
+);

@@ -1,6 +1,6 @@
-import { Component } from "react";
-import { Link as ScrollLink, scrollSpy } from "react-scroll";
-import { fonts, weights, spacing } from "~/components/theme";
+import { Component } from 'react';
+import { Link as ScrollLink, scrollSpy } from 'react-scroll';
+import { fonts, weights, spacing } from '~/components/theme';
 
 // TODO: Assume first item is active if nothing else is yet
 // We can use onActive and onInactive for this and store values here
@@ -17,7 +17,7 @@ export default class extends Component {
     return (
       <div>
         <ul>
-          {items.map(item =>
+          {items.map(item => (
             <li key={item.label}>
               <ScrollLink
                 to={item.scrollName}
@@ -29,7 +29,7 @@ export default class extends Component {
                 {item.label}
               </ScrollLink>
             </li>
-          )}
+          ))}
 
           <style jsx>{`
             ul {

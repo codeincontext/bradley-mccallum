@@ -1,6 +1,6 @@
-import Image from "~/components/Image";
+import Image from '~/components/Image';
 
-export default ({ item }) =>
+export default ({ item }) => (
   <div className="root">
     {item.items.map(({ image }) => {
       if (!image.url) {
@@ -30,4 +30,5 @@ export default ({ item }) =>
         flex-basis: 0;
       }
     `}</style>
-  </div>;
+  </div>
+);

@@ -1,9 +1,9 @@
-import { CALLOUT_WIDTH } from "~/components/theme";
-import Container from "~/components/Container";
-import { weights, fonts, spacing } from "~/components/theme";
-import RichText from "~/components/RichText";
+import { CALLOUT_WIDTH } from '~/components/theme';
+import Container from '~/components/Container';
+import { weights, fonts, spacing } from '~/components/theme';
+import RichText from '~/components/RichText';
 
-export default ({ item }) =>
+export default ({ item }) => (
   <Container>
     <blockquote>
       <RichText text={item.text} />
@@ -17,4 +17,5 @@ export default ({ item }) =>
         }
       `}</style>
     </blockquote>
-  </Container>;
+  </Container>
+);

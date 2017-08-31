@@ -1,6 +1,6 @@
-import { MAX_WIDTH } from "~/components/theme";
+import { MAX_WIDTH } from '~/components/theme';
 
-export default ({ children }) =>
+export default ({ children }) => (
   <div>
     {children}
     <style jsx>{`
@@ -10,4 +10,5 @@ export default ({ children }) =>
         padding: 0 20px;
       }
     `}</style>
-  </div>;
+  </div>
+);
