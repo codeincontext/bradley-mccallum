@@ -18,7 +18,10 @@ export default class extends Component {
     const api = await getApi(req);
     const projects = await api.query(
       Prismic.Predicates.at('document.type', 'project'),
-      { orderings: '[my.project.date desc]' }
+      {
+        orderings: '[my.project.date desc]',
+        pageSize: 100,
+      }
     );
 
     return {
