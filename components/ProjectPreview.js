@@ -4,7 +4,7 @@ import { RichText } from 'prismic-dom';
 import Image from '~/components/Image';
 import { weights, spacing, colors, COLUMN_SPACING } from '~/lib/theme';
 
-export default ({ project, firstSection }) => (
+const ProjectPreview = ({ project, firstSection }) => (
   <div className="root">
     <Link
       as={`/project/${project.uid}`} // URL exposed to the browser
@@ -49,3 +49,5 @@ export default ({ project, firstSection }) => (
     `}</style>
   </div>
 );
+
+export default ProjectPreview;

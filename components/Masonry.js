@@ -4,7 +4,7 @@ import zip from 'lodash.zip';
 import ProjectPreview from '~/components/ProjectPreview';
 import { spacing, COLUMN_SPACING } from '~/lib/theme';
 
-export default ({ projects, firstSection }) => (
+const Masonry = ({ projects, firstSection }) => (
   <div className="root">
     {zip(...chunk(projects, 3)).map(column => (
       <div className="column">
@@ -28,3 +28,5 @@ export default ({ projects, firstSection }) => (
     `}</style>
   </div>
 );
+
+export default Masonry;

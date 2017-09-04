@@ -1,6 +1,6 @@
 import { fonts } from '~/lib/theme';
 
-export default ({ image }) => {
+const Image = ({ image }) => {
   if (!image) return null;
 
   return (
@@ -16,3 +16,5 @@ export default ({ image }) => {
     </div>
   );
 };
+
+export default Image;

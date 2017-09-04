@@ -1,9 +1,11 @@
-import { RichText } from 'prismic-dom';
+import PrismicDom from 'prismic-dom';
 
-export default ({ text }) => (
+const RichText = ({ text }) => (
   <span
     dangerouslySetInnerHTML={{
-      __html: RichText.asHtml(text),
+      __html: PrismicDom.RichText.asHtml(text),
     }}
   />
 );
+
+export default RichText;

@@ -2,7 +2,7 @@ import Container from '~/components/Container';
 import RichText from '~/components/RichText';
 import { lineHeights, fonts } from '~/lib/theme';
 
-export default ({ item }) => (
+const Paragraph = ({ item }) => (
   <Container>
     <div>
       <RichText text={item.text} />
@@ -16,3 +16,5 @@ export default ({ item }) => (
     `}</style>
   </Container>
 );
+
+export default Paragraph;

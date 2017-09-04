@@ -3,7 +3,7 @@ import Container from '~/components/Container';
 import RichText from '~/components/RichText';
 import { weights, fonts, lineHeights } from '~/lib/theme';
 
-export default ({ item }) => (
+const SingleImage = ({ item }) => (
   <Container>
     <figure>
       <Image image={item.image.url} />
@@ -28,3 +28,5 @@ export default ({ item }) => (
     `}</style>
   </Container>
 );
+
+export default SingleImage;

@@ -1,7 +1,7 @@
 import { colors, spacing } from '~/lib/theme';
 import Container from '~/components/Container';
 
-export default () => (
+const Divider = () => (
   <div>
     <Container>
       <hr />
@@ -16,3 +16,5 @@ export default () => (
     `}</style>
   </div>
 );
+
+export default Divider;

@@ -21,9 +21,11 @@ const componentMap = {
   divider: Divider,
 };
 
-export default ({ item }) => {
+const ContentItem = ({ item }) => {
   const component = componentMap[item.slice_type];
   return React.createElement(component, {
     item: { ...item.primary, items: item.items },
   });
 };
+
+export default ContentItem;

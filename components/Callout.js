@@ -8,7 +8,7 @@ import {
 } from '~/lib/theme';
 import RichText from '~/components/RichText';
 
-export default ({ item }) => (
+const Callout = ({ item }) => (
   <Container>
     <blockquote>
       <RichText text={item.text} />
@@ -25,3 +25,5 @@ export default ({ item }) => (
     </blockquote>
   </Container>
 );
+
+export default Callout;

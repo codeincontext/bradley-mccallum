@@ -3,7 +3,7 @@ import { Link as ScrollLink, scrollSpy } from 'react-scroll';
 import Container from '~/components/Container';
 import { fonts, colors, weights, spacing, zIndex } from '~/lib/theme';
 
-export default ({ pathname }) => (
+const Header = ({ pathname }) => (
   <div>
     <header>
       <Link href="/" prefetch>
@@ -102,3 +102,5 @@ export default ({ pathname }) => (
     `}</style>
   </div>
 );
+
+export default Header;
