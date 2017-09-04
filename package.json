@@ -15,21 +15,29 @@
     "prismic-javascript": "^1.1.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-images": "^0.5.5"
+    "react-images": "^0.5.5",
+    "react-scroll": "^1.5.4"
   },
   "devDependencies": {
     "babel-plugin-root-import": "^5.1.0",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb-with-warnings": "^0.2.0",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.2",
-    "prettier": "^1.6.1",
-    "react-scroll": "^1.5.4"
+    "prettier": "^1.6.1"
   },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
-    "prettier": "prettier --write **/*.js",
+    "lint": "eslint **/*.js",
+    "prettier": "prettier --write *.js **/*.js",
     "//commented precommit": "lint-staged",
     "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
     "build-prismic-type:exhibition": "node scripts/build-prismic-type scripts/prismic-types/exhibition.json",
