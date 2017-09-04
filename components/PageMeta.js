@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Header from '~/components/Header';
 import { colors, weights } from '~/lib/theme';
 
-export default () => (
+const PageMeta = () => (
   <div>
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -28,3 +28,5 @@ export default () => (
     `}</style>
   </div>
 );
+
+export default PageMeta;

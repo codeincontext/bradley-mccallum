@@ -1,6 +1,6 @@
 import Image from '~/components/Image';
 
-export default ({ item }) => (
+const ImageBanner = ({ item }) => (
   <div className="root">
     {item.items.map(({ image }) => {
       if (!image.url) {
@@ -32,3 +32,5 @@ export default ({ item }) => (
     `}</style>
   </div>
 );
+
+export default ImageBanner;

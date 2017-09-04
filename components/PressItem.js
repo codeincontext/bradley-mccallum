@@ -22,7 +22,7 @@ function formatDate(date) {
   return `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
-export default ({ item: { author, title, link, publication, date } }) => (
+const PressItem = ({ item: { author, title, link, publication, date } }) => (
   <li>
     {author}, &ldquo;<Link href={link ? link.url : undefined}>
       <a>{title},</a>
@@ -39,3 +39,5 @@ export default ({ item: { author, title, link, publication, date } }) => (
     `}</style>
   </li>
 );
+
+export default PressItem;

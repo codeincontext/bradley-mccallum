@@ -1,6 +1,6 @@
 import { MAX_WIDTH } from '~/lib/theme';
 
-export default ({ children }) => (
+const Container = ({ children }) => (
   <div>
     {children}
     <style jsx>{`
@@ -12,3 +12,5 @@ export default ({ children }) => (
     `}</style>
   </div>
 );
+
+export default Container;

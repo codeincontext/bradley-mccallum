@@ -8,7 +8,7 @@ import {
 } from '~/lib/theme';
 import Container from '~/components/Container';
 
-export default ({ item }) => (
+const Subheading = ({ item }) => (
   <Container>
     <h3>{PrismicDom.RichText.asText(item.text)}</h3>
     <style jsx>{`
@@ -25,3 +25,5 @@ export default ({ item }) => (
     `}</style>
   </Container>
 );
+
+export default Subheading;

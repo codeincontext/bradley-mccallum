@@ -1,6 +1,6 @@
 import { fonts, colors, weights, spacing } from '~/lib/theme';
 
-export default ({ children }) => (
+const MainHeading = ({ children }) => (
   <div className="heading">
     <h1>{children}</h1>
 
@@ -25,4 +25,6 @@ export default ({ children }) => (
         }
       `}</style>
   </div>
-  );
+);
+
+export default MainHeading;
