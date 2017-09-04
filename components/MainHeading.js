@@ -1,11 +1,10 @@
 import { fonts, colors, weights, spacing } from '~/lib/theme';
 
-export default ({ children }) => {
-  return (
-    <div className="heading">
-      <h1>{children}</h1>
+export default ({ children }) => (
+  <div className="heading">
+    <h1>{children}</h1>
 
-      <style jsx>{`
+    <style jsx>{`
         .heading {
           background: radial-gradient(${colors.black} 15%, transparent 16%),
             radial-gradient(${colors.black} 15%, transparent 16%),
@@ -25,6 +24,5 @@ export default ({ children }) => {
           background-color: ${colors.lightGrey};
         }
       `}</style>
-    </div>
+  </div>
   );
-};

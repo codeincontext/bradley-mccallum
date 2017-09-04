@@ -49,7 +49,7 @@ export default class Index extends Component {
         />
 
         <Container>
-          {/*<ImageSlider item={{ images: [] }} /> TODO*/}
+          {/* <ImageSlider item={{ images: [] }} /> TODO */}
           <ScrollElement name="home-header">
             <div
               className="header"
@@ -60,7 +60,7 @@ export default class Index extends Component {
           {YEARS.map((year, i) => (
             <ScrollElement name={scrollNameForYear(year)}>
               <div className="project-collection">
-                {/*TODO not used classname */}
+                {/* TODO not used classname */}
                 <div className={i === 0 ? 'firstSection' : null}>
                   <Masonry
                     projects={projects.filter(p => {
