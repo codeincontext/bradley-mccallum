@@ -7,7 +7,7 @@ export default () => (
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700"
+        href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700"
         rel="stylesheet"
       />
     </Head>
@@ -18,6 +18,7 @@ export default () => (
         background: ${colors.lightGrey};
         margin: 0;
         padding: 0;
+        // TODO: Review this. Is it being overwritten everywhere? Should it be in ems?
         letter-spacing: 1px;
       }
       a {

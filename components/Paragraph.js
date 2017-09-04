@@ -1,16 +1,18 @@
 import Container from '~/components/Container';
 import RichText from '~/components/RichText';
+import { lineHeights, fonts } from '~/lib/theme';
 
 export default ({ item }) => (
   <Container>
-    <p>
+    <div>
       <RichText text={item.text} />
-    </p>
+    </div>
     <style jsx>{`
-      p {
-        line-height: 24px;
+      div :global(p) {
+        font-size: ${fonts.f15};
+        line-height: ${lineHeights.copy};
+        letter-spacing: 0.1em;
       }
-      // TODO
     `}</style>
   </Container>
 );
