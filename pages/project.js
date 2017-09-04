@@ -86,12 +86,14 @@ export default class Project extends Component {
                   <p>{project.materials}</p>
                   <p>{new Date(project.date).getFullYear()}</p>
                   {project.collaborators && <p>{project.collaborators}</p>}
-                  <p>
-                    Project website:{' '}
-                    <a href="{project.websiteLinkUrl}">
-                      {project.websiteLinkText}
-                    </a>
-                  </p>
+                  {project.websiteLinkText && (
+                    <p>
+                      Project website:{' '}
+                      <a href="{project.websiteLinkUrl}">
+                        {project.websiteLinkText}
+                      </a>
+                    </p>
+                  )}
                 </Container>
 
                 {(project.body || [])
