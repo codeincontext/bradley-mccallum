@@ -5,12 +5,20 @@ import { weights, fonts, lineHeights } from '~/lib/theme';
 
 export default ({ item }) => (
   <Container>
-    <Image image={item.image.url} />
-    <div className="caption">
-      <RichText text={item.caption} />
-    </div>
+    <figure>
+      <Image image={item.image.url} />
+      {item.caption && (
+        <figcaption>
+          <RichText text={item.caption} />
+        </figcaption>
+      )}
+    </figure>
     <style jsx>{`
-      .caption :global(p) {
+      figure {
+        margin: 0;
+      }
+
+      figcaption :global(p) {
         font-weight: ${weights.light};
         font-size: ${fonts.f14};
         font-style: italic;
