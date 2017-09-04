@@ -1,6 +1,11 @@
-import { CALLOUT_WIDTH } from '~/lib/theme';
 import Container from '~/components/Container';
-import { weights, fonts, spacing } from '~/lib/theme';
+import {
+  CALLOUT_WIDTH,
+  weights,
+  fonts,
+  spacing,
+  lineHeights,
+} from '~/lib/theme';
 import RichText from '~/components/RichText';
 
 export default ({ item }) => (
@@ -13,7 +18,8 @@ export default ({ item }) => (
           margin: ${spacing.s3} auto;
           font-size: ${fonts.f24};
           font-weight: ${weights.bold};
-          letter-spacing: 0;
+          line-height: ${lineHeights.heading};
+          letter-spacing: 2px;
         }
       `}</style>
     </blockquote>

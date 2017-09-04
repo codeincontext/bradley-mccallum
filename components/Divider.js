@@ -9,10 +9,8 @@ export default () => (
 
     <style jsx>{`
       hr {
-        border: none;
+        border-top: 1px solid ${colors.dividerGrey};
         width: 100%;
-        height: 1px;
-        background-color: ${colors.dividerGrey};
         margin: ${spacing.s2} 0;
       }
     `}</style>
