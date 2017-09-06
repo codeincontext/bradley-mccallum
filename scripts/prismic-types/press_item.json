@@ -3,20 +3,27 @@
     "publication" : {
       "type" : "StructuredText",
       "config" : {
-        "single" : "heading1",
+        "single" : "heading6",
         "label" : "Publication"
       }
     },
     "title" : {
       "type" : "Text",
       "config" : {
-        "label" : "Title"
+        "label" : "Title",
+        "useAsTitle" : true
       }
     },
     "link" : {
       "type" : "Link",
       "config" : {
         "label" : "Link"
+      }
+    },
+    "author" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Author"
       }
     },
     "date" : {
