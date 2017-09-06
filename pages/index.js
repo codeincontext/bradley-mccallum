@@ -48,7 +48,7 @@ export default class Index extends Component {
           }))}
         />
 
-        <Container>
+        <Container width={956}>
           {/* <ImageSlider item={{ images: [] }} /> TODO */}
           <ScrollElement name="home-header">
             <div
