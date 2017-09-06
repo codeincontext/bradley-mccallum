@@ -39,6 +39,13 @@
     }
   },
   "Page": {
+    "long_title": {
+      "type": "Text",
+      "config": {
+        "label": "Long Title",
+        "placeholder": "Optional"
+      }
+    },
     "materials": {
       "type": "Text",
       "config": {
