@@ -1,7 +1,7 @@
 import { MAX_WIDTH } from '~/lib/theme';
 
-const Container = ({ children }) => (
-  <div>
+const Container = ({ children, width }) => (
+  <div style={width ? { maxWidth: `${width}px` } : {}}>
     {children}
     <style jsx>{`
       div {
