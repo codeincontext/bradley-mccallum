@@ -92,6 +92,7 @@ export default class Index extends Component {
               radial-gradient(${colors.black} 15%, transparent 16%),
               ${colors.lightGrey};
             background-size: 7px 7px;
+            background-position: -1px -1px;
             padding-bottom: ${spacing.s4};
             margin-bottom: ${spacing.s3};
           }
