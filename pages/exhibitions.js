@@ -10,7 +10,7 @@ import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import Link from 'next/link';
-import { weights } from '~/components/theme';
+import { weights } from '~/lib/theme';
 
 const Exhibition = ({ exhibition: { title, venue, venue_link, location } }) => (
   <li>

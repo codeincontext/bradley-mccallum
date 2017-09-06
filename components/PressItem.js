@@ -1,6 +1,6 @@
 import { RichText } from 'prismic-dom';
 import Link from 'next/link';
-import { weights } from '~/components/theme';
+import { weights } from '~/lib/theme';
 
 const MONTH_NAMES = [
   'January',
