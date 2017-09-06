@@ -1,0 +1,31 @@
+{
+  "Main": {
+    "featured_projects": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "project": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["project"],
+              "label": "Project"
+            }
+          },
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": null,
+                "height": null
+              },
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Featured Projects"
+      }
+    }
+  }
+}

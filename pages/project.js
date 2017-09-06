@@ -24,18 +24,23 @@ export default class Project extends Component {
     const project = await api.getByUID('project', query.slug);
 
     const exhibitionIds = project.data.exhibitions.map(e => e.exhibition.id);
-    const exhibitions = (await api.getByIDs(exhibitionIds)).results;
-
     const pressItemIds = project.data.press_items.map(
       item => item.press_item.id
     );
-    const pressItemsResponse = await api.getByIDs(pressItemIds, {
-      orderings: '[my.press_item.date desc]',
-    });
+
+    const [exhibitionsResponse, pressItemsResponse] = await Promise.all([
+      api.getByIDs(exhibitionIds),
+      api.getByIDs(pressItemIds, {
+        orderings: '[my.press_item.date desc]',
+      }),
+    ]);
 
     return {
       project: { uid: project.uid, ...project.data },
-      exhibitions: exhibitions.map(e => ({ uid: e.uid, ...e.data })),
+      exhibitions: exhibitionsResponse.results.map(e => ({
+        uid: e.uid,
+        ...e.data,
+      })),
       pressItems: pressItemsResponse.results.map(item => ({
         id: item.id,
         ...item.data,
