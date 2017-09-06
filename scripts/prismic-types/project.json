@@ -19,6 +19,13 @@
         "label": "Date"
       }
     },
+    "year_text": {
+      "type": "Text",
+      "config": {
+        "label": "Year Text",
+        "placeholder": "Optional - if it covers multiple years"
+      }
+    },
     "main_image": {
       "type": "Image",
       "config": {

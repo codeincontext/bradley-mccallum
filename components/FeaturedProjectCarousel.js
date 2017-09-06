@@ -34,7 +34,8 @@ export default class FeaturedProjectCarousel extends React.Component {
         <div className="tabWrapper">
           <div className="tab">
             <div className="year">
-              {new Date(selectedProject.date).getFullYear()}
+              {selectedProject.year_text ||
+                new Date(selectedProject.date).getFullYear()}
             </div>
             <div className="title">
               {PrismicDom.RichText.asText(selectedProject.title)}
