@@ -11,27 +11,35 @@ import Header from '~/components/Header';
 import ImageSlider from '~/components/ImageSlider';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
+import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
 import { spacing, colors } from '~/lib/theme';
 
 export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
-    const projects = await api.query(
-      Prismic.Predicates.at('document.type', 'project'),
-      {
+
+    const [projectsResponse, homepage] = await Promise.all([
+      api.query(Prismic.Predicates.at('document.type', 'project'), {
         orderings: '[my.project.date desc]',
         pageSize: 100,
-      }
-    );
+      }),
+      api.getSingle('home_page', {
+        fetchLinks: 'project.title,project.yearText,project.date',
+      }),
+    ]);
 
     return {
-      projects: projects.results.map(r => ({ uid: r.uid, ...r.data })),
+      projects: projectsResponse.results.map(r => ({ uid: r.uid, ...r.data })),
+      features: homepage.data.featured_projects.map(f => ({
+        ...f,
+        project: f.project.data,
+      })),
       pathname,
     };
   }
 
   render() {
-    const { sliderImages, projects, pathname } = this.props;
+    const { projects, features, pathname } = this.props;
 
     return (
       <div>
@@ -48,15 +56,11 @@ export default class Index extends Component {
           }))}
         />
 
-        <Container width={956}>
-          {/* <ImageSlider item={{ images: [] }} /> TODO */}
-          <ScrollElement name="home-header">
-            <div
-              className="header"
-              style={{ height: '300px', background: 'red' }}
-            />
-          </ScrollElement>
+        <ScrollElement name="home-header">
+          <FeaturedProjectCarousel features={features} />
+        </ScrollElement>
 
+        <Container width={956}>
           {YEARS.map((year, i) => (
             <ScrollElement name={scrollNameForYear(year)}>
               <div className="project-collection">
