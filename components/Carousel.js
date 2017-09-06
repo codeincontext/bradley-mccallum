@@ -43,61 +43,48 @@ const Carousel = ({ children, selectedIndex, onChange }) => (
         // transition: all 0.25s ease-in;
         position: absolute;
         z-index: 2;
-        top: 50%;
+        top: calc(50% - (35px / 2));
         height: 35px;
         width: 35px;
         background: ${colors.lightGrey};
-        font-size: 23px;
-        border: 0;
+        font-size: 35px;
         cursor: pointer;
+        padding: 0;
+        outline: 0;
+        border: 0;
       }
 
       .root :global(.control-arrow:hover) {
       }
-      .root :global(.control-arrow:before) {
-        margin: 0 5px;
-        display: inline-block;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        content: '';
-      }
+
       .root :global(.control-disabled.control-arrow) {
         opacity: 0;
         cursor: inherit;
         display: none;
       }
+
+      .root :global(.control-arrow:before) {
+        display: block;
+        border-left: 1px solid ${colors.black};
+        border-top: 1px solid ${colors.black};
+        width: 10px;
+        height: 10px;
+        content: '';
+        transform: translateX(15px) rotate(-45deg) scale(1.4);
+      }
       .root :global(.control-prev.control-arrow) {
         left: 0;
       }
-      .root :global(.control-prev.control-arrow:before) {
-        border-right: 8px solid ${colors.black};
-      }
+
       .root :global(.control-next.control-arrow) {
         right: 0;
+        transform: scaleX(-1);
       }
-      .root :global(.control-next.control-arrow:before) {
-        border-left: 8px solid ${colors.black};
-      }
-      .root :global(button) {
-        outline: 0;
-        border: 0;
-        background: none;
-      }
+
       .root :global(img) {
         width: 100%;
         display: inline-block;
         pointer-events: none;
-      }
-      .root :global(.control-arrow) {
-        top: 50%;
-        margin-top: -13px;
-        font-size: 18px;
-        top: 0;
-        color: #fff;
-        font-size: 26px;
-        bottom: 0;
-        margin-top: 0;
-        padding: 5px;
       }
 
       .root :global(.slider-wrapper) {
