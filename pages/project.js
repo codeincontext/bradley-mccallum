@@ -87,7 +87,10 @@ export default class Project extends Component {
             <ScrollElement name="artwork">
               <section className="first-section">
                 <Container>
-                  <h1>{PrismicDom.RichText.asText(project.title)}</h1>
+                  <h1>
+                    {project.long_title ||
+                      PrismicDom.RichText.asText(project.title)}
+                  </h1>
                   <p>{project.materials}</p>
                   <p>{new Date(project.date).getFullYear()}</p>
                   {project.collaborators && <p>{project.collaborators}</p>}
