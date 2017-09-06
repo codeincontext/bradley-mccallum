@@ -24,7 +24,7 @@ export default class Index extends Component {
         pageSize: 100,
       }),
       api.getSingle('home_page', {
-        fetchLinks: 'project.title,project.yearText,project.date',
+        fetchLinks: 'project.title,project.year_text,project.date',
       }),
     ]);
 

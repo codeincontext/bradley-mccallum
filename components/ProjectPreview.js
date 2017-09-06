@@ -13,7 +13,9 @@ const ProjectPreview = ({ project, firstSection }) => (
     >
       <a className="project-preview">
         <Image image={project.main_image} />
-        <p className="date">{new Date(project.date).getFullYear()}</p>
+        <p className="date">
+          {project.year_text || new Date(project.date).getFullYear()}
+        </p>
         <p className="project-title">{RichText.asText(project.title)}</p>
       </a>
     </Link>
