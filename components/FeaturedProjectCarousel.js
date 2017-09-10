@@ -22,13 +22,15 @@ export default class FeaturedProjectCarousel extends React.Component {
           onChange={this.handleIndexChange}
           selectedIndex={selectedIndex}
         >
-          {features.map(({ image, project }) => (
-            <div
-              key={project.id}
-              className="image"
-              style={{ backgroundImage: `url(${image.url})` }}
-            />
-          ))}
+          {features
+            .filter(({ image, project }) => image && project)
+            .map(({ image, project }) => (
+              <div
+                key={project.id}
+                className="image"
+                style={{ backgroundImage: `url(${image.url})` }}
+              />
+            ))}
         </Carousel>
 
         <div className="tabWrapper">
