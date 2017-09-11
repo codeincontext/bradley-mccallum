@@ -41,21 +41,20 @@ export default class ImageGrid extends Component {
       <Container>
         <div className="root">
           <div className="images">
-            {items.map((item, i) => (
+            {items.filter(({ image }) => image.url).map(({ image }, i) => (
               <div
                 className="image"
                 style={{ flexBasis: min_width }}
-                // key={image.sys.id}
+                key={image.url}
                 onClick={e => this.openLightbox(i, e)}
               >
-                <Image image={item.image} />
+                <Image image={image} />
               </div>
             ))}
             {/* We want images on all lines to have the same width.
               If the last line has fewer items, flex-griw will try to grow them
-              Adding 0 height elements to the end preents this
-          */}
-            {Array.from({ length: 10 }).map(i => (
+              Adding 0 height elements to the end prevents this */}
+            {Array.from({ length: 10 }).map((_, i) => (
               <div
                 className="image spacer"
                 style={{ flexBasis: min_width }}
