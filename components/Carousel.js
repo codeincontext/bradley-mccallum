@@ -31,6 +31,8 @@ const Carousel = ({ children, selectedIndex, onChange }) => (
         width: 100%;
         margin: 0;
         overflow: hidden;
+        // Establish new stacking context
+        opacity: 0.999;
       }
 
       .root :global(.carousel *) {
