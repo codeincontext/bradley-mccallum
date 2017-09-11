@@ -8,6 +8,7 @@ import ImageBanner from '~/components/ImageBanner';
 import ImageSlider from '~/components/ImageSlider';
 import ImageGrid from '~/components/ImageGrid';
 import Divider from '~/components/Divider';
+import Audio from '~/components/Audio';
 
 const componentMap = {
   text: Paragraph,
@@ -19,6 +20,7 @@ const componentMap = {
   image_grid: ImageGrid,
   image_carousel: ImageSlider,
   divider: Divider,
+  audio: Audio,
 };
 
 const ContentItem = ({ item }) => {
