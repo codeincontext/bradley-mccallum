@@ -102,10 +102,8 @@ export default class Project extends Component {
                 </Container>
 
                 {(project.body || [])
-                  .map(contentItem => (
-                    <ContentItem
-                      item={contentItem} /* key={contentItem.sys.id} */
-                    />
+                  .map((contentItem, i) => (
+                    <ContentItem item={contentItem} key={i} />
                   ))}
               </section>
             </ScrollElement>
@@ -143,9 +141,13 @@ export default class Project extends Component {
                 <section>
                   <MainHeading>Press</MainHeading>
                   {groupByYear(pressItems).map(([year, items]) => (
-                    <div>
+                    <div key={year}>
                       <h4>{year}</h4>
-                      <ul>{items.map(item => <PressItem item={item} />)}</ul>
+                      <ul>
+                        {items.map(item => (
+                          <PressItem key={item.id} item={item} />
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </section>

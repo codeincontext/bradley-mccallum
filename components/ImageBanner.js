@@ -2,17 +2,13 @@ import Image from '~/components/Image';
 
 const ImageBanner = ({ item }) => (
   <div className="root">
-    {item.items.map(({ image }) => {
-      if (!image.url) {
-        return null;
-      }
-
+    {item.items.filter(({ image }) => image.url).map(({ image }) => {
       const { width, height } = image.dimensions;
       return (
         <div
           className="image"
           style={{ flexGrow: width / height }}
-          // key={image.sys.id}
+          key={image.url}
         >
           <Image image={image} />
         </div>

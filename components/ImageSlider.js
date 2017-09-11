@@ -21,7 +21,9 @@ export default class ImageSlider extends React.Component {
           onChange={this.handleIndexChange}
           selectedIndex={selectedIndex}
         >
-          {items.map(item => <Image key={item.image.id} image={item.image} />)}
+          {items
+            .filter(({ image }) => image.url)
+            .map(({ image }) => <Image key={image.url} image={image} />)}
         </Carousel>
 
         <div className="caption">
