@@ -73,14 +73,20 @@ export default class Project extends Component {
                 label: PrismicDom.RichText.asText(project.title),
                 scrollName: 'artwork',
               },
-              { label: 'Exhibitions', scrollName: 'exhibitions' },
+              exhibitions.length && {
+                label: 'Exhibitions',
+                scrollName: 'exhibitions',
+              },
               ...exhibitions.map(exhibition => ({
                 label: exhibition.location,
                 scrollName: scrollNameForExhibitionId(exhibition.uid),
               })),
-              { label: 'Press', scrollName: 'press' },
-              { label: 'Acknowledgements', scrollName: 'acknowledgements' },
-            ]}
+              pressItems.length && { label: 'Press', scrollName: 'press' },
+              project.acknowledgements.length && {
+                label: 'Acknowledgements',
+                scrollName: 'acknowledgements',
+              },
+            ].filter(item => item)}
           />
 
           <div className="project-content">
@@ -111,13 +117,15 @@ export default class Project extends Component {
               </section>
             </ScrollElement>
 
-            <Container>
-              <ScrollElement name="exhibitions">
-                <section>
-                  <MainHeading>Exhibitions</MainHeading>
-                </section>
-              </ScrollElement>
-            </Container>
+            {!!exhibitions.length && (
+              <Container>
+                <ScrollElement name="exhibitions">
+                  <section>
+                    <MainHeading>Exhibitions</MainHeading>
+                  </section>
+                </ScrollElement>
+              </Container>
+            )}
 
             {exhibitions.map(exhibition => (
               <ScrollElement
@@ -139,32 +147,36 @@ export default class Project extends Component {
               </ScrollElement>
             ))}
 
-            <Container>
-              <ScrollElement name="press">
-                <section>
-                  <MainHeading>Press</MainHeading>
-                  {groupByYear(pressItems).map(([year, items]) => (
-                    <div key={year}>
-                      <h4>{year}</h4>
-                      <ul>
-                        {items.map(item => (
-                          <PressItem key={item.id} item={item} />
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </section>
-              </ScrollElement>
-            </Container>
+            {!!pressItems.length && (
+              <Container>
+                <ScrollElement name="press">
+                  <section>
+                    <MainHeading>Press</MainHeading>
+                    {groupByYear(pressItems).map(([year, items]) => (
+                      <div key={year}>
+                        <h4>{year}</h4>
+                        <ul>
+                          {items.map(item => (
+                            <PressItem key={item.id} item={item} />
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </section>
+                </ScrollElement>
+              </Container>
+            )}
 
-            <Container>
-              <ScrollElement name="acknowledgements">
-                <section>
-                  <MainHeading>Acknowledgements</MainHeading>
-                  <RichText text={project.acknowledgements} />
-                </section>
-              </ScrollElement>
-            </Container>
+            {!!project.acknowledgements.length && (
+              <Container>
+                <ScrollElement name="acknowledgements">
+                  <section>
+                    <MainHeading>Acknowledgements</MainHeading>
+                    <RichText text={project.acknowledgements} />
+                  </section>
+                </ScrollElement>
+              </Container>
+            )}
           </div>
         </div>
 
