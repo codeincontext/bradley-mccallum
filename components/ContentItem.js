@@ -23,6 +23,9 @@ const componentMap = {
 
 const ContentItem = ({ item }) => {
   const component = componentMap[item.slice_type];
+  if (!component) {
+    return null;
+  }
   return React.createElement(component, {
     item: { ...item.primary, items: item.items },
   });
