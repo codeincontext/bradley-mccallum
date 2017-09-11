@@ -217,5 +217,22 @@
             "icon": "vertical_align_center",
             "non-repeat": {},
             "repeat": {}
+          },
+          "audio": {
+            "type": "Slice",
+            "fieldset": "Audio",
+            "description": "An audio clip",
+            "icon": "headset",
+            "non-repeat": {
+              "file": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "File",
+                  "placeholder": "MP3 files only"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
