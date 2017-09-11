@@ -9,8 +9,10 @@ const Divider = () => (
 
     <style jsx>{`
       hr {
-        border-top: 1px solid ${colors.dividerGrey};
+        border: none;
+        height: 1px;
         width: 100%;
+        background-color: ${colors.dividerGrey};
         margin: ${spacing.s2} 0;
       }
     `}</style>
