@@ -65,128 +65,98 @@ export default class Project extends Component {
         <PageMeta />
         <Header pathname={url.pathname} />
 
-        <div className="project-page">
-          <Sidebar
-            className="sidebar"
-            items={[
-              {
-                label: PrismicDom.RichText.asText(project.title),
-                scrollName: 'artwork',
-              },
-              exhibitions.length && {
-                label: 'Exhibitions',
-                scrollName: 'exhibitions',
-              },
-              ...exhibitions.map(exhibition => ({
-                label: exhibition.location,
-                scrollName: scrollNameForExhibitionId(exhibition.uid),
-              })),
-              pressItems.length && { label: 'Press', scrollName: 'press' },
-              project.acknowledgements.length && {
-                label: 'Acknowledgements',
-                scrollName: 'acknowledgements',
-              },
-            ].filter(item => item)}
-          />
+        <Sidebar
+          className="sidebar"
+          items={[
+            {
+              label: PrismicDom.RichText.asText(project.title),
+              scrollName: 'artwork',
+            },
+            exhibitions.length && {
+              label: 'Exhibitions',
+              scrollName: 'exhibitions',
+            },
+            ...exhibitions.map(exhibition => ({
+              label: exhibition.location,
+              scrollName: scrollNameForExhibitionId(exhibition.uid),
+            })),
+            pressItems.length && { label: 'Press', scrollName: 'press' },
+            project.acknowledgements.length && {
+              label: 'Acknowledgements',
+              scrollName: 'acknowledgements',
+            },
+          ].filter(item => item)}
+        />
 
-          <div className="project-content">
-            <ScrollElement name="artwork">
-              <section className="first-section">
-                <Container>
-                  <h1>
-                    {project.long_title ||
-                      PrismicDom.RichText.asText(project.title)}
-                  </h1>
-                  <p>{project.materials}</p>
-                  <p>{new Date(project.date).getFullYear()}</p>
-                  {project.collaborators && <p>{project.collaborators}</p>}
-                  {project.websiteLinkText && (
-                    <p>
-                      Project website:{' '}
-                      <a href="{project.websiteLinkUrl}">
-                        {project.websiteLinkText}
-                      </a>
-                    </p>
-                  )}
-                </Container>
+        <ScrollElement name="artwork">
+          <section className="first-section">
+            <Container>
+              <h1>
+                {project.long_title ||
+                  PrismicDom.RichText.asText(project.title)}
+              </h1>
+              <p>{project.materials}</p>
+              <p>{new Date(project.date).getFullYear()}</p>
+              {project.collaborators && <p>{project.collaborators}</p>}
+              {project.websiteLinkText && (
+                <p>
+                  Project website:{' '}
+                  <a href="{project.websiteLinkUrl}">
+                    {project.websiteLinkText}
+                  </a>
+                </p>
+              )}
+            </Container>
 
-                {(project.body || [])
-                  .map((contentItem, i) => (
-                    <ContentItem item={contentItem} key={i} />
-                  ))}
+            {(project.body || [])
+              .map((contentItem, i) => (
+                <ContentItem item={contentItem} key={i} />
+              ))}
+          </section>
+        </ScrollElement>
+
+        {!!exhibitions.length && (
+          <Container>
+            <ScrollElement name="exhibitions">
+              <section>
+                <MainHeading>Exhibitions</MainHeading>
               </section>
             </ScrollElement>
+          </Container>
+        )}
 
-            {!!exhibitions.length && (
-              <Container>
-                <ScrollElement name="exhibitions">
-                  <section>
-                    <MainHeading>Exhibitions</MainHeading>
-                  </section>
-                </ScrollElement>
-              </Container>
-            )}
+        {!!pressItems.length && (
+          <Container>
+            <ScrollElement name="press">
+              <section>
+                <MainHeading>Press</MainHeading>
+                {groupByYear(pressItems).map(([year, items]) => (
+                  <div key={year}>
+                    <h4>{year}</h4>
+                    <ul>
+                      {items.map(item => (
+                        <PressItem key={item.id} item={item} />
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </section>
+            </ScrollElement>
+          </Container>
+        )}
 
-            {exhibitions.map(exhibition => (
-              <ScrollElement
-                name={scrollNameForExhibitionId(exhibition.uid)}
-                key={exhibition.uid}
-              >
-                <section>
-                  <Container>
-                    <h3>{exhibition.location}</h3>
-                    <p>{new Date(exhibition.date).getFullYear()}</p>
-                  </Container>
-                  {(exhibition.body || []).map(contentItem => (
-                    <ContentItem
-                      item={contentItem}
-                      // key={contentItem.sys.id}
-                    />
-                  ))}
-                </section>
-              </ScrollElement>
-            ))}
-
-            {!!pressItems.length && (
-              <Container>
-                <ScrollElement name="press">
-                  <section>
-                    <MainHeading>Press</MainHeading>
-                    {groupByYear(pressItems).map(([year, items]) => (
-                      <div key={year}>
-                        <h4>{year}</h4>
-                        <ul>
-                          {items.map(item => (
-                            <PressItem key={item.id} item={item} />
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </section>
-                </ScrollElement>
-              </Container>
-            )}
-
-            {!!project.acknowledgements.length && (
-              <Container>
-                <ScrollElement name="acknowledgements">
-                  <section>
-                    <MainHeading>Acknowledgements</MainHeading>
-                    <RichText text={project.acknowledgements} />
-                  </section>
-                </ScrollElement>
-              </Container>
-            )}
-          </div>
-        </div>
+        {!!project.acknowledgements.length && (
+          <Container>
+            <ScrollElement name="acknowledgements">
+              <section>
+                <MainHeading>Acknowledgements</MainHeading>
+                <RichText text={project.acknowledgements} />
+              </section>
+            </ScrollElement>
+          </Container>
+        )}
 
         <style jsx>{`
-          .project-page {
-            display: flex;
-          }
-          .project-content {
-            margin-left: ${spacing.s5};
-          }
           .sidebar {
             width: 30%;
           }

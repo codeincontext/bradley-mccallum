@@ -21,9 +21,14 @@ const PageMeta = () => (
         // TODO: Review this. Is it being overwritten everywhere? Should it be in ems?
         letter-spacing: 1px;
       }
+
       a {
         color: ${colors.black};
         text-decoration: none;
+      }
+
+      * {
+        box-sizing: border-box;
       }
     `}</style>
   </div>

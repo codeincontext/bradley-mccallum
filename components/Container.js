@@ -1,11 +1,17 @@
-import { MAX_WIDTH } from '~/lib/theme';
+import { CONTAINER_WIDTH, SIDEBAR_WIDTH } from '~/lib/theme';
 
 const Container = ({ children, width }) => (
-  <div style={width ? { maxWidth: `${width}px` } : {}}>
-    {children}
+  <div className="root">
+    <div className="inner" style={width ? { maxWidth: `${width}px` } : {}}>
+      {children}
+    </div>
     <style jsx>{`
-      div {
-        max-width: ${MAX_WIDTH}px;
+      .root {
+        margin-left: ${SIDEBAR_WIDTH}px;
+      }
+
+      .inner {
+        max-width: ${CONTAINER_WIDTH}px;
         margin: 0 auto;
         padding: 0 20px;
       }

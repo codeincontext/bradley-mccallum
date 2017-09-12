@@ -28,6 +28,7 @@ const ContentItem = ({ item }) => {
   if (!component) {
     return null;
   }
+
   return React.createElement(component, {
     item: { ...item.primary, items: item.items },
   });
