@@ -38,8 +38,12 @@ export default class Index extends Component {
     };
   }
 
+  // TODO: This is never true
+  state = { artworksActive: false };
+
   render() {
     const { projects, features, pathname } = this.props;
+    const { artworksActive } = this.state;
 
     return (
       <div>
@@ -47,7 +51,7 @@ export default class Index extends Component {
           <title>Home | Bradley McCallum</title>
         </Head>
         <PageMeta />
-        <Header pathname={pathname} />
+        <Header pathname={pathname} artworksActive={artworksActive} />
 
         <Sidebar
           items={YEARS.map((year, i) => ({
@@ -56,28 +60,30 @@ export default class Index extends Component {
           }))}
         />
 
-        <ScrollElement name="home-header">
-          <FeaturedProjectCarousel features={features} />
-        </ScrollElement>
+        <FeaturedProjectCarousel features={features} />
 
-        <Container width={956}>
-          {YEARS.map((year, i) => (
-            <div className="project-collection">
-              <ScrollElement
-                className="scroll-element"
-                name={scrollNameForYear(year)}
-              />
-              <Masonry
-                projects={projects.filter(p => {
-                  const projectYear = new Date(p.date).getFullYear();
-                  const nextYear = YEARS[i + 1] || 1900;
-                  return projectYear <= year && projectYear > nextYear;
-                })}
-                firstSection={i === 0}
-              />
-            </div>
-          ))}
-        </Container>
+        <div className="artworks">
+          <ScrollElement name="artworks" className="artworks-scroll-element" />
+
+          <Container width={956}>
+            {YEARS.map((year, i) => (
+              <div className="project-collection">
+                <ScrollElement
+                  className="scroll-element"
+                  name={scrollNameForYear(year)}
+                />
+                <Masonry
+                  projects={projects.filter(p => {
+                    const projectYear = new Date(p.date).getFullYear();
+                    const nextYear = YEARS[i + 1] || 1900;
+                    return projectYear <= year && projectYear > nextYear;
+                  })}
+                  firstSection={i === 0}
+                />
+              </div>
+            ))}
+          </Container>
+        </div>
 
         <div className="spacer" />
 
@@ -100,11 +106,20 @@ export default class Index extends Component {
             margin-bottom: ${spacing.s3};
             position: relative;
           }
-          :global(.scroll-element) {
+          .project-collection :global(.scroll-element) {
             position: absolute;
             top: 0;
             // Include the margin after the collection in the scroll area
             bottom: -${spacing.s3};
+          }
+
+          .artworks {
+            position: relative;
+          }
+          :global(.artworks-scroll-element) {
+            position: absolute;
+            top: 0;
+            height: 9999px;
           }
         `}</style>
       </div>
