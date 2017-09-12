@@ -1,4 +1,5 @@
 import PrismicDom from 'prismic-dom';
+import Link from 'next/link';
 import Image from '~/components/Image';
 import RichText from '~/components/RichText';
 import Carousel from '~/components/Carousel';
@@ -17,36 +18,53 @@ export default class FeaturedProjectCarousel extends React.Component {
     const selectedProject = features[selectedIndex].project;
 
     return (
-      <div>
+      <div className="root">
         <Carousel
           onChange={this.handleIndexChange}
           selectedIndex={selectedIndex}
         >
           {features
-            .filter(({ image, project }) => image && project)
-            .map(({ image, project }) => (
-              <div
+            .filter(({ image, project }) => image && project.uid)
+            .map(({ image, project }, i) => (
+              <Link
+                as={`/project/${project.uid}`} // URL exposed to the browser
+                href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
+                prefetch={i === 0}
                 key={project.id}
-                className="image"
-                style={{ backgroundImage: `url(${image.url})` }}
-              />
+              >
+                <a
+                  className="item"
+                  style={{ backgroundImage: `url(${image.url})` }}
+                />
+              </Link>
             ))}
         </Carousel>
 
         <div className="tabWrapper">
-          <div className="tab">
-            <div className="year">
-              {selectedProject.year_text ||
-                new Date(selectedProject.date).getFullYear()}
-            </div>
-            <div className="title">
-              {PrismicDom.RichText.asText(selectedProject.title)}
-            </div>
-          </div>
+          <Link
+            as={`/project/${selectedProject.uid}`} // URL exposed to the browser
+            href={`/project?slug=${selectedProject.uid}`} // simplified URL for next.js client routing
+            key={selectedProject.id}
+          >
+            <a className="tab">
+              <div className="year">
+                {selectedProject.year_text ||
+                  new Date(selectedProject.date).getFullYear()}
+              </div>
+              <div className="title">
+                {PrismicDom.RichText.asText(selectedProject.title)}
+              </div>
+            </a>
+          </Link>
         </div>
 
         <style jsx>{`
-          .image {
+          .root {
+            opacity: 0.999;
+          }
+
+          .item {
+            display: block;
             background-size: cover;
             background-position: center;
             height: calc(100vh - 89px - 100px);

@@ -32,7 +32,7 @@ export default class Index extends Component {
       projects: projectsResponse.results.map(r => ({ uid: r.uid, ...r.data })),
       features: homepage.data.featured_projects.map(f => ({
         ...f,
-        project: f.project.data,
+        project: { ...f.project.data, uid: f.project.uid },
       })),
       pathname,
     };
