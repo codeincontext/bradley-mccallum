@@ -14,6 +14,17 @@ import {
 } from './api';
 import Track from './Track';
 
+const formatTime = seconds => {
+  const date = new Date(Date.UTC(1970, 1, 1, 0, 0, 0, 0));
+  seconds = isNaN(seconds) || seconds > 3600 ? 0 : Math.floor(seconds);
+  date.setSeconds(seconds);
+  const secondsText = date
+    .getSeconds()
+    .toString()
+    .padStart(2, '0');
+  return `${date.getMinutes()}:${secondsText}`;
+};
+
 class Audio extends React.Component {
   // This seems to fix a problem loading from cache in Chrome
   cacheBuster = Math.random();
