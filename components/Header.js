@@ -12,37 +12,18 @@ const Header = ({ pathname }) => (
 
       <nav>
         {pathname === '/' ? (
-          <span>
-            <ScrollLink
-              to="home-header"
-              className="nav-link"
-              activeClass="active-nav-link"
-              spy
-              smooth
-              duration={500}
-            >
-              Home
-            </ScrollLink>
-            {/* TODO: This is hard to do because react-scroll only lets you use one scrolllink per scrol element */}
-            <ScrollLink
-              className="nav-link"
-              activeClass="active-nav-link"
-              spy
-              smooth
-              duration={500}
-            >
-              Artworks
-            </ScrollLink>
-          </span>
+          <ScrollLink
+            to="artworks"
+            className={artworksActive && 'active-nav-link'}
+            smooth
+            duration={500}
+          >
+            Artworks
+          </ScrollLink>
         ) : (
-          <span>
-            <Link href="/" prefetch>
-              <a>Home</a>
-            </Link>
-            <Link href="/" prefetch>
-              <a>Artworks</a>
-            </Link>
-          </span>
+          <Link href="/" prefetch>
+            <a>Artworks</a>
+          </Link>
         )}
 
         <Link href="/exhibitions" prefetch>
@@ -91,8 +72,7 @@ const Header = ({ pathname }) => (
       nav {
         padding: ${spacing.s2} ${spacing.s2} 0;
       }
-      nav a,
-      :global(.nav-link) {
+      nav :global(a) {
         padding-left: ${spacing.s2};
         text-transform: uppercase;
       }
