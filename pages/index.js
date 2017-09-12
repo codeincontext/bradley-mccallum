@@ -12,7 +12,7 @@ import ImageSlider from '~/components/ImageSlider';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
-import { spacing, colors } from '~/lib/theme';
+import { spacing, colors, HEADER_HEIGHT } from '~/lib/theme';
 
 export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {
@@ -62,21 +62,20 @@ export default class Index extends Component {
 
         <Container width={956}>
           {YEARS.map((year, i) => (
-            <ScrollElement name={scrollNameForYear(year)}>
-              <div className="project-collection">
-                {/* TODO not used classname */}
-                <div className={i === 0 ? 'firstSection' : null}>
-                  <Masonry
-                    projects={projects.filter(p => {
-                      const projectYear = new Date(p.date).getFullYear();
-                      const nextYear = YEARS[i + 1] || 1900;
-                      return projectYear <= year && projectYear > nextYear;
-                    })}
-                    firstSection={i === 0}
-                  />
-                </div>
-              </div>
-            </ScrollElement>
+            <div className="project-collection">
+              <ScrollElement
+                className="scroll-element"
+                name={scrollNameForYear(year)}
+              />
+              <Masonry
+                projects={projects.filter(p => {
+                  const projectYear = new Date(p.date).getFullYear();
+                  const nextYear = YEARS[i + 1] || 1900;
+                  return projectYear <= year && projectYear > nextYear;
+                })}
+                firstSection={i === 0}
+              />
+            </div>
           ))}
         </Container>
 
@@ -99,6 +98,13 @@ export default class Index extends Component {
             background-position: -1px -1px;
             padding-bottom: ${spacing.s4};
             margin-bottom: ${spacing.s3};
+            position: relative;
+          }
+          :global(.scroll-element) {
+            position: absolute;
+            top: 0;
+            // Include the margin after the collection in the scroll area
+            bottom: -${spacing.s3};
           }
         `}</style>
       </div>
