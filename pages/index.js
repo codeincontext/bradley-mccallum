@@ -14,6 +14,8 @@ import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
 import { spacing, colors, HEADER_HEIGHT } from '~/lib/theme';
 
+const SIDEBAR_WIDTH = 180;
+
 export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
@@ -58,6 +60,7 @@ export default class Index extends Component {
             label: i === 0 ? 'Current' : year,
             scrollName: scrollNameForYear(year),
           }))}
+          width={SIDEBAR_WIDTH}
         />
 
         <FeaturedProjectCarousel features={features} />
@@ -65,7 +68,7 @@ export default class Index extends Component {
         <div className="artworks">
           <ScrollElement name="artworks" className="artworks-scroll-element" />
 
-          <Container width={956}>
+          <Container width={956} sidebarWidth={SIDEBAR_WIDTH}>
             {YEARS.map((year, i) => (
               <div className="project-collection">
                 <ScrollElement

@@ -18,50 +18,48 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const { items } = this.props;
+    const { items, width } = this.props;
 
     return (
-      <div>
-        <ul>
-          {items.map(item => (
-            <li key={item.label}>
-              <ScrollLink
-                to={item.scrollName}
-                activeClass="active-sidebar-link"
-                spy
-                isDynamic
-                smooth
-                duration={500}
-                offset={-HEADER_HEIGHT}
-              >
-                {item.label}
-              </ScrollLink>
-            </li>
-          ))}
+      <ul style={width ? { maxWidth: `${width}px` } : {}}>
+        {items.map(item => (
+          <li key={item.label}>
+            <ScrollLink
+              to={item.scrollName}
+              activeClass="active-sidebar-link"
+              spy
+              isDynamic
+              smooth
+              duration={500}
+              offset={-HEADER_HEIGHT}
+            >
+              {item.label}
+            </ScrollLink>
+          </li>
+        ))}
 
-          <style jsx>{`
-            ul {
-              position: fixed;
-              left: ${spacing.s2};
-              top: ${spacing.s8};
-              width: ${SIDEBAR_WIDTH}px;
-              margin: 0;
-              padding: 0;
-            }
+        <style jsx>{`
+          ul {
+            position: fixed;
+            left: ${spacing.s2};
+            top: ${spacing.s8};
+            width: ${SIDEBAR_WIDTH}px;
+            margin: 0;
+            padding: 0;
+          }
 
-            li {
-              list-style: none;
-              margin-bottom: ${spacing.s2};
-              text-transform: uppercase;
-              font-size: ${fonts.f14};
-            }
+          li {
+            list-style: none;
+            margin-bottom: ${spacing.s2};
+            text-transform: uppercase;
+            font-size: ${fonts.f14};
+          }
 
-            :global(.active-sidebar-link) {
-              font-weight: ${weights.bold};
-            }
-          `}</style>
-        </ul>
-      </div>
+          :global(.active-sidebar-link) {
+            font-weight: ${weights.bold};
+          }
+        `}</style>
+      </ul>
     );
   }
 }
