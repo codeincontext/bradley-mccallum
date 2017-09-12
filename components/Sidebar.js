@@ -1,6 +1,12 @@
 import { Component } from 'react';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
-import { fonts, weights, spacing, HEADER_HEIGHT } from '~/lib/theme';
+import {
+  fonts,
+  weights,
+  spacing,
+  HEADER_HEIGHT,
+  SIDEBAR_WIDTH,
+} from '~/lib/theme';
 
 // TODO: Assume first item is active if nothing else is yet
 // We can use onActive and onInactive for this and store values here
@@ -38,6 +44,7 @@ export default class Sidebar extends Component {
               position: fixed;
               left: ${spacing.s2};
               top: ${spacing.s8};
+              width: ${SIDEBAR_WIDTH}px;
               margin: 0;
               padding: 0;
             }
