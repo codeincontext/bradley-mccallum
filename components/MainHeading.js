@@ -15,12 +15,12 @@ const MainHeading = ({ children }) => (
       }
       .heading h1 {
         font-weight: ${weights.light};
-        font-size: ${fonts.f24};
+        font-size: ${fonts.f30};
         text-transform: uppercase;
         letter-spacing: 2px;
         display: inline-block;
         margin: 0;
-        padding: ${spacing.s05} ${spacing.s1} 0 ${spacing.s025};
+        padding: ${spacing.s1} 1.25rem 0 0;
         background-color: ${colors.lightGrey};
       }
     `}</style>

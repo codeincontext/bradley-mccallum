@@ -1,6 +1,7 @@
 import { RichText } from 'prismic-dom';
 import Link from 'next/link';
 import { weights } from '~/lib/theme';
+import YearListingItem from '~/components/YearListingItem';
 
 const MONTH_NAMES = [
   'January',
@@ -23,21 +24,11 @@ function formatDate(date) {
 }
 
 const PressItem = ({ item: { author, title, link, publication, date } }) => (
-  <li>
+  <YearListingItem>
     {author}, &ldquo;<Link href={link ? link.url : undefined}>
       <a>{title},</a>
     </Link>&rdquo; {RichText.asText(publication)}, {formatDate(date)}
-    <style jsx>{`
-      li {
-        list-style: none;
-      }
-      a {
-        font-weight: ${weights.bold};
-        text-decoration: underline;
-        text-decoration-skip: ink;
-      }
-    `}</style>
-  </li>
+  </YearListingItem>
 );
 
 export default PressItem;
