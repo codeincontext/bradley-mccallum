@@ -1,8 +1,7 @@
 const fs = require('fs');
-
-const filePath = process.argv[2];
-const source = fs.readFileSync(filePath, 'utf8');
+const type = process.argv[2];
+const source = fs.readFileSync(`scripts/prismic-types/${type}.json`, 'utf8');
 const slices = fs.readFileSync('scripts/prismic-types/slices.json', 'utf8');
 
-const output = source.replace(/%%CHOICES%%/g, slices);
+const output = source.replace(/"%%SLICES%%"/g, slices);
 console.log(output);

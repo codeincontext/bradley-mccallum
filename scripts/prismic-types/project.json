@@ -99,7 +99,7 @@
       "type": "Slices",
       "fieldset": "Body",
       "config": {
-        "choices": %%CHOICES%%
+        "choices": "%%SLICES%%"
       }
     }
   },
