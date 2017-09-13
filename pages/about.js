@@ -17,7 +17,7 @@ export default class About extends Component {
 
     const aboutPage = await api.getSingle('about_page');
 
-    return { ...aboutPage.data };
+    return { ...aboutPage.data, pathname };
   }
 
   render() {

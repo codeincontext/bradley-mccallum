@@ -41,9 +41,7 @@
     "lint": "eslint **/*.js",
     "prettier": "prettier --write '**/*.js' --ignore-path=.gitignore",
     "//commented precommit": "lint-staged",
-    "build-prismic-type:project": "node scripts/build-prismic-type scripts/prismic-types/project.json",
-    "build-prismic-type:exhibition": "node scripts/build-prismic-type scripts/prismic-types/exhibition.json",
-    "build-prismic-type:press-item": "node scripts/build-prismic-type scripts/prismic-types/press-item.json"
+    "build-prismic-type": "node scripts/build-prismic-type"
   },
   "lint-staged": {
     "*.{js,json,css}": [
