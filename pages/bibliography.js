@@ -22,24 +22,16 @@ const Catalogue = ({ catalogue }) => (
 export default class Bibliography extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
-    const pressItemRequest = api.query(
-      Prismic.Predicates.at('document.type', 'press_item'),
-      {
-        orderings: '[my.press_item.date desc]',
-        pageSize: 100,
-      }
-    );
-    const catalogueRequest = api.query(
-      Prismic.Predicates.at('document.type', 'catalogue'),
-      {
-        orderings: '[my.catalogue.date desc]',
-        pageSize: 100,
-      }
-    );
 
     const [catalogueResponse, pressItemResponse] = await Promise.all([
-      catalogueRequest,
-      pressItemRequest,
+      api.query(Prismic.Predicates.at('document.type', 'catalogue'), {
+        orderings: '[my.catalogue.date desc]',
+        pageSize: 100,
+      }),
+      api.query(Prismic.Predicates.at('document.type', 'press_item'), {
+        orderings: '[my.press_item.date desc]',
+        pageSize: 100,
+      }),
     ]);
 
     return {

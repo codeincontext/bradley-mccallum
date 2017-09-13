@@ -5,19 +5,23 @@ import Prismic from 'prismic-javascript';
 import { getApi } from '~/lib/prismic';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
+import Container from '~/components/Container';
 import MainHeading from '~/components/MainHeading';
+import SmallHeading from '~/components/SmallHeading';
+import Divider from '~/components/Divider';
+import Paragraph from '~/components/Paragraph';
 
 export default class About extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
 
-    return {
-      // exhibitions: exhibitions.map(e => ({ uid: e.uid, ...e.data })),
-    };
+    const aboutPage = await api.getSingle('about_page');
+
+    return { ...aboutPage.data };
   }
 
   render() {
-    const { exhibitions, url } = this.props;
+    const { biography, cv_text, cv_file, pathname } = this.props;
 
     return (
       <div>
@@ -25,11 +29,22 @@ export default class About extends Component {
           <title>About | Bradley McCallum</title>
         </Head>
         <PageMeta />
-        <Header pathname={url.pathname} />
+        <Header pathname={pathname} />
 
-        <div />
+        <Container>
+          <MainHeading>About</MainHeading>
 
-        <MainHeading>About</MainHeading>
+          <SmallHeading>Biography</SmallHeading>
+        </Container>
+        <Paragraph item={{ text: biography }} />
+
+        <Divider />
+
+        <Container>
+          <SmallHeading>CV</SmallHeading>
+        </Container>
+        <Paragraph item={{ text: cv_text }} />
+
         <style jsx>{``}</style>
       </div>
     );
