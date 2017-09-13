@@ -8,6 +8,7 @@ const Container = ({ children, width }) => (
     <style jsx>{`
       .root {
         margin-left: ${SIDEBAR_WIDTH}px;
+        overflow-x: hidden;
       }
 
       .inner {

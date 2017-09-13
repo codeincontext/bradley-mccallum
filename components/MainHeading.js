@@ -12,7 +12,9 @@ const MainHeading = ({ children }) => (
         background-size: 7px 7px;
         padding-top: ${spacing.s2};
         margin-bottom: ${spacing.s2};
+        margin-right: -1000px;
       }
+
       .heading h1 {
         font-weight: ${weights.light};
         font-size: ${fonts.f30};
