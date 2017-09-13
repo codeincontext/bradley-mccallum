@@ -9,27 +9,19 @@ import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
+import Divider from '~/components/Divider';
+import SmallHeading from '~/components/SmallHeading';
+import YearListing from '~/components/YearListing';
+import YearListingItem from '~/components/YearListingItem';
 import Link from 'next/link';
-import { weights } from '~/lib/theme';
+import { weights, spacing, fonts, lineHeights } from '~/lib/theme';
 
 const Exhibition = ({ exhibition: { title, venue, venue_link, location } }) => (
-  <li>
+  <YearListingItem>
     {RichText.asText(title)},{' '}
-    <Link href={venue_link ? venue_link.url : undefined}>
-      <a>{venue}</a>
-    </Link>, {location}
-    <style jsx>{`
-      // NOTE: Duplicates PressItem
-      li {
-        list-style: none;
-      }
-      a {
-        font-weight: ${weights.bold};
-        text-decoration: underline;
-        text-decoration-skip: ink;
-      }
-    `}</style>
-  </li>
+    {/* TODO: needs to link to a project if it's featured on one */}
+    {venue}, {location}
+  </YearListingItem>
 );
 
 export default class Exhibitions extends Component {
@@ -68,31 +60,29 @@ export default class Exhibitions extends Component {
         <Container>
           <MainHeading>Exhibitions List</MainHeading>
 
-          <h2>Solo</h2>
+          <SmallHeading>Solo</SmallHeading>
           <ul>
             {groupByYear(soloExhibitions).map(([year, exhibitions]) => (
-              <li>
-                <h3>{year}</h3>
-                <ul>
-                  {exhibitions.map(exhibition => (
-                    <Exhibition exhibition={exhibition} />
-                  ))}
-                </ul>
-              </li>
+              <YearListing year={year}>
+                {exhibitions.map(exhibition => (
+                  <Exhibition exhibition={exhibition} />
+                ))}
+              </YearListing>
             ))}
           </ul>
+        </Container>
 
-          <h2>Group</h2>
+        <Divider />
+
+        <Container>
+          <SmallHeading>Group</SmallHeading>
           <ul>
             {groupByYear(groupExhibitions).map(([year, exhibitions]) => (
-              <li>
-                <h3>{year}</h3>
-                <ul>
-                  {exhibitions.map(exhibition => (
-                    <Exhibition exhibition={exhibition} />
-                  ))}
-                </ul>
-              </li>
+              <YearListing year={year}>
+                {exhibitions.map(exhibition => (
+                  <Exhibition exhibition={exhibition} />
+                ))}
+              </YearListing>
             ))}
           </ul>
         </Container>
@@ -100,9 +90,6 @@ export default class Exhibitions extends Component {
         <style jsx>{`
           ul {
             padding-left: 0;
-          }
-          li {
-            list-style: none;
           }
         `}</style>
       </div>

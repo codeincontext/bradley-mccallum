@@ -1,0 +1,23 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title"
+      }
+    },
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "Date"
+      }
+    },
+    "file": {
+      "type": "Link",
+      "config": {
+        "select": "media",
+        "label": "File"
+      }
+    }
+  }
+}

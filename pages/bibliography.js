@@ -10,19 +10,43 @@ import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import PressItem from '~/components/PressItem';
+import YearListing from '~/components/YearListing';
+import SmallHeading from '~/components/SmallHeading';
+import Divider from '~/components/Divider';
+import YearListingItem from '~/components/YearListingItem';
+
+const Catalogue = ({ catalogue }) => (
+  <YearListingItem>{catalogue.title}</YearListingItem>
+);
 
 export default class Bibliography extends Component {
   static async getInitialProps({ req, query }) {
     const api = await getApi(req);
-    const pressItemResponse = await api.query(
+    const pressItemRequest = api.query(
       Prismic.Predicates.at('document.type', 'press_item'),
       {
         orderings: '[my.press_item.date desc]',
         pageSize: 100,
       }
     );
+    const catalogueRequest = api.query(
+      Prismic.Predicates.at('document.type', 'catalogue'),
+      {
+        orderings: '[my.catalogue.date desc]',
+        pageSize: 100,
+      }
+    );
+
+    const [catalogueResponse, pressItemResponse] = await Promise.all([
+      catalogueRequest,
+      pressItemRequest,
+    ]);
 
     return {
+      catalogues: catalogueResponse.results.map(item => ({
+        uid: item.uid,
+        ...item.data,
+      })),
       pressItems: pressItemResponse.results.map(item => ({
         uid: item.uid,
         ...item.data,
@@ -31,7 +55,7 @@ export default class Bibliography extends Component {
   }
 
   render() {
-    const { pressItems, url } = this.props;
+    const { catalogues, pressItems, url } = this.props;
 
     const pressItemYears = Object.entries(pressItems).sort(
       ([year1], [year2]) => year2 - year1
@@ -48,13 +72,29 @@ export default class Bibliography extends Component {
         <Container>
           <MainHeading>Bibliography</MainHeading>
 
-          <h2>Reviews</h2>
-          {groupByYear(pressItems).map(([year, items]) => (
-            <div>
-              <h4>{year}</h4>
-              <ul>{items.map(item => <PressItem item={item} />)}</ul>
-            </div>
-          ))}
+          <SmallHeading>Catalogues</SmallHeading>
+          <ul>
+            {groupByYear(catalogues).map(([year, catalogues]) => (
+              <YearListing year={year}>
+                {catalogues.map(catalogue => (
+                  <Catalogue catalogue={catalogue} />
+                ))}
+              </YearListing>
+            ))}
+          </ul>
+        </Container>
+
+        <Divider />
+
+        <Container>
+          <SmallHeading>Reviews</SmallHeading>
+          <ul>
+            {groupByYear(pressItems).map(([year, items]) => (
+              <YearListing year={year}>
+                {items.map(item => <PressItem item={item} />)}
+              </YearListing>
+            ))}
+          </ul>
         </Container>
 
         <style jsx>{`
