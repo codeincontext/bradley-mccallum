@@ -36,11 +36,11 @@ export default class Bibliography extends Component {
 
     return {
       catalogues: catalogueResponse.results.map(item => ({
-        uid: item.uid,
+        id: item.id,
         ...item.data,
       })),
       pressItems: pressItemResponse.results.map(item => ({
-        uid: item.uid,
+        id: item.id,
         ...item.data,
       })),
     };
@@ -67,9 +67,9 @@ export default class Bibliography extends Component {
           <SmallHeading>Catalogues</SmallHeading>
           <ul>
             {groupByYear(catalogues).map(([year, catalogues]) => (
-              <YearListing year={year}>
+              <YearListing year={year} key={year}>
                 {catalogues.map(catalogue => (
-                  <Catalogue catalogue={catalogue} />
+                  <Catalogue catalogue={catalogue} key={catalogue.id} />
                 ))}
               </YearListing>
             ))}
@@ -82,8 +82,8 @@ export default class Bibliography extends Component {
           <SmallHeading>Reviews</SmallHeading>
           <ul>
             {groupByYear(pressItems).map(([year, items]) => (
-              <YearListing year={year}>
-                {items.map(item => <PressItem item={item} />)}
+              <YearListing year={year} key={year}>
+                {items.map(item => <PressItem item={item} key={item.id} />)}
               </YearListing>
             ))}
           </ul>

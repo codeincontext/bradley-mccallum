@@ -24,7 +24,7 @@ export default class Sidebar extends Component {
       <div>
         <ul>
           {items.map(item => (
-            <li key={item.label}>
+            <li key={item.scrollName}>
               <ScrollLink
                 to={item.scrollName}
                 activeClass="active-sidebar-link"
