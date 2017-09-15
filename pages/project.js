@@ -16,6 +16,7 @@ import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
 import Paragraph from '~/components/Paragraph';
 import PressItem from '~/components/PressItem';
+import YearListing from '~/components/YearListing';
 import { fonts, weights, spacing, colors } from '~/lib/theme';
 
 export default class Project extends Component {
@@ -129,14 +130,9 @@ export default class Project extends Component {
               <MainHeading>Press</MainHeading>
               <Container>
                 {groupByYear(pressItems).map(([year, items]) => (
-                  <div key={year}>
-                    <h4>{year}</h4>
-                    <ul>
-                      {items.map(item => (
-                        <PressItem key={item.id} item={item} />
-                      ))}
-                    </ul>
-                  </div>
+                  <YearListing year={year} key={year}>
+                    {items.map(item => <PressItem key={item.id} item={item} />)}
+                  </YearListing>
                 ))}
               </Container>
             </section>
