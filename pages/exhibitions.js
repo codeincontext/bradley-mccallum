@@ -63,9 +63,9 @@ export default class Exhibitions extends Component {
           <SmallHeading>Solo</SmallHeading>
           <ul>
             {groupByYear(soloExhibitions).map(([year, exhibitions]) => (
-              <YearListing year={year}>
+              <YearListing year={year} key={year}>
                 {exhibitions.map(exhibition => (
-                  <Exhibition exhibition={exhibition} />
+                  <Exhibition exhibition={exhibition} key={exhibition.uid} />
                 ))}
               </YearListing>
             ))}
@@ -78,9 +78,9 @@ export default class Exhibitions extends Component {
           <SmallHeading>Group</SmallHeading>
           <ul>
             {groupByYear(groupExhibitions).map(([year, exhibitions]) => (
-              <YearListing year={year}>
+              <YearListing year={year} key={year}>
                 {exhibitions.map(exhibition => (
-                  <Exhibition exhibition={exhibition} />
+                  <Exhibition exhibition={exhibition} key={exhibition.uid} />
                 ))}
               </YearListing>
             ))}
