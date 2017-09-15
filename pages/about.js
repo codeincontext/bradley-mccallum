@@ -31,9 +31,9 @@ export default class About extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <Container>
-          <MainHeading>About</MainHeading>
+        <MainHeading>About</MainHeading>
 
+        <Container>
           <SmallHeading>Biography</SmallHeading>
         </Container>
         <Paragraph item={{ text: biography }} />

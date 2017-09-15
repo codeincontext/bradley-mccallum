@@ -61,9 +61,9 @@ export default class Bibliography extends Component {
         <PageMeta />
         <Header pathname={url.pathname} />
 
-        <Container>
-          <MainHeading>Bibliography</MainHeading>
+        <MainHeading>Bibliography</MainHeading>
 
+        <Container>
           <SmallHeading>Catalogues</SmallHeading>
           <ul>
             {groupByYear(catalogues).map(([year, catalogues]) => (
