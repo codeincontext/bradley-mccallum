@@ -14,8 +14,9 @@ import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
 import Paragraph from '~/components/ContentItem/Paragraph';
 import PressItem from '~/components/PressItem';
+import Exhibition from '~/components/Exhibition';
 import YearListing from '~/components/YearListing';
-import { weights } from '~/lib/theme';
+import { fonts, weights } from '~/lib/theme';
 
 export default class Project extends Component {
   static async getInitialProps({ req, query }) {
@@ -90,21 +91,23 @@ export default class Project extends Component {
         <ScrollElement name="artwork">
           <section className="first-section">
             <Container>
-              <h1>
-                {project.long_title ||
-                  PrismicDom.RichText.asText(project.title)}
-              </h1>
-              <p>{project.materials}</p>
-              <p>{project.year_text || new Date(project.date).getFullYear()}</p>
-              {project.collaborators && <p>{project.collaborators}</p>}
-              {project.websiteLinkText && (
-                <p>
-                  Project website:{' '}
-                  <a href="{project.websiteLinkUrl}">
-                    {project.websiteLinkText}
-                  </a>
-                </p>
-              )}
+              <div className="intro">
+                <h1>
+                  {project.long_title ||
+                    PrismicDom.RichText.asText(project.title)}
+                </h1>
+                <p>{project.materials}</p>
+                <p>{project.year_text || new Date(project.date).getFullYear()}</p>
+                {project.collaborators && <p>{project.collaborators}</p>}
+                {project.websiteLinkText && (
+                  <p>
+                    Project website:{' '}
+                    <a href="{project.websiteLinkUrl}">
+                      {project.websiteLinkText}
+                    </a>
+                  </p>
+                )}
+              </div>
             </Container>
 
             {(project.body || [])
@@ -121,6 +124,9 @@ export default class Project extends Component {
                 <h2>Exhibitions</h2>
               </MainHeading>
             </section>
+            {exhibitions.map(exhibition => (
+              <Exhibition exhibition={exhibition} />
+            ))}
           </ScrollElement>
         )}
 
@@ -165,10 +171,8 @@ export default class Project extends Component {
         )}
 
         <style jsx>{`
-          .sidebar {
-            width: 30%;
-          }
           h1 {
+            font-size: ${fonts.f24};
             font-weight: ${weights.bold};
           }
 
@@ -180,8 +184,8 @@ export default class Project extends Component {
             padding-top: 300px;
             margin-top: -300px;
           }
-          .materials {
-            text-transform: uppercase;
+          .intro {
+            font-size: ${fonts.f14};
           }
           ul {
             padding-left: 0;
