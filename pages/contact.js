@@ -36,9 +36,9 @@ export default class Contact extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <Container>
-          <MainHeading>Contact</MainHeading>
+        <MainHeading>Contact</MainHeading>
 
+        <Container>
           <SmallHeading>Studio</SmallHeading>
         </Container>
         <Paragraph item={{ text: studio_details }} />

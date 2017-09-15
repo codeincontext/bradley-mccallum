@@ -57,9 +57,9 @@ export default class Exhibitions extends Component {
         <PageMeta />
         <Header pathname={url.pathname} />
 
-        <Container>
-          <MainHeading>Exhibitions List</MainHeading>
+        <MainHeading>Exhibitions List</MainHeading>
 
+        <Container>
           <SmallHeading>Solo</SmallHeading>
           <ul>
             {groupByYear(soloExhibitions).map(([year, exhibitions]) => (

@@ -14,7 +14,7 @@ import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
-import RichText from '~/components/RichText';
+import Paragraph from '~/components/Paragraph';
 import PressItem from '~/components/PressItem';
 import { fonts, weights, spacing, colors } from '~/lib/theme';
 
@@ -116,20 +116,18 @@ export default class Project extends Component {
         </ScrollElement>
 
         {!!exhibitions.length && (
-          <Container>
-            <ScrollElement name="exhibitions">
-              <section>
-                <MainHeading>Exhibitions</MainHeading>
-              </section>
-            </ScrollElement>
-          </Container>
+          <ScrollElement name="exhibitions">
+            <section>
+              <MainHeading>Exhibitions</MainHeading>
+            </section>
+          </ScrollElement>
         )}
 
         {!!pressItems.length && (
-          <Container>
-            <ScrollElement name="press">
-              <section>
-                <MainHeading>Press</MainHeading>
+          <ScrollElement name="press">
+            <section>
+              <MainHeading>Press</MainHeading>
+              <Container>
                 {groupByYear(pressItems).map(([year, items]) => (
                   <div key={year}>
                     <h4>{year}</h4>
@@ -140,20 +138,18 @@ export default class Project extends Component {
                     </ul>
                   </div>
                 ))}
-              </section>
-            </ScrollElement>
-          </Container>
+              </Container>
+            </section>
+          </ScrollElement>
         )}
 
         {!!project.acknowledgements.length && (
-          <Container>
-            <ScrollElement name="acknowledgements">
-              <section>
-                <MainHeading>Acknowledgements</MainHeading>
-                <RichText text={project.acknowledgements} />
-              </section>
-            </ScrollElement>
-          </Container>
+          <ScrollElement name="acknowledgements">
+            <section>
+              <MainHeading>Acknowledgements</MainHeading>
+              <Paragraph item={{ text: project.acknowledgements }} />
+            </section>
+          </ScrollElement>
         )}
 
         <style jsx>{`
