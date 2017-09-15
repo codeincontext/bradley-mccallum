@@ -1,7 +1,10 @@
 import { CONTAINER_WIDTH, SIDEBAR_WIDTH } from '~/lib/theme';
 
-const Container = ({ children, width }) => (
-  <div className="root">
+const Container = ({ children, width, sidebarWidth }) => (
+  <div
+    className="root"
+    style={sidebarWidth ? { marginLeft: `${sidebarWidth}px` } : {}}
+  >
     <div className="inner" style={width ? { maxWidth: `${width}px` } : {}}>
       {children}
     </div>
