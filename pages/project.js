@@ -117,7 +117,9 @@ export default class Project extends Component {
         {!!exhibitions.length && (
           <ScrollElement name="exhibitions">
             <section>
-              <MainHeading>Exhibitions</MainHeading>
+              <MainHeading>
+                <h2>Exhibitions</h2>
+              </MainHeading>
             </section>
           </ScrollElement>
         )}
@@ -137,7 +139,9 @@ export default class Project extends Component {
         {!!pressItems.length && (
           <ScrollElement name="press">
             <section>
-              <MainHeading>Press</MainHeading>
+              <MainHeading>
+                <h2>Press</h2>
+              </MainHeading>
               <Container>
                 {groupByYear(pressItems).map(([year, items]) => (
                   <YearListing year={year} key={year}>
@@ -152,7 +156,9 @@ export default class Project extends Component {
         {!!project.acknowledgements.length && (
           <ScrollElement name="acknowledgements">
             <section>
-              <MainHeading>Acknowledgements</MainHeading>
+              <MainHeading>
+                <h2>Acknowledgements</h2>
+              </MainHeading>
               <Paragraph item={{ text: project.acknowledgements }} />
             </section>
           </ScrollElement>
