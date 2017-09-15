@@ -27,3 +27,7 @@ npm run -s build-prismic-type -- project | pbcopy
 ```
 
 Then paste the result in the Project content type's JSON field in Prismic. This process lets us version our content types and re-use our slices (Image Grid, Single Image, etc) across multiple types.
+
+## Special Exhibitions
+
+"Special Exhibitions" is a place to highlight exhibitions that don't belong to a project. Technically it's a project but it's hidden from the main project list on the homepage

@@ -19,10 +19,16 @@ export default class Index extends Component {
     const api = await getApi(req);
 
     const [projectsResponse, homepage] = await Promise.all([
-      api.query(Prismic.Predicates.at('document.type', 'project'), {
-        orderings: '[my.project.date desc]',
-        pageSize: 100,
-      }),
+      api.query(
+        [
+          Prismic.Predicates.at('document.type', 'project'),
+          Prismic.Predicates.not('my.project.uid', 'special-exhibitions'),
+        ],
+        {
+          orderings: '[my.project.date desc]',
+          pageSize: 100,
+        }
+      ),
       api.getSingle('home_page', {
         fetchLinks: 'project.title,project.year_text,project.date',
       }),

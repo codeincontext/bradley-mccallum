@@ -87,9 +87,29 @@ export default class Exhibitions extends Component {
           </ul>
         </Container>
 
+        <Divider />
+
+        <Container>
+          <SmallHeading>Special Exhibitions</SmallHeading>
+          <p>
+            There are a number of{' '}
+            <Link
+              as={`/project/special-exhibitions`} // URL exposed to the browser
+              href={`/project?slug=special-exhibitions`} // simplified URL for next.js client routing
+            >
+              <a>special exhibitions</a>
+            </Link>{' '}
+            that Bradley wishes to highlight.
+          </p>
+        </Container>
+
         <style jsx>{`
           ul {
             padding-left: 0;
+          }
+
+          a {
+            font-weight: ${weights.bold};
           }
         `}</style>
       </div>

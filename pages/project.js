@@ -97,7 +97,7 @@ export default class Project extends Component {
                   PrismicDom.RichText.asText(project.title)}
               </h1>
               <p>{project.materials}</p>
-              <p>{new Date(project.date).getFullYear()}</p>
+              <p>{project.year_text || new Date(project.date).getFullYear()}</p>
               {project.collaborators && <p>{project.collaborators}</p>}
               {project.websiteLinkText && (
                 <p>
