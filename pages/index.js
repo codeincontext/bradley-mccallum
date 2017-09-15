@@ -51,7 +51,10 @@ export default class Index extends Component {
           <title>Home | Bradley McCallum</title>
         </Head>
         <PageMeta />
-        <Header pathname={pathname} artworksActive={artworksActive} />
+        <Header
+          pathname={pathname}
+          artworksActive={this.state.artworksActive}
+        />
 
         <Sidebar
           items={YEARS.map((year, i) => ({
