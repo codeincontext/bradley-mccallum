@@ -81,6 +81,10 @@ export default class Project extends Component {
               label: exhibition.location,
               scrollName: scrollNameForExhibitionId(exhibition.uid),
             })),
+            project.civic_dialogues.length && {
+              label: 'Civic Dialogues',
+              scrollName: 'civic-dialogues',
+            },
             pressItems.length && { label: 'Press', scrollName: 'press' },
             project.acknowledgements.length && {
               label: 'Acknowledgements',
@@ -120,6 +124,18 @@ export default class Project extends Component {
           <ScrollElement name="exhibitions">
             <section>
               <MainHeading>Exhibitions</MainHeading>
+            </section>
+          </ScrollElement>
+        )}
+
+        {!!project.civic_dialogues.length && (
+          <ScrollElement name="civic-dialogues">
+            <section>
+              <MainHeading>Civic Dialogues</MainHeading>
+              {(project.civic_dialogues || [])
+                .map((contentItem, i) => (
+                  <ContentItem item={contentItem} key={i} />
+                ))}
             </section>
           </ScrollElement>
         )}
