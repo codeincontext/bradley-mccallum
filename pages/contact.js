@@ -35,7 +35,9 @@ export default class Contact extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <MainHeading>Contact</MainHeading>
+        <MainHeading>
+          <h1>Contact</h1>
+        </MainHeading>
 
         <Container>
           <SmallHeading>Studio</SmallHeading>

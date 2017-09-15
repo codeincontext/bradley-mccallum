@@ -4,9 +4,7 @@ import { fonts, colors, weights, spacing } from '~/lib/theme';
 const MainHeading = ({ children }) => (
   <div className="root">
     <Container>
-      <div className="heading">
-        <h1>{children}</h1>
-      </div>
+      <div className="heading">{children}</div>
     </Container>
 
     <style jsx>{`
@@ -36,7 +34,7 @@ const MainHeading = ({ children }) => (
         background-size: 7px 7px;
       }
 
-      h1 {
+      .heading > :global(*) {
         font-weight: ${weights.light};
         font-size: ${fonts.f30};
         text-transform: uppercase;

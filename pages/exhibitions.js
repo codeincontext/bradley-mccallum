@@ -56,7 +56,9 @@ export default class Exhibitions extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <MainHeading>Exhibitions List</MainHeading>
+        <MainHeading>
+          <h1>Exhibitions List</h1>
+        </MainHeading>
 
         <Container>
           <SmallHeading>Solo</SmallHeading>
