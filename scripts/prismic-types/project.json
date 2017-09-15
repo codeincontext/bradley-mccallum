@@ -58,31 +58,6 @@
         "label": "Collaborators"
       }
     },
-    "acknowledgements": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph, strong, em, hyperlink, list-item, o-list-item",
-        "label": "Acknowledgements"
-      }
-    },
-    "press_items": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "press_item": {
-            "type": "Link",
-            "config": {
-              "select": "document",
-              "customtypes": [
-                "press_item"
-              ],
-              "label": "Press Item"
-            }
-          }
-        },
-        "label": "Press Items"
-      }
-    },
     "website_link_title": {
       "type": "Text",
       "config": {
@@ -104,20 +79,56 @@
     }
   },
   "Exhibitions": {
-    "exhibitions" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "exhibition" : {
-            "type" : "Link",
-            "config" : {
-              "select" : "document",
-              "customtypes" : [ "exhibition" ],
-              "label" : "Exhibition"
+    "exhibitions": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "exhibition": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["exhibition"],
+              "label": "Exhibition"
             }
           }
         },
-        "label" : "Exhibitions"
+        "label": "Exhibitions"
+      }
+    }
+  },
+  "Civic Dialogues": {
+    "civic_dialogues": {
+      "type": "Slices",
+      "fieldset": "Body",
+      "config": {
+        "choices": "%%SLICES%%"
+      }
+    }
+  },
+  "Press": {
+    "press_items": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "press_item": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["press_item"],
+              "label": "Press Item"
+            }
+          }
+        },
+        "label": "Press Items"
+      }
+    }
+  },
+  "Acknowledgements": {
+    "acknowledgements": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink, list-item, o-list-item",
+        "label": "Acknowledgements"
       }
     }
   }
