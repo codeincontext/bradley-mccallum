@@ -91,7 +91,10 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "paragraph",
-                  "label": "Caption"
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": ["paragraph", "text", "hard_break"],
+                  "isAuthorized": {}
                 }
               }
             },
@@ -230,6 +233,16 @@
                   "select": "media",
                   "label": "File",
                   "placeholder": "MP3 files only"
+                }
+              },
+              "caption": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Caption",
+                  "isEverythingAuthorized": false,
+                  "authorized": ["paragraph", "text", "hard_break"],
+                  "isAuthorized": {}
                 }
               }
             },

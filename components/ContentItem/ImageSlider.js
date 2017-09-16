@@ -1,8 +1,8 @@
 import Image from '~/components/Image';
 import Container from '~/components/Container';
-import RichText from '~/components/RichText';
 import Carousel from '~/components/Carousel';
-import { weights, fonts, lineHeights, CONTENT_ITEM_SPACING } from '~/lib/theme';
+import Caption from '~/components/Caption';
+import { CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 export default class ImageSlider extends React.Component {
   state = { selectedIndex: 0 };
@@ -27,23 +27,12 @@ export default class ImageSlider extends React.Component {
               .map(({ image }) => <Image key={image.url} image={image} />)}
           </Carousel>
 
-          <div className="caption">
-            <RichText text={items[selectedIndex].caption} />
-          </div>
+          <Caption>{items[selectedIndex].caption}</Caption>
         </div>
 
         <style jsx>{`
           .root {
             margin-bottom: ${CONTENT_ITEM_SPACING};
-          }
-
-          .caption :global(p) {
-            // copies SingleImage.js
-            font-weight: ${weights.light};
-            font-size: ${fonts.f14};
-            font-style: italic;
-            letter-spacing: 0.1em;
-            line-height: ${lineHeights.copy};
           }
         `}</style>
       </Container>
