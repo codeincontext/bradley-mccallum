@@ -2,7 +2,7 @@ import Image from '~/components/Image';
 import Container from '~/components/Container';
 import RichText from '~/components/RichText';
 import Carousel from '~/components/Carousel';
-import { weights, fonts, lineHeights } from '~/lib/theme';
+import { weights, fonts, lineHeights, CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 export default class ImageSlider extends React.Component {
   state = { selectedIndex: 0 };
@@ -17,20 +17,26 @@ export default class ImageSlider extends React.Component {
 
     return (
       <Container>
-        <Carousel
-          onChange={this.handleIndexChange}
-          selectedIndex={selectedIndex}
-        >
-          {items
-            .filter(({ image }) => image.url)
-            .map(({ image }) => <Image key={image.url} image={image} />)}
-        </Carousel>
+        <div className="root">
+          <Carousel
+            onChange={this.handleIndexChange}
+            selectedIndex={selectedIndex}
+          >
+            {items
+              .filter(({ image }) => image.url)
+              .map(({ image }) => <Image key={image.url} image={image} />)}
+          </Carousel>
 
-        <div className="caption">
-          <RichText text={items[selectedIndex].caption} />
+          <div className="caption">
+            <RichText text={items[selectedIndex].caption} />
+          </div>
         </div>
 
         <style jsx>{`
+          .root {
+            margin-bottom: ${CONTENT_ITEM_SPACING};
+          }
+
           .caption :global(p) {
             // copies SingleImage.js
             font-weight: ${weights.light};

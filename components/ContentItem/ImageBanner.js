@@ -1,4 +1,5 @@
 import Image from '~/components/Image';
+import { CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 const ImageBanner = ({ item }) => (
   <div className="root">
@@ -21,6 +22,7 @@ const ImageBanner = ({ item }) => (
         display: flex;
         // height: 10vw;
         align-items: stretch;
+        margin-bottom: ${CONTENT_ITEM_SPACING};
       }
       .image {
         flex-basis: 0;

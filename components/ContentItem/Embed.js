@@ -1,15 +1,21 @@
 import Container from '~/components/Container';
+import { CONTENT_ITEM_SPACING } from '~/lib/theme';
 
-const Embed = ({ item: { embed } }) => (
-  <Container>
-    <div dangerouslySetInnerHTML={{ __html: embed.html }} />
+const Embed = ({ item: { embed } }) => {
+  return (
+    <Container>
+      <div className="root" dangerouslySetInnerHTML={{ __html: embed.html }} />
 
-    <style jsx>{`
-        div > :global(*) {
+      <style jsx>{`
+        .root {
+          margin-bottom: ${CONTENT_ITEM_SPACING};
+        }
+        .root > :global(*) {
           width: 100%;
         }
       `}</style>
-  </Container>
+    </Container>
   );
+};
 
 export default Embed;

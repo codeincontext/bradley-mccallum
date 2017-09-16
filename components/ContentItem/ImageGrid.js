@@ -4,7 +4,7 @@ import PrismicDom from 'prismic-dom';
 import Image from '~/components/Image';
 import Lightbox from 'react-images';
 import Container from '~/components/Container';
-import { spacing, colors } from '~/lib/theme';
+import { spacing, colors, CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 const LIGHTBOX_THEME = {
   container: {
@@ -107,7 +107,7 @@ export default class ImageGrid extends Component {
 
         <style jsx>{`
           .root {
-            margin-bottom: ${spacing.s2};
+            margin-bottom: ${CONTENT_ITEM_SPACING};
           }
           .images {
             margin: -5px;
@@ -121,6 +121,7 @@ export default class ImageGrid extends Component {
           }
           .spacer {
             height: 0;
+            margin: 0;
           }
         `}</style>
       </Container>

@@ -5,17 +5,18 @@ import {
   fonts,
   spacing,
   lineHeights,
+  CONTENT_ITEM_SPACING,
 } from '~/lib/theme';
 import RichText from '~/components/RichText';
 
 const Callout = ({ item }) => (
   <Container>
-    <blockquote>
+    <blockquote className="root">
       <RichText text={item.text} />
       <style jsx>{`
-        blockquote {
+        .root {
           max-width: ${CALLOUT_WIDTH}%;
-          margin: ${spacing.s3} auto;
+          margin: 0 auto ${CONTENT_ITEM_SPACING};
           font-size: ${fonts.f24};
           font-weight: ${weights.bold};
           line-height: ${lineHeights.heading};
