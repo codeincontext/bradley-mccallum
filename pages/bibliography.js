@@ -57,7 +57,9 @@ export default class Bibliography extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <MainHeading>Bibliography</MainHeading>
+        <MainHeading>
+          <h1>Bibliography</h1>
+        </MainHeading>
 
         <Container>
           <SmallHeading>Catalogues</SmallHeading>

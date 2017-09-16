@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Prismic from 'prismic-javascript';
 import { RichText } from 'prismic-dom';
 
@@ -13,6 +14,7 @@ import Divider from '~/components/ContentItem/Divider';
 import SmallHeading from '~/components/SmallHeading';
 import YearListing from '~/components/YearListing';
 import YearListingItem from '~/components/YearListingItem';
+import { weights } from '~/lib/theme';
 
 const Exhibition = ({ exhibition: { title, venue, location } }) => (
   <YearListingItem>
@@ -56,7 +58,9 @@ export default class Exhibitions extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <MainHeading>Exhibitions List</MainHeading>
+        <MainHeading>
+          <h1>Exhibitions List</h1>
+        </MainHeading>
 
         <Container>
           <SmallHeading>Solo</SmallHeading>

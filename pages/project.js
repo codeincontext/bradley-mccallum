@@ -14,11 +14,12 @@ import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
 import Paragraph from '~/components/ContentItem/Paragraph';
 import PressItem from '~/components/PressItem';
+import Exhibition from '~/components/Exhibition';
 import YearListing from '~/components/YearListing';
-import { weights } from '~/lib/theme';
+import { fonts, weights } from '~/lib/theme';
 
 export default class Project extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
     const project = await api.getByUID('project', query.slug);
 
@@ -44,11 +45,12 @@ export default class Project extends Component {
         id: item.id,
         ...item.data,
       })),
+      pathname,
     };
   }
 
   render() {
-    const { project, exhibitions, pressItems, url } = this.props;
+    const { project, exhibitions, pressItems, pathname } = this.props;
 
     return (
       <div>
@@ -58,7 +60,7 @@ export default class Project extends Component {
           </title>
         </Head>
         <PageMeta />
-        <Header pathname={url.pathname} />
+        <Header pathname={pathname} />
 
         <Sidebar
           className="sidebar"
@@ -90,21 +92,25 @@ export default class Project extends Component {
         <ScrollElement name="artwork">
           <section className="first-section">
             <Container>
-              <h1>
-                {project.long_title ||
-                  PrismicDom.RichText.asText(project.title)}
-              </h1>
-              <p>{project.materials}</p>
-              <p>{project.year_text || new Date(project.date).getFullYear()}</p>
-              {project.collaborators && <p>{project.collaborators}</p>}
-              {project.websiteLinkText && (
+              <div className="intro">
+                <h1>
+                  {project.long_title ||
+                    PrismicDom.RichText.asText(project.title)}
+                </h1>
+                <p>{project.materials}</p>
                 <p>
-                  Project website:{' '}
-                  <a href="{project.websiteLinkUrl}">
-                    {project.websiteLinkText}
-                  </a>
+                  {project.year_text || new Date(project.date).getFullYear()}
                 </p>
-              )}
+                {project.collaborators && <p>{project.collaborators}</p>}
+                {project.websiteLinkText && (
+                  <p>
+                    Project website:{' '}
+                    <a href="{project.websiteLinkUrl}">
+                      {project.websiteLinkText}
+                    </a>
+                  </p>
+                )}
+              </div>
             </Container>
 
             {(project.body || [])
@@ -117,15 +123,22 @@ export default class Project extends Component {
         {!!exhibitions.length && (
           <ScrollElement name="exhibitions">
             <section>
-              <MainHeading>Exhibitions</MainHeading>
+              <MainHeading>
+                <h2>Exhibitions</h2>
+              </MainHeading>
             </section>
+            {exhibitions.map(exhibition => (
+              <Exhibition exhibition={exhibition} />
+            ))}
           </ScrollElement>
         )}
 
         {!!project.civic_dialogues.length && (
           <ScrollElement name="civic-dialogues">
             <section>
-              <MainHeading>Civic Dialogues</MainHeading>
+              <MainHeading>
+                <h2>Civic Dialogues</h2>
+              </MainHeading>
               {(project.civic_dialogues || [])
                 .map((contentItem, i) => (
                   <ContentItem item={contentItem} key={i} />
@@ -137,7 +150,9 @@ export default class Project extends Component {
         {!!pressItems.length && (
           <ScrollElement name="press">
             <section>
-              <MainHeading>Press</MainHeading>
+              <MainHeading>
+                <h2>Press</h2>
+              </MainHeading>
               <Container>
                 {groupByYear(pressItems).map(([year, items]) => (
                   <YearListing year={year} key={year}>
@@ -152,17 +167,17 @@ export default class Project extends Component {
         {!!project.acknowledgements.length && (
           <ScrollElement name="acknowledgements">
             <section>
-              <MainHeading>Acknowledgements</MainHeading>
+              <MainHeading>
+                <h2>Acknowledgements</h2>
+              </MainHeading>
               <Paragraph item={{ text: project.acknowledgements }} />
             </section>
           </ScrollElement>
         )}
 
         <style jsx>{`
-          .sidebar {
-            width: 30%;
-          }
           h1 {
+            font-size: ${fonts.f24};
             font-weight: ${weights.bold};
           }
 
@@ -174,8 +189,8 @@ export default class Project extends Component {
             padding-top: 300px;
             margin-top: -300px;
           }
-          .materials {
-            text-transform: uppercase;
+          .intro {
+            font-size: ${fonts.f14};
           }
           ul {
             padding-left: 0;

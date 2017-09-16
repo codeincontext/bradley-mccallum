@@ -30,7 +30,9 @@ export default class About extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
-        <MainHeading>About</MainHeading>
+        <MainHeading>
+          <h1>About</h1>
+        </MainHeading>
 
         <Container>
           <SmallHeading>Biography</SmallHeading>
