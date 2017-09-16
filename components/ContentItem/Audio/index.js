@@ -1,5 +1,6 @@
 import videoConnect from 'react-html5video';
 import Container from '~/components/Container';
+import Caption from '~/components/Caption';
 import { colors, fonts, weights, CONTENT_ITEM_SPACING } from '~/lib/theme';
 import {
   setVolume,
@@ -31,7 +32,7 @@ class Audio extends React.Component {
 
   render() {
     const {
-      item: { file },
+      item: { file, caption },
       video: {
         paused,
         duration,
@@ -49,57 +50,67 @@ class Audio extends React.Component {
     return (
       <Container>
         <div className="root">
-          <video src={`${file.url}?q=${this.cacheBuster}`} className="video" />
-          <button
-            className="playPause"
-            onClick={onPlayPauseClick}
-            aria-label={paused ? 'Play audio' : 'Pause audio'}
-            type="button"
-          >
-            {paused ? '|>' : '||'}
-          </button>
-
-          <div className="seek">
-            <Track
-              buffered={percentageBuffered}
-              filled={percentagePlayed}
-              onChange={onSeekChange}
-              defaultFill={0}
-              label="Seek audio"
+          <div className="player">
+            <video
+              src={`${file.url}?q=${this.cacheBuster}`}
+              className="video"
             />
+            <button
+              className="playPause"
+              onClick={onPlayPauseClick}
+              aria-label={paused ? 'Play audio' : 'Pause audio'}
+              type="button"
+            >
+              {paused ? '|>' : '||'}
+            </button>
+
+            <div className="seek">
+              <Track
+                buffered={percentageBuffered}
+                filled={percentagePlayed}
+                onChange={onSeekChange}
+                defaultFill={0}
+                label="Seek audio"
+              />
+            </div>
+
+            <span className="timeRemaining">
+              {formatTime(duration - currentTime)}
+            </span>
+
+            <button
+              aria-label={volume <= 0 ? 'Unmute audio' : 'Mute audio'}
+              className="volumeButton"
+              onClick={onVolumeClick}
+              type="button"
+            >
+              {volume <= 0 ? '<\\' : '<'}
+            </button>
+
+            <div className="volume">
+              <Track
+                filled={volume}
+                onChange={onVolumeChange}
+                label="Set volume"
+                defaultFill={1}
+              />
+            </div>
           </div>
 
-          <span className="timeRemaining">
-            {formatTime(duration - currentTime)}
-          </span>
-
-          <button
-            aria-label={volume <= 0 ? 'Unmute audio' : 'Mute audio'}
-            className="volumeButton"
-            onClick={onVolumeClick}
-            type="button"
-          >
-            {volume <= 0 ? '<\\' : '<'}
-          </button>
-
-          <div className="volume">
-            <Track
-              filled={volume}
-              onChange={onVolumeChange}
-              label="Set volume"
-              defaultFill={1}
-            />
-          </div>
+          <Caption>{caption}</Caption>
 
           <style jsx>{`
             .root {
+              margin-bottom: ${CONTENT_ITEM_SPACING};
+            }
+
+            .player {
               width: 100%;
               height: 50px;
               background-color: ${colors.midGrey};
               border-radius: 4px;
               display: flex;
               align-items: center;
-              margin-bottom: ${CONTENT_ITEM_SPACING};
             }
 
             .video {
