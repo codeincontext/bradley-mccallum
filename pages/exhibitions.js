@@ -9,7 +9,7 @@ import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
-import Divider from '~/components/Divider';
+import Divider from '~/components/ContentItem/Divider';
 import SmallHeading from '~/components/SmallHeading';
 import YearListing from '~/components/YearListing';
 import YearListingItem from '~/components/YearListingItem';
