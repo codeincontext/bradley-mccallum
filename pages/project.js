@@ -19,7 +19,7 @@ import YearListing from '~/components/YearListing';
 import { fonts, weights } from '~/lib/theme';
 
 export default class Project extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
     const project = await api.getByUID('project', query.slug);
 
@@ -45,11 +45,12 @@ export default class Project extends Component {
         id: item.id,
         ...item.data,
       })),
+      pathname,
     };
   }
 
   render() {
-    const { project, exhibitions, pressItems, url } = this.props;
+    const { project, exhibitions, pressItems, pathname } = this.props;
 
     return (
       <div>
@@ -59,7 +60,7 @@ export default class Project extends Component {
           </title>
         </Head>
         <PageMeta />
-        <Header pathname={url.pathname} />
+        <Header pathname={pathname} />
 
         <Sidebar
           className="sidebar"
@@ -97,7 +98,9 @@ export default class Project extends Component {
                     PrismicDom.RichText.asText(project.title)}
                 </h1>
                 <p>{project.materials}</p>
-                <p>{project.year_text || new Date(project.date).getFullYear()}</p>
+                <p>
+                  {project.year_text || new Date(project.date).getFullYear()}
+                </p>
                 {project.collaborators && <p>{project.collaborators}</p>}
                 {project.websiteLinkText && (
                   <p>
@@ -133,7 +136,9 @@ export default class Project extends Component {
         {!!project.civic_dialogues.length && (
           <ScrollElement name="civic-dialogues">
             <section>
-              <MainHeading>Civic Dialogues</MainHeading>
+              <MainHeading>
+                <h2>Civic Dialogues</h2>
+              </MainHeading>
               {(project.civic_dialogues || [])
                 .map((contentItem, i) => (
                   <ContentItem item={contentItem} key={i} />

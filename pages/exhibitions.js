@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Prismic from 'prismic-javascript';
 import { RichText } from 'prismic-dom';
 
@@ -13,6 +14,7 @@ import Divider from '~/components/ContentItem/Divider';
 import SmallHeading from '~/components/SmallHeading';
 import YearListing from '~/components/YearListing';
 import YearListingItem from '~/components/YearListingItem';
+import { weights } from '~/lib/theme';
 
 const Exhibition = ({ exhibition: { title, venue, location } }) => (
   <YearListingItem>
