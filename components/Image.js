@@ -9,6 +9,7 @@ const Image = ({ image }) => {
 
       <style jsx>{`
         img {
+          display: block;
           max-width: 100%;
           margin: 0;
         }
