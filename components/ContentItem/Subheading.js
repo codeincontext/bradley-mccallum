@@ -5,6 +5,7 @@ import {
   fonts,
   spacing,
   lineHeights,
+  CONTENT_ITEM_SPACING,
 } from '~/lib/theme';
 import Container from '~/components/Container';
 
@@ -14,7 +15,7 @@ const Subheading = ({ item }) => (
     <style jsx>{`
       h3 {
         max-width: ${CALLOUT_WIDTH}%;
-        margin: ${spacing.s3} auto;
+        margin: 0 auto ${CONTENT_ITEM_SPACING};
         font-size: ${fonts.f30};
         font-weight: ${weights.light};
         text-transform: uppercase;

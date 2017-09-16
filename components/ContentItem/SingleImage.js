@@ -1,11 +1,11 @@
 import Image from '~/components/Image';
 import Container from '~/components/Container';
 import RichText from '~/components/RichText';
-import { weights, fonts, lineHeights } from '~/lib/theme';
+import { weights, fonts, lineHeights, CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 const SingleImage = ({ item }) => (
   <Container>
-    <figure>
+    <figure className="root">
       <Image image={item.image.url} />
       {item.caption && (
         <figcaption>
@@ -14,8 +14,8 @@ const SingleImage = ({ item }) => (
       )}
     </figure>
     <style jsx>{`
-      figure {
-        margin: 0;
+      .root {
+        margin: 0 0 ${CONTENT_ITEM_SPACING};
       }
 
       figcaption :global(p) {

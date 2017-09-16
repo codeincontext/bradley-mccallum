@@ -1,22 +1,20 @@
-import { colors, spacing } from '~/lib/theme';
+import { colors, spacing, CONTENT_ITEM_SPACING } from '~/lib/theme';
 import Container from '~/components/Container';
 
 const Divider = () => (
-  <div>
-    <Container>
-      <hr />
-    </Container>
+  <Container>
+    <hr className="root" />
 
     <style jsx>{`
-      hr {
+      .root {
         border: none;
         height: 1px;
         width: 100%;
         background-color: ${colors.dividerGrey};
-        margin: ${spacing.s2} 0;
+        margin: 0 auto ${CONTENT_ITEM_SPACING};
       }
     `}</style>
-  </div>
+  </Container>
 );
 
 export default Divider;

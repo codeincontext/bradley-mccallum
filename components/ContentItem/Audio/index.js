@@ -1,6 +1,6 @@
 import videoConnect from 'react-html5video';
 import Container from '~/components/Container';
-import { colors, fonts, weights } from '~/lib/theme';
+import { colors, fonts, weights, CONTENT_ITEM_SPACING } from '~/lib/theme';
 import {
   setVolume,
   showTrack,
@@ -48,7 +48,7 @@ class Audio extends React.Component {
 
     return (
       <Container>
-        <div className="audio">
+        <div className="root">
           <video src={`${file.url}?q=${this.cacheBuster}`} className="video" />
           <button
             className="playPause"
@@ -92,13 +92,14 @@ class Audio extends React.Component {
           </div>
 
           <style jsx>{`
-            .audio {
+            .root {
               width: 100%;
               height: 50px;
               background-color: ${colors.midGrey};
               border-radius: 4px;
               display: flex;
               align-items: center;
+              margin-bottom: ${CONTENT_ITEM_SPACING};
             }
 
             .video {
