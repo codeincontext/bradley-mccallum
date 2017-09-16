@@ -8,7 +8,6 @@ import { scrollNameForYear, YEARS } from '~/lib/scrollNames';
 import Container from '~/components/Container';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
-import ImageSlider from '~/components/ImageSlider';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';

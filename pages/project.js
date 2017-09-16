@@ -12,7 +12,7 @@ import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import ContentItem from '~/components/ContentItem';
 import Sidebar from '~/components/Sidebar';
-import Paragraph from '~/components/Paragraph';
+import Paragraph from '~/components/ContentItem/Paragraph';
 import PressItem from '~/components/PressItem';
 import YearListing from '~/components/YearListing';
 import { weights } from '~/lib/theme';

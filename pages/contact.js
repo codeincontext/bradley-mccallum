@@ -7,8 +7,8 @@ import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import SmallHeading from '~/components/SmallHeading';
-import Divider from '~/components/Divider';
-import Paragraph from '~/components/Paragraph';
+import Divider from '~/components/ContentItem/Divider';
+import Paragraph from '~/components/ContentItem/Paragraph';
 
 export default class Contact extends Component {
   static async getInitialProps({ req, query, pathname }) {

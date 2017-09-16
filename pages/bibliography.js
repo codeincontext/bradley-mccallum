@@ -11,7 +11,7 @@ import Container from '~/components/Container';
 import PressItem from '~/components/PressItem';
 import YearListing from '~/components/YearListing';
 import SmallHeading from '~/components/SmallHeading';
-import Divider from '~/components/Divider';
+import Divider from '~/components/ContentItem/Divider';
 import YearListingItem from '~/components/YearListingItem';
 
 const Catalogue = ({ catalogue }) => (
