@@ -1,4 +1,4 @@
-import { weights, fonts, spacing, lineHeights } from '~/lib/theme';
+import { weights, fonts, lineHeights } from '~/lib/theme';
 
 const SmallHeading = ({ children }) => (
   <div>

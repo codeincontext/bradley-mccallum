@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
-import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
-import groupBy from 'lodash.groupby';
 
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
@@ -17,7 +15,7 @@ import Sidebar from '~/components/Sidebar';
 import Paragraph from '~/components/Paragraph';
 import PressItem from '~/components/PressItem';
 import YearListing from '~/components/YearListing';
-import { fonts, weights, spacing, colors } from '~/lib/theme';
+import { weights } from '~/lib/theme';
 
 export default class Project extends Component {
   static async getInitialProps({ req, query }) {
@@ -51,10 +49,6 @@ export default class Project extends Component {
 
   render() {
     const { project, exhibitions, pressItems, url } = this.props;
-
-    const pressItemYears = Object.entries(pressItems).sort(
-      ([year1], [year2]) => year2 - year1
-    );
 
     return (
       <div>

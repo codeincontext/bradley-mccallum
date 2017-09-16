@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import Prismic from 'prismic-javascript';
-import groupBy from 'lodash.groupby';
 
 import { getApi } from '~/lib/prismic';
 import { groupByYear } from '~/lib/utils';
@@ -20,7 +19,7 @@ const Catalogue = ({ catalogue }) => (
 );
 
 export default class Bibliography extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
 
     const [catalogueResponse, pressItemResponse] = await Promise.all([
@@ -43,15 +42,12 @@ export default class Bibliography extends Component {
         id: item.id,
         ...item.data,
       })),
+      pathname,
     };
   }
 
   render() {
-    const { catalogues, pressItems, url } = this.props;
-
-    const pressItemYears = Object.entries(pressItems).sort(
-      ([year1], [year2]) => year2 - year1
-    );
+    const { catalogues, pressItems, pathname } = this.props;
 
     return (
       <div>
@@ -59,7 +55,7 @@ export default class Bibliography extends Component {
           <title>Bibliography | Bradley McCallum</title>
         </Head>
         <PageMeta />
-        <Header pathname={url.pathname} />
+        <Header pathname={pathname} />
 
         <MainHeading>Bibliography</MainHeading>
 

@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Link as ScrollLink, scrollSpy } from 'react-scroll';
-import Container from '~/components/Container';
+import { Link as ScrollLink } from 'react-scroll';
 import { fonts, colors, weights, spacing, zIndex } from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (

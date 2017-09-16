@@ -1,17 +1,15 @@
 import Container from '~/components/Container';
 
-const Embed = ({ item: { embed } }) => {
-  return (
-    <Container>
-      <div dangerouslySetInnerHTML={{ __html: embed.html }} />
+const Embed = ({ item: { embed } }) => (
+  <Container>
+    <div dangerouslySetInnerHTML={{ __html: embed.html }} />
 
-      <style jsx>{`
+    <style jsx>{`
         div > :global(*) {
           width: 100%;
         }
       `}</style>
-    </Container>
+  </Container>
   );
-};
 
 export default Embed;

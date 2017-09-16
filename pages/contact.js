@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import Head from 'next/head';
-import Prismic from 'prismic-javascript';
 
 import { getApi } from '~/lib/prismic';
 import PageMeta from '~/components/PageMeta';

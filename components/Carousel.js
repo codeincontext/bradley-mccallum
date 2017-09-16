@@ -1,7 +1,4 @@
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
-import Image from '~/components/Image';
-import Container from '~/components/Container';
-import RichText from '~/components/RichText';
 import { colors } from '~/lib/theme';
 
 const Carousel = ({ children, selectedIndex, onChange }) => (
