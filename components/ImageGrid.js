@@ -4,7 +4,34 @@ import PrismicDom from 'prismic-dom';
 import Image from '~/components/Image';
 import Lightbox from 'react-images';
 import Container from '~/components/Container';
-import { spacing } from '~/lib/theme';
+import { spacing, colors } from '~/lib/theme';
+
+const LIGHTBOX_THEME = {
+  container: {
+    background: colors.white,
+  },
+
+  arrow: {
+    background: 'none',
+    fill: colors.black,
+  },
+  // arrow__size__medium: {
+  // },
+  // arrow__direction__left: {},
+  // arrow__direction__right: {},
+  header: {},
+  close: {
+    fill: colors.black,
+    position: 'fixed',
+    right: 45,
+    top: 32,
+  },
+
+  footer: {
+    color: colors.black,
+    height: 100,
+  },
+};
 
 // We can either define a number of columns or a minimum image size a-la https://github.com/neptunian/react-photo-gallery#user-guide--best-practice
 
@@ -73,6 +100,8 @@ export default class ImageGrid extends Component {
             onClickPrev={this.goToPrevious}
             onClickNext={this.goToNext}
             onClose={this.closeLightbox}
+            // backdropClosesModal
+            theme={LIGHTBOX_THEME}
           />
         </div>
 
