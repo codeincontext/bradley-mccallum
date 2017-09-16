@@ -1,5 +1,3 @@
-import { fonts } from '~/lib/theme';
-
 const Image = ({ image }) => {
   if (!image) return null;
 

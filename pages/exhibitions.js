@@ -13,10 +13,8 @@ import Divider from '~/components/Divider';
 import SmallHeading from '~/components/SmallHeading';
 import YearListing from '~/components/YearListing';
 import YearListingItem from '~/components/YearListingItem';
-import Link from 'next/link';
-import { weights, spacing, fonts, lineHeights } from '~/lib/theme';
 
-const Exhibition = ({ exhibition: { title, venue, venue_link, location } }) => (
+const Exhibition = ({ exhibition: { title, venue, location } }) => (
   <YearListingItem>
     {RichText.asText(title)},{' '}
     {/* TODO: needs to link to a project if it's featured on one */}
@@ -25,7 +23,7 @@ const Exhibition = ({ exhibition: { title, venue, venue_link, location } }) => (
 );
 
 export default class Exhibitions extends Component {
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
     const exhibitionsResponse = await api.query(
       Prismic.Predicates.at('document.type', 'exhibition'),
@@ -43,11 +41,12 @@ export default class Exhibitions extends Component {
     return {
       soloExhibitions: exhibitions.filter(e => e.exhibition_type === 'solo'),
       groupExhibitions: exhibitions.filter(e => e.exhibition_type === 'group'),
+      pathname,
     };
   }
 
   render() {
-    const { soloExhibitions, groupExhibitions, url } = this.props;
+    const { soloExhibitions, groupExhibitions, pathname } = this.props;
 
     return (
       <div>
@@ -55,7 +54,7 @@ export default class Exhibitions extends Component {
           <title>Exhibitions | Bradley McCallum</title>
         </Head>
         <PageMeta />
-        <Header pathname={url.pathname} />
+        <Header pathname={pathname} />
 
         <MainHeading>Exhibitions List</MainHeading>
 

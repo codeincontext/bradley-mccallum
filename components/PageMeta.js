@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Header from '~/components/Header';
 import { colors, weights } from '~/lib/theme';
 
 const PageMeta = () => (
