@@ -9,19 +9,33 @@ import {
 } from '~/lib/theme';
 import Container from '~/components/Container';
 
-const Subheading = ({ item }) => (
+const Subheading = ({ item: { type, text } }) => (
   <Container>
-    <h3>{PrismicDom.RichText.asText(item.text)}</h3>
+    <div
+      className="root"
+      dangerouslySetInnerHTML={{ __html: PrismicDom.RichText.asHtml(text) }}
+    />
+
     <style jsx>{`
-      h3 {
-        max-width: ${CALLOUT_WIDTH}%;
-        margin: 0 auto ${CONTENT_ITEM_SPACING};
-        font-size: ${fonts.f30};
-        font-weight: ${weights.light};
+      .root > :global(h3),
+      .root > :global(h4) {
         text-transform: uppercase;
-        text-align: center;
         line-height: ${lineHeights.heading};
         letter-spacing: 0.115em;
+      }
+
+      .root > :global(h3) {
+        margin: 0 auto ${CONTENT_ITEM_SPACING};
+        max-width: ${CALLOUT_WIDTH}%;
+        font-size: ${fonts.f30};
+        font-weight: ${weights.light};
+        text-align: center;
+      }
+
+      .root > :global(h4) {
+        margin: 0 auto ${spacing.s1};
+        font-size: ${fonts.f15};
+        font-weight: ${weights.bold};
       }
     `}</style>
   </Container>
