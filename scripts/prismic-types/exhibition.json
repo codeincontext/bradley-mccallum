@@ -19,12 +19,6 @@
         "label": "Venue"
       }
     },
-    "venue_link": {
-      "type": "Link",
-      "config": {
-        "label": "Venue Link"
-      }
-    },
     "location": {
       "type": "Text",
       "config": {
