@@ -80,7 +80,7 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": null,
+                    "width": 735,
                     "height": null
                   },
                   "thumbnails": [],
@@ -137,7 +137,7 @@
                 "config": {
                   "constraint": {
                     "width": null,
-                    "height": null
+                    "height": 250
                   },
                   "thumbnails": [],
                   "label": "Image"
@@ -174,10 +174,16 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": null,
+                    "width": 1600,
                     "height": null
                   },
-                  "thumbnails": [],
+                  "thumbnails": [
+                    {
+                      "name": "thumbnail",
+                      "width": 400,
+                      "height": null
+                    }
+                  ],
                   "label": "image"
                 }
               }
@@ -204,7 +210,7 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": null,
+                    "width": 735,
                     "height": null
                   },
                   "thumbnails": [],
