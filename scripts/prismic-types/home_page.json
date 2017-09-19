@@ -16,7 +16,7 @@
             "type": "Image",
             "config": {
               "constraint": {
-                "width": null,
+                "width": 1440,
                 "height": null
               },
               "thumbnails": [],

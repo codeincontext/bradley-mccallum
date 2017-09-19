@@ -30,7 +30,7 @@
       "type": "Image",
       "config": {
         "constraint": {
-          "width": null,
+          "width": 280,
           "height": null
         },
         "thumbnails": [],

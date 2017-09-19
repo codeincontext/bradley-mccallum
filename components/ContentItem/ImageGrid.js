@@ -75,7 +75,7 @@ export default class ImageGrid extends Component {
                 key={image.url}
                 onClick={e => this.openLightbox(i, e)}
               >
-                <Image image={image} />
+                <Image image={image.thumbnail} />
               </div>
             ))}
             {/* We want images on all lines to have the same width.
