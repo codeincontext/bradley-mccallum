@@ -13,7 +13,7 @@ const Header = ({ pathname, artworksActive }) => (
         {pathname === '/' ? (
           <ScrollLink
             to="artworks"
-            className={artworksActive && 'active-nav-link'}
+            className={artworksActive && 'active'}
             smooth
             duration={500}
           >
@@ -26,22 +26,18 @@ const Header = ({ pathname, artworksActive }) => (
         )}
 
         <Link href="/exhibitions" prefetch>
-          <a className={pathname === '/exhibitions' && 'active-nav-link'}>
-            Exhibitions
-          </a>
+          <a className={pathname === '/exhibitions' && 'active'}>Exhibitions</a>
         </Link>
         <Link href="/bibliography" prefetch>
-          <a className={pathname === '/bibliography' && 'active-nav-link'}>
+          <a className={pathname === '/bibliography' && 'active'}>
             Bibliography
           </a>
         </Link>
         <Link href="/about" prefetch>
-          <a className={pathname === '/about' && 'active-nav-link'}>About</a>
+          <a className={pathname === '/about' && 'active'}>About</a>
         </Link>
         <Link href="/contact" prefetch>
-          <a className={pathname === '/contact' && 'active-nav-link'}>
-            Contact
-          </a>
+          <a className={pathname === '/contact' && 'active'}>Contact</a>
         </Link>
       </nav>
     </header>
@@ -72,11 +68,22 @@ const Header = ({ pathname, artworksActive }) => (
         padding: ${spacing.s2} ${spacing.s2} 0;
       }
       nav :global(a) {
-        padding-left: ${spacing.s2};
+        margin-left: ${spacing.s2};
         text-transform: uppercase;
+        position: relative;
       }
-      :global(.active-nav-link) {
+      nav :global(.active) {
         font-weight: ${weights.bold};
+      }
+      nav :global(.active):after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 1px;
+        bottom: -${spacing.s05};
+        background: ${colors.black};
+        width: 1.5rem;
+        height: ${spacing.s025};
       }
     `}</style>
   </div>
