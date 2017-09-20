@@ -4,6 +4,7 @@ import {
   fonts,
   weights,
   spacing,
+  colors,
   HEADER_HEIGHT,
   SIDEBAR_WIDTH,
 } from '~/lib/theme';
@@ -21,47 +22,58 @@ export default class Sidebar extends Component {
     const { items } = this.props;
 
     return (
-      <div>
-        <ul>
-          {items.map(item => (
-            <li key={item.scrollName}>
-              <ScrollLink
-                to={item.scrollName}
-                activeClass="active-sidebar-link"
-                spy
-                isDynamic
-                smooth
-                duration={500}
-                offset={-HEADER_HEIGHT}
-              >
-                {item.label}
-              </ScrollLink>
-            </li>
-          ))}
+      <ul>
+        {items.map(item => (
+          <li key={item.scrollName}>
+            <ScrollLink
+              to={item.scrollName}
+              activeClass="active"
+              spy
+              isDynamic
+              smooth
+              duration={500}
+              offset={-HEADER_HEIGHT}
+            >
+              {item.label}
+            </ScrollLink>
+          </li>
+        ))}
 
-          <style jsx>{`
-            ul {
-              position: fixed;
-              left: ${spacing.s2};
-              top: ${spacing.s8};
-              width: ${SIDEBAR_WIDTH}px;
-              margin: 0;
-              padding: 0;
-            }
+        <style jsx>{`
+          ul {
+            position: fixed;
+            left: 0;
+            top: ${spacing.s8};
+            width: ${SIDEBAR_WIDTH}px;
+            margin: 0;
+            padding: 0;
+          }
 
-            li {
-              list-style: none;
-              margin-bottom: ${spacing.s2};
-              text-transform: uppercase;
-              font-size: ${fonts.f14};
-            }
+          li {
+            list-style: none;
+            margin-bottom: ${spacing.s2};
+            text-transform: uppercase;
+            font-size: ${fonts.f14};
+            position: relative;
+            padding-left: ${spacing.s4};
+          }
 
-            :global(.active-sidebar-link) {
-              font-weight: ${weights.bold};
-            }
-          `}</style>
-        </ul>
-      </div>
+          li :global(.active) {
+            font-weight: ${weights.bold};
+          }
+
+          li :global(.active):after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: calc(50% - ${spacing.s05} / 2);
+            background: ${colors.black};
+            width: ${spacing.s2};
+            height: ${spacing.s05};
+          }
+        `}</style>
+      </ul>
     );
   }
 }
