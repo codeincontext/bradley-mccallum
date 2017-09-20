@@ -75,7 +75,7 @@ export default class Index extends Component {
 
           <Container width={956}>
             {YEARS.map((year, i) => (
-              <div className="project-collection">
+              <div className="project-collection" key={year}>
                 <ScrollElement
                   className="scroll-element"
                   name={scrollNameForYear(year)}
