@@ -78,10 +78,11 @@ export default class ImageGrid extends Component {
                 <Image image={image.thumbnail} />
               </div>
             ))}
-            {/* We want images on all lines to have the same width.
-              If the last line has fewer items, flex-griw will try to grow them
-              Adding 0 height elements to the end prevents this */}
-            {Array.from({ length: 10 }).map((_, i) => (
+            {/* We want images on all rows to have the same size.
+              By default, if the last row has fewer items than the rows above,
+              flex-grow will expand them to fill the space.
+              Adding spacer elements makes sure that the last row matches the other rows */}
+            {Array.from({ length: 5 }).map((_, i) => (
               <div
                 className="image spacer"
                 style={{ flexBasis: min_width }}
@@ -121,7 +122,7 @@ export default class ImageGrid extends Component {
           }
           .spacer {
             height: 0;
-            margin: 0;
+            margin: 0 5px;
           }
         `}</style>
       </Container>
