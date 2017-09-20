@@ -5,12 +5,16 @@ import { COLUMN_SPACING } from '~/lib/theme';
 
 const Masonry = ({ projects, firstSection }) => (
   <div className="root">
-    {zip(...chunk(projects, 3)).map(column => (
-      <div className="column">
+    {zip(...chunk(projects, 3)).map((column, i) => (
+      <div className="column" key={i}>
         {column.map(
           project =>
             project && (
-              <ProjectPreview project={project} firstSection={firstSection} />
+              <ProjectPreview
+                project={project}
+                firstSection={firstSection}
+                key={project.uid}
+              />
             )
         )}
       </div>

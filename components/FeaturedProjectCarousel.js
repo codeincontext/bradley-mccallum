@@ -30,7 +30,7 @@ export default class FeaturedProjectCarousel extends React.Component {
                 as={`/project/${project.uid}`} // URL exposed to the browser
                 href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
                 prefetch={i === 0}
-                key={project.id}
+                key={project.uid}
               >
                 <a
                   className="item"
