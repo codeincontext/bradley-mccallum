@@ -76,6 +76,7 @@ export default class Project extends Component {
             ...exhibitions.map(exhibition => ({
               label: exhibition.location,
               scrollName: scrollNameForExhibitionId(exhibition.uid),
+              parentName: 'exhibitions',
             })),
             project.civic_dialogues.length && {
               label: 'Civic Dialogues',
@@ -121,16 +122,24 @@ export default class Project extends Component {
         </ScrollElement>
 
         {!!exhibitions.length && (
-          <ScrollElement name="exhibitions">
-            <section>
-              <MainHeading>
-                <h2>Exhibitions</h2>
-              </MainHeading>
-            </section>
-            {exhibitions.map(exhibition => (
-              <Exhibition exhibition={exhibition} />
+          <div>
+            <ScrollElement name="exhibitions" />
+            {exhibitions.map((exhibition, i) => (
+              <ScrollElement
+                name={scrollNameForExhibitionId(exhibition.uid)}
+                key={exhibition.uid}
+              >
+                {i === 0 && (
+                  <section>
+                    <MainHeading>
+                      <h2>Exhibitions</h2>
+                    </MainHeading>
+                  </section>
+                )}
+                <Exhibition exhibition={exhibition} />
+              </ScrollElement>
             ))}
-          </ScrollElement>
+          </div>
         )}
 
         {!!project.civic_dialogues.length && (

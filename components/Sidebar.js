@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import cx from 'classnames';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
 import {
   fonts,
@@ -14,9 +15,15 @@ import {
 // Can then remove padding on .firstSection in project.js
 
 export default class Sidebar extends Component {
+  state = { activeItem: null };
+
   componentDidMount() {
     setImmediate(() => scrollSpy.update());
   }
+
+  handleSetActive = activeItem => {
+    this.setState({ activeItem });
+  };
 
   render() {
     const { items } = this.props;
@@ -24,15 +31,24 @@ export default class Sidebar extends Component {
     return (
       <ul>
         {items.map(item => (
-          <li key={item.scrollName}>
+          <li
+            className={cx({
+              active:
+                this.state.activeItem &&
+                (this.state.activeItem === item ||
+                  this.state.activeItem.parentName === item.scrollName),
+              'is-child': !!item.parentName,
+            })}
+            key={item.scrollName}
+          >
             <ScrollLink
               to={item.scrollName}
-              activeClass="active"
               spy
               isDynamic
               smooth
               duration={500}
               offset={-HEADER_HEIGHT}
+              onSetActive={() => this.handleSetActive(item)}
             >
               {item.label}
             </ScrollLink>
@@ -51,18 +67,25 @@ export default class Sidebar extends Component {
 
           li {
             list-style: none;
-            margin-bottom: ${spacing.s2};
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
             font-size: ${fonts.f14};
             position: relative;
             padding-left: ${spacing.s4};
           }
 
-          li :global(.active) {
+          li.is-child {
+            margin-left: ${spacing.s2};
+            font-size: ${fonts.f12};
+            text-transform: initial;
+            margin-top: -${spacing.s05};
+          }
+
+          li.active:not(.is-child) {
             font-weight: ${weights.bold};
           }
 
-          li :global(.active):after {
+          li.active:not(.is-child):after {
             content: '';
             display: block;
             position: absolute;
@@ -71,6 +94,11 @@ export default class Sidebar extends Component {
             background: ${colors.black};
             width: ${spacing.s2};
             height: ${spacing.s05};
+          }
+
+          li.active.is-child {
+            font-weight: ${weights.regular};
+            font-style: italic;
           }
         `}</style>
       </ul>

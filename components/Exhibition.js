@@ -4,7 +4,7 @@ import ContentItem from '~/components/ContentItem';
 import { fonts, weights } from '~/lib/theme';
 
 const Exhibition = ({ exhibition: { title, venue, location, date, body } }) => (
-  <div>
+  <section>
     <Container>
       <h2>{PrismicDom.RichText.asText(title)}</h2>
       <div className="intro">
@@ -19,6 +19,11 @@ const Exhibition = ({ exhibition: { title, venue, location, date, body } }) => (
       .map((contentItem, i) => <ContentItem item={contentItem} key={i} />)}
 
     <style jsx>{`
+      section {
+        // catch margin from ContentItem so this entire component can be spied as a scrollable area
+        overflow: auto;
+      }
+
       h2 {
         font-size: ${fonts.f24};
       }
@@ -31,7 +36,7 @@ const Exhibition = ({ exhibition: { title, venue, location, date, body } }) => (
         font-weight: ${weights.bold};
       }
     `}</style>
-  </div>
+  </section>
 );
 
 export default Exhibition;
