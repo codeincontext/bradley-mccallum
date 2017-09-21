@@ -4,6 +4,7 @@ import {
   fonts,
   weights,
   spacing,
+  zIndex,
   colors,
   HEADER_HEIGHT,
   SIDEBAR_WIDTH,
@@ -47,6 +48,7 @@ export default class Sidebar extends Component {
             width: ${SIDEBAR_WIDTH}px;
             margin: 0;
             padding: 0;
+            z-index: ${zIndex.sidebar};
           }
 
           li {
@@ -56,6 +58,7 @@ export default class Sidebar extends Component {
             font-size: ${fonts.f14};
             position: relative;
             padding-left: ${spacing.s4};
+            cursor: pointer;
           }
 
           li :global(.active) {

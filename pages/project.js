@@ -63,7 +63,6 @@ export default class Project extends Component {
         <Header pathname={pathname} />
 
         <Sidebar
-          className="sidebar"
           items={[
             {
               label: PrismicDom.RichText.asText(project.title),
