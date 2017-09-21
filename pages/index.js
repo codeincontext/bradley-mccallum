@@ -5,13 +5,15 @@ import { Element as ScrollElement } from 'react-scroll';
 import Prismic from 'prismic-javascript';
 import { getApi } from '~/lib/prismic';
 import { scrollNameForYear, YEARS } from '~/lib/scrollNames';
-import Container from '~/components/Container';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
 import { spacing, colors, HEADER_HEIGHT } from '~/lib/theme';
+
+export const THIN_SIDEBAR_WIDTH = 180;
+export const WIDE_CONTAINER_WIDTH = 956;
 
 export default class Index extends Component {
   static async getInitialProps({ req, query, pathname }) {
@@ -73,9 +75,9 @@ export default class Index extends Component {
         <div className="artworks">
           <ScrollElement name="artworks" className="artworks-scroll-element" />
 
-          <Container width={956}>
-            {YEARS.map((year, i) => (
-              <div className="project-collection" key={year}>
+          {YEARS.map((year, i) => (
+            <div className="project-collection-container" key={year}>
+              <div className="project-collection">
                 <ScrollElement
                   className="scroll-element"
                   name={scrollNameForYear(year)}
@@ -87,24 +89,28 @@ export default class Index extends Component {
                     return projectYear <= year && projectYear > nextYear;
                   })}
                   firstSection={i === 0}
+                  lastSection={i === YEARS.length - 1}
                 />
               </div>
-            ))}
-          </Container>
+            </div>
+          ))}
         </div>
 
-        <div className="spacer" />
-
         <style jsx>{`
-          .spacer {
-            // height: 100vh;
-          }
           .header {
             // So the first section is active in the nav at the top of the page
             padding-top: 300px;
             margin-top: -300px;
           }
+
+          .project-collection-container {
+            margin: 0 20px 0 ${THIN_SIDEBAR_WIDTH}px;
+          }
+
           .project-collection {
+            max-width: ${WIDE_CONTAINER_WIDTH}px;
+            margin: 0 auto;
+
             background: radial-gradient(${colors.black} 15%, transparent 16%),
               radial-gradient(${colors.black} 15%, transparent 16%),
               ${colors.lightGrey};
