@@ -67,11 +67,11 @@ export default class FeaturedProjectCarousel extends React.Component {
             display: block;
             background-size: cover;
             background-position: center;
-            height: calc(100vh - 89px - 100px);
+            height: calc(100vh - 89px - 50px);
           }
 
           .tabWrapper {
-            display:flex;
+            display: flex;
             align-items: right;
           }
           .tab {
