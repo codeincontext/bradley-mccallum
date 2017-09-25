@@ -1,6 +1,13 @@
 import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
-import { fonts, colors, weights, spacing, zIndex } from '~/lib/theme';
+import {
+  fonts,
+  colors,
+  weights,
+  spacing,
+  zIndex,
+  HEADER_HEIGHT,
+} from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (
   <div>
@@ -47,30 +54,37 @@ const Header = ({ pathname, artworksActive }) => (
       header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         background: ${colors.lightGrey};
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        height: ${HEADER_HEIGHT}px;
         z-index: ${zIndex.header};
         border-bottom: 1px solid #e4e4e4;
       }
       .header-placeholder {
-        height: 89px;
+        // An element to take up the header's height in the page flow
+        height: ${HEADER_HEIGHT};
       }
+
       .name {
-        padding: ${spacing.s2};
+        padding: 0 ${spacing.s2};
         font-weight: ${weights.bold};
         font-size: ${fonts.f20};
         letter-spacing: 1.75px;
+        transform: translateY(-5px);
       }
+
       nav {
-        padding: ${spacing.s2} ${spacing.s2} 0;
+        padding: 0 ${spacing.s2};
       }
       nav :global(a) {
         margin-left: ${spacing.s2};
         text-transform: uppercase;
         position: relative;
+        font-size: ${fonts.f15};
       }
       nav :global(.active) {
         font-weight: ${weights.bold};
