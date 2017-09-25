@@ -2,7 +2,14 @@ import Link from 'next/link';
 import { RichText } from 'prismic-dom';
 
 import Image from '~/components/Image';
-import { weights, spacing, colors, COLUMN_SPACING } from '~/lib/theme';
+import {
+  fonts,
+  weights,
+  spacing,
+  colors,
+  lineHeights,
+  COLUMN_SPACING,
+} from '~/lib/theme';
 
 const ProjectPreview = ({ project, firstSection }) => (
   <div className="root">
@@ -21,10 +28,8 @@ const ProjectPreview = ({ project, firstSection }) => (
     </Link>
     <style jsx>{`
       .root {
-        padding-bottom: ${spacing.s1};
         position: relative;
-        padding-right: ${COLUMN_SPACING}px;
-        padding-left: ${COLUMN_SPACING}px;
+        padding: 0 ${COLUMN_SPACING}px ${spacing.s2} ${COLUMN_SPACING}px;
       }
       .root::before {
         z-index: 0;
@@ -43,10 +48,16 @@ const ProjectPreview = ({ project, firstSection }) => (
       }
 
       .date {
+        margin: ${spacing.s1} 0 ${spacing.s05};
         font-weight: ${weights.bold};
+        font-size: ${fonts.f14};
       }
       .project-title {
+        margin: 0;
         text-transform: uppercase;
+        font-size: ${fonts.f15};
+        line-height: ${lineHeights.heading};
+        padding-bottom: ${spacing.s05};
       }
     `}</style>
   </div>
