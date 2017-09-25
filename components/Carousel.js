@@ -1,11 +1,17 @@
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import { colors } from '~/lib/theme';
 
-const Carousel = ({ children, selectedIndex, onChange }) => (
+const Carousel = ({
+  children,
+  selectedIndex,
+  onChange,
+  showIndicators = true,
+}) => (
   <div className="root">
     <ResponsiveCarousel
       axis="horizontal"
       showThumbs={false}
+      showIndicators={showIndicators}
       showArrows
       showStatus={false}
       onChange={onChange}
