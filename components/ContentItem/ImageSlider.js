@@ -12,9 +12,12 @@ export default class ImageSlider extends React.Component {
   };
 
   render() {
-    const { item: { items } } = this.props;
+    const items = this.props.item.items.filter(({ image }) => image.url);
     const { selectedIndex } = this.state;
 
+    if (!items.length) {
+      return null;
+    }
     return (
       <Container>
         <div className="root">
@@ -22,9 +25,7 @@ export default class ImageSlider extends React.Component {
             onChange={this.handleIndexChange}
             selectedIndex={selectedIndex}
           >
-            {items
-              .filter(({ image }) => image.url)
-              .map(({ image }) => <Image key={image.url} image={image} />)}
+            {items.map(({ image }) => <Image key={image.url} image={image} />)}
           </Carousel>
 
           <Caption>{items[selectedIndex].caption}</Caption>
