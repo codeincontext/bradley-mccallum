@@ -18,11 +18,24 @@ import YearListing from '~/components/YearListing';
 import YearListingItem from '~/components/YearListingItem';
 import { weights } from '~/lib/theme';
 
-const Exhibition = ({ exhibition: { title, venue, location } }) => (
+const Venue = ({ project, venue, uid }) =>
+  project.uid ? (
+    <Link
+      href={`/project?slug=${project.uid}`}
+      as={`/project/${project.uid}#${uid}`}
+    >
+      <a>{venue}</a>
+    </Link>
+  ) : (
+    <span>{venue}</span>
+  );
+
+const Exhibition = ({
+  exhibition: { title, venue, project, uid, location },
+}) => (
   <YearListingItem>
     {RichText.asText(title)},{' '}
-    {/* TODO: needs to link to a project if it's featured on one */}
-    {venue}, {location}
+    <Venue venue={venue} project={project} uid={uid} />, {location}
   </YearListingItem>
 );
 
