@@ -1,16 +1,16 @@
 {
-  "Main" : {
-    "title" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "heading1",
-        "label" : "Title"
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
       }
     },
-    "uid" : {
-      "type" : "UID",
-      "config" : {
-        "label" : "URL"
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "URL"
       }
     },
     "venue": {
@@ -25,26 +25,32 @@
         "label": "Location"
       }
     },
-    "date" : {
-      "type" : "Date",
-      "config" : {
-        "label" : "Date"
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "Date"
       }
     },
-    "curator" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Curator"
+    "curator": {
+      "type": "Text",
+      "config": {
+        "label": "Curator"
       }
     },
     "exhibition_type": {
       "type": "Select",
       "config": {
-        "options": [
-          "group"
-        ],
+        "options": ["group"],
         "label": "Solo or group",
         "placeholder": "solo"
+      }
+    },
+    "project": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["project"],
+        "label": "Featured in project (will create a link)"
       }
     },
     "body": {

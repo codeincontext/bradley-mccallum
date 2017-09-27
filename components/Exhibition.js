@@ -1,10 +1,13 @@
 import PrismicDom from 'prismic-dom';
 import Container from '~/components/Container';
 import ContentItem from '~/components/ContentItem';
-import { fonts, weights } from '~/lib/theme';
+import { fonts, weights, HEADER_HEIGHT } from '~/lib/theme';
 
-const Exhibition = ({ exhibition: { title, venue, location, date, body } }) => (
+const Exhibition = ({
+  exhibition: { title, venue, location, date, body, uid },
+}) => (
   <section>
+    <div className="hash-anchor" id={uid} />
     <Container>
       <h2>{PrismicDom.RichText.asText(title)}</h2>
       <div className="intro">
@@ -20,8 +23,13 @@ const Exhibition = ({ exhibition: { title, venue, location, date, body } }) => (
 
     <style jsx>{`
       section {
-        // catch margin from ContentItem so this entire component can be spied as a scrollable area
-        overflow: auto;
+        // So we can position the hash anchor above the section
+        position: relative;
+      }
+
+      .hash-anchor {
+        position: absolute;
+        top: -${HEADER_HEIGHT}px;
       }
 
       h2 {
