@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
+import Sidebar from '~/components/Sidebar';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import SmallHeading from '~/components/SmallHeading';
@@ -35,28 +37,51 @@ export default class Contact extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
+        <Sidebar
+          items={[
+            {
+              label: 'Studio',
+              scrollName: 'studio',
+            },
+            {
+              label: 'Conjunction Arts',
+              scrollName: 'conjunction-arts',
+            },
+            {
+              label: 'Galleries',
+              scrollName: 'galleries',
+            },
+          ]}
+        />
+
         <MainHeading>
           <h1>Contact</h1>
         </MainHeading>
 
-        <Container>
-          <SmallHeading>Studio</SmallHeading>
-        </Container>
-        <Paragraph item={{ text: studio_details }} />
+        <ScrollElement name="studio">
+          <Container>
+            <SmallHeading>Studio</SmallHeading>
+          </Container>
+          <Paragraph item={{ text: studio_details }} />
+        </ScrollElement>
 
         <Divider />
 
-        <Container>
-          <SmallHeading>Conjunction Arts</SmallHeading>
-        </Container>
-        <Paragraph item={{ text: conjunction_arts }} />
+        <ScrollElement name="conjunction-arts">
+          <Container>
+            <SmallHeading>Conjunction Arts</SmallHeading>
+          </Container>
+          <Paragraph item={{ text: conjunction_arts }} />
+        </ScrollElement>
 
         <Divider />
 
-        <Container>
-          <SmallHeading>Galleries</SmallHeading>
-        </Container>
-        <Paragraph item={{ text: galleries }} />
+        <ScrollElement name="galleries">
+          <Container>
+            <SmallHeading>Galleries</SmallHeading>
+          </Container>
+          <Paragraph item={{ text: galleries }} />
+        </ScrollElement>
 
         <style jsx>{``}</style>
       </div>
