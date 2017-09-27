@@ -66,7 +66,7 @@ const Header = ({ pathname, artworksActive }) => (
       }
       .header-placeholder {
         // An element to take up the header's height in the page flow
-        height: ${HEADER_HEIGHT};
+        height: ${HEADER_HEIGHT}px;
       }
 
       .name {
