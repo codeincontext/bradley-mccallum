@@ -78,31 +78,23 @@ export default class Index extends Component {
           {YEARS.map((year, i) => (
             <div className="project-collection-container" key={year}>
               <div className="project-collection">
-                <ScrollElement
-                  className="scroll-element"
-                  name={scrollNameForYear(year)}
-                />
-                <Masonry
-                  projects={projects.filter(p => {
-                    const projectYear = new Date(p.date).getFullYear();
-                    const nextYear = YEARS[i + 1] || 1900;
-                    return projectYear <= year && projectYear > nextYear;
-                  })}
-                  firstSection={i === 0}
-                  lastSection={i === YEARS.length - 1}
-                />
+                <ScrollElement name={scrollNameForYear(year)}>
+                  <Masonry
+                    projects={projects.filter(p => {
+                      const projectYear = new Date(p.date).getFullYear();
+                      const nextYear = YEARS[i + 1] || 1900;
+                      return projectYear <= year && projectYear > nextYear;
+                    })}
+                    firstSection={i === 0}
+                    lastSection={i === YEARS.length - 1}
+                  />
+                </ScrollElement>
               </div>
             </div>
           ))}
         </div>
 
         <style jsx>{`
-          .header {
-            // So the first section is active in the nav at the top of the page
-            padding-top: 300px;
-            margin-top: -300px;
-          }
-
           .project-collection-container {
             margin: 0 20px 0 ${THIN_SIDEBAR_WIDTH}px;
           }
@@ -118,13 +110,6 @@ export default class Index extends Component {
             background-position: -1px -1px;
             padding-bottom: ${spacing.s4};
             margin-bottom: ${spacing.s3};
-            position: relative;
-          }
-          .project-collection :global(.scroll-element) {
-            position: absolute;
-            top: 0;
-            // Include the margin after the collection in the scroll area
-            bottom: -${spacing.s3};
           }
 
           .artworks {

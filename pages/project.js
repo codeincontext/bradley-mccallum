@@ -90,7 +90,7 @@ export default class Project extends Component {
         />
 
         <ScrollElement name="artwork">
-          <section className="first-section">
+          <section>
             <Container>
               <div className="intro">
                 <h1>
@@ -189,23 +189,11 @@ export default class Project extends Component {
             font-weight: ${weights.bold};
           }
 
-          section {
-            /* Contain heading margin in section to prevent a gap between sections */
-            overflow: auto;
-          }
-          .first-section {
-            padding-top: 300px;
-            margin-top: -300px;
-          }
           .intro {
             font-size: ${fonts.f14};
           }
           ul {
             padding-left: 0;
-          }
-          .acknowledgements {
-            /* Ensure enough footer space to scroll to the bottom */
-            min-height: 100vh;
           }
         `}</style>
       </div>
