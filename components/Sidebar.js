@@ -28,6 +28,7 @@ export default class Sidebar extends Component {
 
   render() {
     const { items } = this.props;
+    const activeItem = this.state.activeItem || items[0];
 
     return (
       <ul>
@@ -35,9 +36,8 @@ export default class Sidebar extends Component {
           <li
             className={cx({
               active:
-                this.state.activeItem &&
-                (this.state.activeItem === item ||
-                  this.state.activeItem.parentName === item.scrollName),
+                activeItem === item ||
+                activeItem.parentName === item.scrollName,
               'is-child': !!item.parentName,
             })}
             key={item.scrollName}
