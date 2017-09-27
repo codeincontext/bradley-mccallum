@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
+import Sidebar from '~/components/Sidebar';
 import Container from '~/components/Container';
 import MainHeading from '~/components/MainHeading';
 import SmallHeading from '~/components/SmallHeading';
@@ -30,21 +32,38 @@ export default class About extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
+        <Sidebar
+          items={[
+            {
+              label: 'Biography',
+              scrollName: 'biography',
+            },
+            {
+              label: 'CV',
+              scrollName: 'cv',
+            },
+          ]}
+        />
+
         <MainHeading>
           <h1>About</h1>
         </MainHeading>
 
-        <Container>
-          <SmallHeading>Biography</SmallHeading>
-        </Container>
-        <Paragraph item={{ text: biography }} />
+        <ScrollElement name="biography">
+          <Container>
+            <SmallHeading>Biography</SmallHeading>
+          </Container>
+          <Paragraph item={{ text: biography }} />
+        </ScrollElement>
 
-        <Divider />
+        <ScrollElement name="cv">
+          <Divider />
 
-        <Container>
-          <SmallHeading>CV</SmallHeading>
-        </Container>
-        <Paragraph item={{ text: cv_text }} />
+          <Container>
+            <SmallHeading>CV</SmallHeading>
+          </Container>
+          <Paragraph item={{ text: cv_text }} />
+        </ScrollElement>
 
         <style jsx>{``}</style>
       </div>

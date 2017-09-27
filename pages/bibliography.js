@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import Prismic from 'prismic-javascript';
+import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
 import { groupByYear } from '~/lib/utils';
 import PageMeta from '~/components/PageMeta';
 import Header from '~/components/Header';
+import Sidebar from '~/components/Sidebar';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
 import PressItem from '~/components/PressItem';
@@ -57,35 +59,52 @@ export default class Bibliography extends Component {
         <PageMeta />
         <Header pathname={pathname} />
 
+        <Sidebar
+          items={[
+            {
+              label: 'Catalogues',
+              scrollName: 'catalogues',
+            },
+            {
+              label: 'Reviews',
+              scrollName: 'reviews',
+            },
+          ]}
+        />
+
         <MainHeading>
           <h1>Bibliography</h1>
         </MainHeading>
 
-        <Container>
-          <SmallHeading>Catalogues</SmallHeading>
-          <ul>
-            {groupByYear(catalogues).map(([year, catalogues]) => (
-              <YearListing year={year} key={year}>
-                {catalogues.map(catalogue => (
-                  <Catalogue catalogue={catalogue} key={catalogue.id} />
-                ))}
-              </YearListing>
-            ))}
-          </ul>
-        </Container>
+        <ScrollElement name="catalogues">
+          <Container>
+            <SmallHeading>Catalogues</SmallHeading>
+            <ul>
+              {groupByYear(catalogues).map(([year, catalogues]) => (
+                <YearListing year={year} key={year}>
+                  {catalogues.map(catalogue => (
+                    <Catalogue catalogue={catalogue} key={catalogue.id} />
+                  ))}
+                </YearListing>
+              ))}
+            </ul>
+          </Container>
+        </ScrollElement>
 
         <Divider />
 
-        <Container>
-          <SmallHeading>Reviews</SmallHeading>
-          <ul>
-            {groupByYear(pressItems).map(([year, items]) => (
-              <YearListing year={year} key={year}>
-                {items.map(item => <PressItem item={item} key={item.id} />)}
-              </YearListing>
-            ))}
-          </ul>
-        </Container>
+        <ScrollElement name="reviews">
+          <Container>
+            <SmallHeading>Reviews</SmallHeading>
+            <ul>
+              {groupByYear(pressItems).map(([year, items]) => (
+                <YearListing year={year} key={year}>
+                  {items.map(item => <PressItem item={item} key={item.id} />)}
+                </YearListing>
+              ))}
+            </ul>
+          </Container>
+        </ScrollElement>
 
         <style jsx>{`
           ul {
