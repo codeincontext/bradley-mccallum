@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import cx from 'classnames';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
+import debounce from 'lodash.debounce';
+
 import {
   fonts,
   weights,
@@ -11,15 +13,37 @@ import {
   SIDEBAR_WIDTH,
 } from '~/lib/theme';
 
-// TODO: Assume first item is active if nothing else is yet
-// We can use onActive and onInactive for this and store values here
-// Can then remove padding on .firstSection in project.js
+const DEBOUNCE_INTERVAL = 100;
 
 export default class Sidebar extends Component {
-  state = { activeItem: null };
+  state = { activeItem: null, atBottom: false };
+
+  constructor(props) {
+    super(props);
+
+    this.handleOnScroll = debounce(
+      this.handleOnScroll.bind(this),
+      DEBOUNCE_INTERVAL,
+      { trailing: true }
+    );
+  }
 
   componentDidMount() {
     setImmediate(() => scrollSpy.update());
+    document.addEventListener('scroll', this.handleOnScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleOnScroll);
+  }
+
+  handleOnScroll() {
+    const atBottom =
+      document.body.scrollHeight <= window.scrollY + window.innerHeight;
+
+    if (atBottom !== this.state.atBottom) {
+      this.setState({ atBottom });
+    }
   }
 
   handleSetActive = activeItem => {
@@ -28,7 +52,9 @@ export default class Sidebar extends Component {
 
   render() {
     const { items } = this.props;
-    const activeItem = this.state.activeItem || items[0];
+    const activeItem = this.state.atBottom
+      ? items[items.length - 1]
+      : this.state.activeItem || items[0];
 
     return (
       <ul>
