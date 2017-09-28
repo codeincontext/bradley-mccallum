@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
-import PageMeta from '~/components/PageMeta';
+import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
 import MainHeading from '~/components/MainHeading';
@@ -30,11 +30,10 @@ export default class Contact extends Component {
     } = this.props;
 
     return (
-      <div>
+      <Layout>
         <Head>
           <title>Contact | Bradley McCallum</title>
         </Head>
-        <PageMeta />
         <Header pathname={pathname} />
 
         <Sidebar
@@ -84,7 +83,7 @@ export default class Contact extends Component {
         </ScrollElement>
 
         <style jsx>{``}</style>
-      </div>
+      </Layout>
     );
   }
 }

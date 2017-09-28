@@ -5,7 +5,7 @@ import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
 import { groupByYear } from '~/lib/utils';
-import PageMeta from '~/components/PageMeta';
+import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
 import MainHeading from '~/components/MainHeading';
@@ -52,11 +52,10 @@ export default class Bibliography extends Component {
     const { catalogues, pressItems, pathname } = this.props;
 
     return (
-      <div>
+      <Layout>
         <Head>
           <title>Bibliography | Bradley McCallum</title>
         </Head>
-        <PageMeta />
         <Header pathname={pathname} />
 
         <Sidebar
@@ -111,7 +110,7 @@ export default class Bibliography extends Component {
             padding-left: 0;
           }
         `}</style>
-      </div>
+      </Layout>
     );
   }
 }

@@ -5,7 +5,7 @@ import { Element as ScrollElement } from 'react-scroll';
 import Prismic from 'prismic-javascript';
 import { getApi } from '~/lib/prismic';
 import { scrollNameForYear, YEARS } from '~/lib/scrollNames';
-import PageMeta from '~/components/PageMeta';
+import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
@@ -53,11 +53,10 @@ export default class Index extends Component {
     const { artworksActive } = this.state;
 
     return (
-      <div>
+      <Layout>
         <Head>
           <title>Home | Bradley McCallum</title>
         </Head>
-        <PageMeta />
         <Header
           pathname={pathname}
           artworksActive={this.state.artworksActive}
@@ -121,7 +120,7 @@ export default class Index extends Component {
             height: 9999px;
           }
         `}</style>
-      </div>
+      </Layout>
     );
   }
 }

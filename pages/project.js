@@ -6,7 +6,7 @@ import PrismicDom from 'prismic-dom';
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
 import { groupByYear } from '~/lib/utils';
-import PageMeta from '~/components/PageMeta';
+import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import MainHeading from '~/components/MainHeading';
 import Container from '~/components/Container';
@@ -53,13 +53,12 @@ export default class Project extends Component {
     const { project, exhibitions, pressItems, pathname } = this.props;
 
     return (
-      <div>
+      <Layout>
         <Head>
           <title>
             {PrismicDom.RichText.asText(project.title)} | Bradley McCallum
           </title>
         </Head>
-        <PageMeta />
         <Header pathname={pathname} />
 
         <Sidebar
@@ -196,7 +195,7 @@ export default class Project extends Component {
             padding-left: 0;
           }
         `}</style>
-      </div>
+      </Layout>
     );
   }
 }
