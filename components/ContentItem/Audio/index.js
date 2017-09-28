@@ -1,4 +1,6 @@
 import videoConnect from 'react-html5video';
+import cx from 'classnames';
+
 import Container from '~/components/Container';
 import Caption from '~/components/Caption';
 import { colors, fonts, weights, CONTENT_ITEM_SPACING } from '~/lib/theme';
@@ -60,9 +62,7 @@ class Audio extends React.Component {
               onClick={onPlayPauseClick}
               aria-label={paused ? 'Play audio' : 'Pause audio'}
               type="button"
-            >
-              {paused ? '|>' : '||'}
-            </button>
+            />
 
             <div className="seek">
               <Track
@@ -80,12 +80,10 @@ class Audio extends React.Component {
 
             <button
               aria-label={volume <= 0 ? 'Unmute audio' : 'Mute audio'}
-              className="volumeButton"
+              className={cx('volumeButton', { muted: volume <= 0 })}
               onClick={onVolumeClick}
               type="button"
-            >
-              {volume <= 0 ? '<\\' : '<'}
-            </button>
+            />
 
             <div className="volume">
               <Track
@@ -133,6 +131,11 @@ class Audio extends React.Component {
 
             .playPause {
               margin-left: 20px;
+              background-image: url('/static/components/ContentItem/Audio/play.svg');
+              background-repeat: no-repeat;
+              background-size: contain;
+              width: 17px;
+              height: 19px;
             }
 
             .seek {
@@ -142,20 +145,27 @@ class Audio extends React.Component {
 
             .timeRemaining {
               margin-left: 20px;
-              font-size: ${fonts.f12}
+              font-size: ${fonts.f12};
               font-weight: ${weights.bold};
               // Element looks too high as there are no descenders
-              transform: translateY(.05em);
+              transform: translateY(0.05em);
             }
 
             .volumeButton {
-              margin-left: 45px;
-              width: 34px;
-              height: 34px;
+              margin-left: 42px;
+              width: 12px;
+              height: 14px;
+              background-image: url('/static/components/ContentItem/Audio/volume.svg');
+              background-repeat: no-repeat;
+              background-size: contain;
+            }
+            .volumeButton.muted {
+              opacity: 0.75;
             }
 
             .volume {
               width: 48px;
+              margin-left: 6px;
               margin-right: 20px;
             }
           `}</style>
