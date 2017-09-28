@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
 
 import { getApi } from '~/lib/prismic';
-import PageMeta from '~/components/PageMeta';
+import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
 import Container from '~/components/Container';
@@ -25,11 +25,10 @@ export default class About extends Component {
     const { biography, cv_text, cv_file, pathname } = this.props;
 
     return (
-      <div>
+      <Layout>
         <Head>
           <title>About | Bradley McCallum</title>
         </Head>
-        <PageMeta />
         <Header pathname={pathname} />
 
         <Sidebar
@@ -66,7 +65,7 @@ export default class About extends Component {
         </ScrollElement>
 
         <style jsx>{``}</style>
-      </div>
+      </Layout>
     );
   }
 }

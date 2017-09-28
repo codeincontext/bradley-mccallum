@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { colors, weights } from '~/lib/theme';
+import { colors, weights, spacing, fonts } from '~/lib/theme';
 
-const PageMeta = () => (
+const Layout = ({ children }) => (
   <div>
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -10,6 +10,7 @@ const PageMeta = () => (
         rel="stylesheet"
       />
     </Head>
+
     <style global jsx>{`
       body {
         font-family: 'Lato', sans-serif;
@@ -30,7 +31,21 @@ const PageMeta = () => (
         box-sizing: border-box;
       }
     `}</style>
+
+    {children}
+
+    <p className="copyright">
+      &copy; Bradley McCallum {new Date().getFullYear()}
+    </p>
+
+    <style jsx>{`
+      .copyright {
+        font-size: ${fonts.f12};
+        margin: ${spacing.s4} 0 ${spacing.s05};
+        text-align: center;
+      }
+    `}</style>
   </div>
 );
 
-export default PageMeta;
+export default Layout;
