@@ -1,3 +1,15 @@
+bradleymccallum.com is a production site built in our spare time. We challenged ourselves to make a CMS-driven React site for as little developer cost as possible, yet without compromising on the quality we'd bring to larger projects.
+
+This means leveraging tools like Prismic.io for hosting content, Next.js as a standardised harness for universal React, and Now for hosting. We hope it's an interesting example and encourage you to copy the approach for your own projects.
+
+The project also demonstrates styled-jsx, Github pull requests, NPM tasks, Prettier, and eslint. Feel free to open an issue if you have any questions.
+
+## License
+
+The visual design, brand, and content are all copyright Bradley McCallum. All functional code is released under the MIT license except CSS code and assets which describe bradleymccallum.com's design.
+
+Please take this and make great things. Please don't use it without modification like a cheap Wordpress theme.
+
 ## Setup
 
 Install dependencies
