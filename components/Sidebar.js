@@ -62,7 +62,7 @@ export default class Sidebar extends Component {
           <li
             className={cx({
               active:
-                activeItem === item ||
+                activeItem.scrollName === item.scrollName ||
                 activeItem.parentName === item.scrollName,
               'is-child': !!item.parentName,
             })}
