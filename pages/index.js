@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
+import Observer from '@researchgate/react-intersection-observer';
 
 import Prismic from 'prismic-javascript';
 import { getApi } from '~/lib/prismic';
@@ -45,8 +46,13 @@ export default class Index extends Component {
     };
   }
 
-  // TODO: This is never true
   state = { artworksActive: false };
+
+  handleIntersection = event => {
+    // The polyfill isn't async https://github.com/w3c/IntersectionObserver/issues/225
+    // But using requestIdleCallback makes behaviour unreliable in Chrome
+    this.setState({ artworksActive: !event.isIntersecting });
+  };
 
   render() {
     const { projects, features, pathname } = this.props;
@@ -63,35 +69,40 @@ export default class Index extends Component {
         />
 
         <Sidebar
+          hidden={!this.state.artworksActive}
           items={YEARS.map((year, i) => ({
             label: i === 0 ? 'Current' : year,
             scrollName: scrollNameForYear(year),
           }))}
+          onActiveChange={this.handleActiveSidebarItem}
         />
 
-        <FeaturedProjectCarousel features={features} />
+        <Observer
+          onChange={this.handleIntersection}
+          rootMargin={`-${HEADER_HEIGHT}px 0px 0px 0px`}
+        >
+          <FeaturedProjectCarousel features={features} />
+        </Observer>
 
-        <div className="artworks">
-          <ScrollElement name="artworks" className="artworks-scroll-element" />
+        <ScrollElement name="artworks" />
 
-          {YEARS.map((year, i) => (
-            <div className="project-collection-container" key={year}>
-              <div className="project-collection">
-                <ScrollElement name={scrollNameForYear(year)}>
-                  <Masonry
-                    projects={projects.filter(p => {
-                      const projectYear = new Date(p.date).getFullYear();
-                      const nextYear = YEARS[i + 1] || 1900;
-                      return projectYear <= year && projectYear > nextYear;
-                    })}
-                    firstSection={i === 0}
-                    lastSection={i === YEARS.length - 1}
-                  />
-                </ScrollElement>
-              </div>
+        {YEARS.map((year, i) => (
+          <div className="project-collection-container" key={year}>
+            <div className="project-collection">
+              <ScrollElement name={scrollNameForYear(year)}>
+                <Masonry
+                  projects={projects.filter(p => {
+                    const projectYear = new Date(p.date).getFullYear();
+                    const nextYear = YEARS[i + 1] || 1900;
+                    return projectYear <= year && projectYear > nextYear;
+                  })}
+                  firstSection={i === 0}
+                  lastSection={i === YEARS.length - 1}
+                />
+              </ScrollElement>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
         <style jsx>{`
           .project-collection-container {
@@ -109,15 +120,6 @@ export default class Index extends Component {
             background-position: -1px -1px;
             padding-bottom: ${spacing.s4};
             margin-bottom: ${spacing.s3};
-          }
-
-          .artworks {
-            position: relative;
-          }
-          :global(.artworks-scroll-element) {
-            position: absolute;
-            top: 0;
-            height: 9999px;
           }
         `}</style>
       </Layout>

@@ -38,6 +38,9 @@ const Layout = ({ children }) => (
       &copy; Bradley McCallum {new Date().getFullYear()}
     </p>
 
+    {/* Used by react-intersection-observer */}
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver" />
+
     <style jsx>{`
       .copyright {
         font-size: ${fonts.f12};
