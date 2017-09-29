@@ -7,6 +7,7 @@ import {
   spacing,
   zIndex,
   HEADER_HEIGHT,
+  SCROLL_OFFSET,
 } from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (
@@ -23,6 +24,7 @@ const Header = ({ pathname, artworksActive }) => (
             className={artworksActive && 'active'}
             smooth
             duration={500}
+            offset={SCROLL_OFFSET}
           >
             Artworks
           </ScrollLink>

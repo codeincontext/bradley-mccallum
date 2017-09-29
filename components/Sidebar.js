@@ -9,7 +9,7 @@ import {
   spacing,
   zIndex,
   colors,
-  HEADER_HEIGHT,
+  SCROLL_OFFSET,
   SIDEBAR_WIDTH,
 } from '~/lib/theme';
 
@@ -51,13 +51,13 @@ export default class Sidebar extends Component {
   };
 
   render() {
-    const { items } = this.props;
+    const { items, hidden } = this.props;
     const activeItem = this.state.atBottom
       ? items[items.length - 1]
       : this.state.activeItem || items[0];
 
     return (
-      <ul>
+      <ul className={cx({ hidden })}>
         {items.map(item => (
           <li
             className={cx({
@@ -74,7 +74,7 @@ export default class Sidebar extends Component {
               isDynamic
               smooth
               duration={500}
-              offset={-HEADER_HEIGHT}
+              offset={SCROLL_OFFSET}
               onSetActive={() => this.handleSetActive(item)}
             >
               {item.label}
@@ -91,6 +91,11 @@ export default class Sidebar extends Component {
             margin: 0;
             padding: 0;
             z-index: ${zIndex.sidebar};
+            transition: opacity 0.25s ease-in;
+          }
+
+          ul.hidden {
+            opacity: 0;
           }
 
           li {
