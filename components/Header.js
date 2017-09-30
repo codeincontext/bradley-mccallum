@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
+import cx from 'classnames';
 import {
   fonts,
   colors,
@@ -13,9 +14,20 @@ import {
 const Header = ({ pathname, artworksActive }) => (
   <div>
     <header>
-      <Link href="/" prefetch>
-        <div className="name">Bradley McCallum</div>
-      </Link>
+      {pathname === '/' ? (
+        <ScrollLink
+          to="top"
+          className={cx('name', { active: artworksActive })}
+          smooth
+          duration={500}
+        >
+          Bradley McCallum
+        </ScrollLink>
+      ) : (
+        <Link href="/" prefetch>
+          <a className="name">Bradley McCallum</a>
+        </Link>
+      )}
 
       <nav>
         {pathname === '/' ? (
@@ -66,12 +78,13 @@ const Header = ({ pathname, artworksActive }) => (
         z-index: ${zIndex.header};
         border-bottom: 1px solid #e4e4e4;
       }
+
       .header-placeholder {
         // An element to take up the header's height in the page flow
         height: ${HEADER_HEIGHT}px;
       }
 
-      .name {
+      header :global(.name) {
         padding: 0 ${spacing.s2};
         font-weight: ${weights.bold};
         font-size: ${fonts.f20};
@@ -82,13 +95,14 @@ const Header = ({ pathname, artworksActive }) => (
       nav {
         padding: 0 ${spacing.s2};
       }
+
       nav :global(a) {
         margin-left: ${spacing.s2};
         text-transform: uppercase;
         position: relative;
         font-size: ${fonts.f14};
       }
-      nav :global(.active) {
+      nav :global(a.active) {
         font-weight: ${weights.bold};
       }
       nav :global(.active):after {
