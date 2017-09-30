@@ -6,7 +6,6 @@ import { getApi } from '~/lib/prismic';
 import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
-import Container from '~/components/Container';
 import MainHeading from '~/components/MainHeading';
 import SmallHeading from '~/components/SmallHeading';
 import Divider from '~/components/ContentItem/Divider';
@@ -49,18 +48,14 @@ export default class About extends Component {
         </MainHeading>
 
         <ScrollElement name="biography">
-          <Container>
-            <SmallHeading>Biography</SmallHeading>
-          </Container>
+          <SmallHeading>Biography</SmallHeading>
           <Paragraph item={{ text: biography }} />
         </ScrollElement>
 
         <ScrollElement name="cv">
           <Divider />
 
-          <Container>
-            <SmallHeading>CV</SmallHeading>
-          </Container>
+          <SmallHeading>CV</SmallHeading>
           <Paragraph item={{ text: cv_text }} />
         </ScrollElement>
 

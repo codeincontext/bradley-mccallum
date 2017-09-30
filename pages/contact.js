@@ -7,7 +7,6 @@ import Layout from '~/components/Layout';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
 import MainHeading from '~/components/MainHeading';
-import Container from '~/components/Container';
 import SmallHeading from '~/components/SmallHeading';
 import Divider from '~/components/ContentItem/Divider';
 import Paragraph from '~/components/ContentItem/Paragraph';
@@ -58,27 +57,22 @@ export default class Contact extends Component {
         </MainHeading>
 
         <ScrollElement name="studio">
-          <Container>
-            <SmallHeading>Studio</SmallHeading>
-          </Container>
+          <SmallHeading>Studio</SmallHeading>
           <Paragraph item={{ text: studio_details }} />
+          <SubscribeForm />
         </ScrollElement>
 
         <Divider />
 
         <ScrollElement name="conjunction-arts">
-          <Container>
-            <SmallHeading>Conjunction Arts</SmallHeading>
-          </Container>
+          <SmallHeading>Conjunction Arts</SmallHeading>
           <Paragraph item={{ text: conjunction_arts }} />
         </ScrollElement>
 
         <Divider />
 
         <ScrollElement name="galleries">
-          <Container>
-            <SmallHeading>Galleries</SmallHeading>
-          </Container>
+          <SmallHeading>Galleries</SmallHeading>
           <Paragraph item={{ text: galleries }} />
         </ScrollElement>
 

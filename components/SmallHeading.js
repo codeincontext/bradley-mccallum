@@ -1,7 +1,8 @@
 import { weights, fonts, lineHeights } from '~/lib/theme';
+import Container from '~/components/Container';
 
 const SmallHeading = ({ children }) => (
-  <div>
+  <Container>
     <h3>{children}</h3>
     <style jsx>{`
       h3 {
@@ -12,7 +13,7 @@ const SmallHeading = ({ children }) => (
         letter-spacing: 0.115em;
       }
     `}</style>
-  </div>
+  </Container>
 );
 
 export default SmallHeading;
