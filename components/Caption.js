@@ -15,7 +15,6 @@ const Caption = ({ children }) => {
           font-weight: ${weights.light};
           font-size: ${fonts.f14};
           font-style: italic;
-          letter-spacing: 0.1em;
           line-height: ${lineHeights.copy};
         }
       `}</style>

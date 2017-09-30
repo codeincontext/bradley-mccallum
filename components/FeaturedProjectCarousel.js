@@ -104,7 +104,6 @@ export default class FeaturedProjectCarousel extends React.Component {
           .year {
             font-size: ${fonts.f16};
             font-weight: ${weights.bold};
-            letter-spacing: 0.1em;
             line-height: ${lineHeights.heading};
             margin-bottom: 8px;
           }
@@ -114,7 +113,6 @@ export default class FeaturedProjectCarousel extends React.Component {
             font-weight: ${weights.light};
             font-size: ${fonts.f20};
             text-transform: uppercase;
-            letter-spacing: 0.1em;
           }
         `}</style>
       </div>

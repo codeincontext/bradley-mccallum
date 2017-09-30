@@ -1,4 +1,10 @@
-import { weights, fonts, spacing, lineHeights } from '~/lib/theme';
+import {
+  weights,
+  fonts,
+  spacing,
+  lineHeights,
+  letterSpacing,
+} from '~/lib/theme';
 
 const YearListing = ({ year, children }) => (
   <li>
@@ -23,7 +29,7 @@ const YearListing = ({ year, children }) => (
         font-weight: ${weights.bold};
         text-transform: uppercase;
         line-height: ${lineHeights.heading};
-        letter-spacing: 0.115em;
+        letter-spacing: ${letterSpacing.loose};
       }
     `}</style>
   </li>

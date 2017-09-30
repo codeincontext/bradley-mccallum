@@ -12,6 +12,7 @@ import {
   SCROLL_OFFSET,
   SCROLL_DURATION,
   SIDEBAR_WIDTH,
+  letterSpacing,
 } from '~/lib/theme';
 
 const DEBOUNCE_INTERVAL = 100;
@@ -107,6 +108,10 @@ export default class Sidebar extends Component {
             position: relative;
             padding-left: ${spacing.s4};
             cursor: pointer;
+          }
+
+          li :global(a) {
+            letter-spacing: ${letterSpacing.tight};
           }
 
           li.is-child {
