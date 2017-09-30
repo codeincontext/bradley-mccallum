@@ -119,6 +119,7 @@ export default class ImageGrid extends Component {
             flex-grow: 1;
             flex-shrink: 0;
             margin: 5px;
+            cursor: pointer;
           }
           .spacer {
             height: 0;
