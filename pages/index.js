@@ -11,7 +11,7 @@ import Header from '~/components/Header';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
-import { spacing, colors, HEADER_HEIGHT } from '~/lib/theme';
+import { spacing, colors, HEADER_HEIGHT, SCROLL_OFFSET } from '~/lib/theme';
 
 export const THIN_SIDEBAR_WIDTH = 180;
 export const WIDE_CONTAINER_WIDTH = 956;
@@ -87,6 +87,9 @@ export default class Index extends Component {
           <FeaturedProjectCarousel features={features} />
         </Observer>
 
+        {/* target to scroll when loading the page with #artworks in the url */}
+        <div id="artworks" />
+        {/* target to smooth scroll while on this page */}
         <ScrollElement name="artworks" />
 
         {YEARS.map((year, i) => (
@@ -108,6 +111,11 @@ export default class Index extends Component {
         ))}
 
         <style jsx>{`
+          #artworks {
+            position: relative;
+            top: ${SCROLL_OFFSET}px;
+          }
+
           .project-collection-container {
             margin: 0 20px 0 ${THIN_SIDEBAR_WIDTH}px;
           }

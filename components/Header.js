@@ -41,8 +41,10 @@ const Header = ({ pathname, artworksActive }) => (
             Artworks
           </ScrollLink>
         ) : (
-          <Link href="/" prefetch>
-            <a className={pathname.startsWith('/project') && 'active'}>Artworks</a>
+          <Link href="/#artworks" prefetch>
+            <a className={pathname.startsWith('/project') && 'active'}>
+              Artworks
+            </a>
           </Link>
         )}
 
