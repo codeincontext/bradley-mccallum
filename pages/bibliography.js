@@ -76,8 +76,8 @@ export default class Bibliography extends Component {
         </MainHeading>
 
         <ScrollElement name="catalogues">
+          <SmallHeading>Catalogues</SmallHeading>
           <Container>
-            <SmallHeading>Catalogues</SmallHeading>
             <ul>
               {groupByYear(catalogues).map(([year, catalogues]) => (
                 <YearListing year={year} key={year}>
@@ -93,8 +93,8 @@ export default class Bibliography extends Component {
         <Divider />
 
         <ScrollElement name="reviews">
+          <SmallHeading>Reviews</SmallHeading>
           <Container>
-            <SmallHeading>Reviews</SmallHeading>
             <ul>
               {groupByYear(pressItems).map(([year, items]) => (
                 <YearListing year={year} key={year}>

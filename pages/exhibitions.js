@@ -94,8 +94,8 @@ export default class Exhibitions extends Component {
         </MainHeading>
 
         <ScrollElement name="solo">
+          <SmallHeading>Solo</SmallHeading>
           <Container>
-            <SmallHeading>Solo</SmallHeading>
             <ul>
               {groupByYear(soloExhibitions).map(([year, exhibitions]) => (
                 <YearListing year={year} key={year}>
@@ -111,8 +111,8 @@ export default class Exhibitions extends Component {
         <Divider />
 
         <ScrollElement name="group">
+          <SmallHeading>Group</SmallHeading>
           <Container>
-            <SmallHeading>Group</SmallHeading>
             <ul>
               {groupByYear(groupExhibitions).map(([year, exhibitions]) => (
                 <YearListing year={year} key={year}>
@@ -128,8 +128,8 @@ export default class Exhibitions extends Component {
         <Divider />
 
         <ScrollElement name="special-exhibitions">
+          <SmallHeading>Special Exhibitions</SmallHeading>
           <Container>
-            <SmallHeading>Special Exhibitions</SmallHeading>
             <p>
               There are a number of{' '}
               <Link
