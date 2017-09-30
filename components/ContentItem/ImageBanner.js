@@ -1,7 +1,7 @@
 import Image from '~/components/Image';
 import { CONTENT_ITEM_SPACING } from '~/lib/theme';
 
-const BANNER_HEIGHT = 200;
+const BANNER_HEIGHT = 250;
 
 {
   /*
