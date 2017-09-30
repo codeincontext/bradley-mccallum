@@ -87,6 +87,7 @@ const Header = ({ pathname, artworksActive }) => (
         text-transform: uppercase;
         position: relative;
         font-size: ${fonts.f14};
+        cursor: pointer;
       }
       nav :global(.active) {
         font-weight: ${weights.bold};
