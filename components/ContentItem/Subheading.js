@@ -6,6 +6,7 @@ import {
   spacing,
   lineHeights,
   CONTENT_ITEM_SPACING,
+  letterSpacing,
 } from '~/lib/theme';
 import Container from '~/components/Container';
 
@@ -21,7 +22,7 @@ const Subheading = ({ item: { type, text } }) => (
       .root > :global(h4) {
         text-transform: uppercase;
         line-height: ${lineHeights.heading};
-        letter-spacing: 0.115em;
+        letter-spacing: ${letterSpacing.loose};
       }
 
       .root > :global(h3) {

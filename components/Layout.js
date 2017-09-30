@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { colors, weights, spacing, fonts } from '~/lib/theme';
+import { colors, weights, spacing, fonts, letterSpacing } from '~/lib/theme';
 
 const Layout = ({ children }) => (
   <div>
@@ -18,8 +18,6 @@ const Layout = ({ children }) => (
         background: ${colors.lightGrey};
         margin: 0;
         padding: 0;
-        // TODO: Review this. Is it being overwritten everywhere? Should it be in ems?
-        letter-spacing: 1px;
       }
 
       a {
@@ -29,6 +27,7 @@ const Layout = ({ children }) => (
 
       * {
         box-sizing: border-box;
+        letter-spacing: ${letterSpacing.regular};
       }
     `}</style>
 

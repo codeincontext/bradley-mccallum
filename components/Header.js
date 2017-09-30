@@ -10,6 +10,7 @@ import {
   HEADER_HEIGHT,
   SCROLL_OFFSET,
   SCROLL_DURATION,
+  letterSpacing,
 } from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (
@@ -91,7 +92,6 @@ const Header = ({ pathname, artworksActive }) => (
         padding: 0 ${spacing.s2};
         font-weight: ${weights.bold};
         font-size: ${fonts.f20};
-        letter-spacing: 1.75px;
         transform: translateY(-5px);
         cursor: pointer;
       }
@@ -106,6 +106,7 @@ const Header = ({ pathname, artworksActive }) => (
         position: relative;
         font-size: ${fonts.f14};
         cursor: pointer;
+        letter-spacing: ${letterSpacing.tight};
       }
       nav :global(a.active) {
         font-weight: ${weights.bold};

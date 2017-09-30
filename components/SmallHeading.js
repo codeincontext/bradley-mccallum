@@ -1,4 +1,4 @@
-import { weights, fonts, lineHeights } from '~/lib/theme';
+import { weights, fonts, lineHeights, letterSpacing } from '~/lib/theme';
 import Container from '~/components/Container';
 
 const SmallHeading = ({ children }) => (
@@ -10,7 +10,7 @@ const SmallHeading = ({ children }) => (
         font-weight: ${weights.light};
         text-transform: uppercase;
         line-height: ${lineHeights.heading};
-        letter-spacing: 0.115em;
+        letter-spacing: ${letterSpacing.loose};
       }
     `}</style>
   </Container>
