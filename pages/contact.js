@@ -10,6 +10,7 @@ import MainHeading from '~/components/MainHeading';
 import SmallHeading from '~/components/SmallHeading';
 import Divider from '~/components/ContentItem/Divider';
 import Paragraph from '~/components/ContentItem/Paragraph';
+import SubscribeForm from '~/components/SubscribeForm';
 
 export default class Contact extends Component {
   static async getInitialProps({ req, query, pathname }) {
