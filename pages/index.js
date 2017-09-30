@@ -63,6 +63,9 @@ export default class Index extends Component {
         <Head>
           <title>Home | Bradley McCallum</title>
         </Head>
+
+        <ScrollElement name="top" />
+
         <Header
           pathname={pathname}
           artworksActive={this.state.artworksActive}
