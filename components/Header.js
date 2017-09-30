@@ -42,7 +42,7 @@ const Header = ({ pathname, artworksActive }) => (
           </ScrollLink>
         ) : (
           <Link href="/" prefetch>
-            <a>Artworks</a>
+            <a className={pathname.startsWith('/project') && 'active'}>Artworks</a>
           </Link>
         )}
 
@@ -101,6 +101,7 @@ const Header = ({ pathname, artworksActive }) => (
         text-transform: uppercase;
         position: relative;
         font-size: ${fonts.f14};
+        cursor: pointer;
       }
       nav :global(a.active) {
         font-weight: ${weights.bold};
