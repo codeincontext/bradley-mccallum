@@ -9,6 +9,7 @@ import {
   zIndex,
   HEADER_HEIGHT,
   SCROLL_OFFSET,
+  SCROLL_DURATION
 } from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (
@@ -35,7 +36,7 @@ const Header = ({ pathname, artworksActive }) => (
             to="artworks"
             className={artworksActive && 'active'}
             smooth
-            duration={500}
+            duration={SCROLL_DURATION}
             offset={SCROLL_OFFSET}
           >
             Artworks

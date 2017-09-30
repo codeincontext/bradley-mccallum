@@ -10,6 +10,7 @@ import {
   zIndex,
   colors,
   SCROLL_OFFSET,
+  SCROLL_DURATION,
   SIDEBAR_WIDTH,
 } from '~/lib/theme';
 
@@ -73,7 +74,7 @@ export default class Sidebar extends Component {
               spy
               isDynamic
               smooth
-              duration={500}
+              duration={SCROLL_DURATION}
               offset={SCROLL_OFFSET}
               onSetActive={() => this.handleSetActive(item)}
             >
