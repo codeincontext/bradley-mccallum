@@ -18,6 +18,8 @@ const Layout = ({ children }) => (
         background: ${colors.lightGrey};
         margin: 0;
         padding: 0;
+        // disable ligatures like 'fi' as they ignore letter spacing
+        font-variant-ligatures: none;
       }
 
       a {
