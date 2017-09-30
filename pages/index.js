@@ -1,6 +1,9 @@
 import { Component } from 'react';
 import Head from 'next/head';
-import { Element as ScrollElement } from 'react-scroll';
+import {
+  Element as ScrollElement,
+  scroller
+} from 'react-scroll';
 import Observer from '@researchgate/react-intersection-observer';
 
 import Prismic from 'prismic-javascript';
@@ -11,7 +14,7 @@ import Header from '~/components/Header';
 import Masonry from '~/components/Masonry';
 import Sidebar from '~/components/Sidebar';
 import FeaturedProjectCarousel from '~/components/FeaturedProjectCarousel';
-import { spacing, colors, HEADER_HEIGHT } from '~/lib/theme';
+import { spacing, colors, HEADER_HEIGHT, SCROLL_OFFSET, SCROLL_DURATION } from '~/lib/theme';
 
 export const THIN_SIDEBAR_WIDTH = 180;
 export const WIDE_CONTAINER_WIDTH = 956;
@@ -53,6 +56,16 @@ export default class Index extends Component {
     // But using requestIdleCallback makes behaviour unreliable in Chrome
     this.setState({ artworksActive: !event.isIntersecting });
   };
+
+  componentDidMount() {
+    if (window.location.search === '?artworks') {
+      scroller.scrollTo('artworks', {
+        duration: SCROLL_DURATION,
+        smooth: true,
+        offset: SCROLL_OFFSET
+      });
+    }
+  }
 
   render() {
     const { projects, features, pathname } = this.props;
