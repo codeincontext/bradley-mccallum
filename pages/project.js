@@ -184,9 +184,14 @@ export default class Project extends Component {
 
         <style jsx>{`
           h1 {
+            // Line up with top of sidebar
             margin-top: 0;
-            font-size: ${fonts.f24};
-            font-weight: ${weights.bold};
+            line-height: 0.9;
+
+            font-weight: ${weights.light};
+            font-size: ${fonts.f30};
+            letter-spacing: 2px;
+            display: inline-block;
           }
 
           .intro {
