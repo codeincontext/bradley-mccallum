@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import cx from 'classnames';
+
 import {
   colors,
   weights,
@@ -8,7 +10,7 @@ import {
   PAGE_TOP_PADDING,
 } from '~/lib/theme';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, topPadding = true }) => (
   <div>
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=850" />
@@ -40,7 +42,9 @@ const Layout = ({ children }) => (
       }
     `}</style>
 
-    <div className="content">{children}</div>
+    <div className={cx('content', { 'top-padding': topPadding })}>
+      {children}
+    </div>
 
     <p className="copyright">
       &copy; Bradley McCallum {new Date().getFullYear()}
@@ -56,7 +60,7 @@ const Layout = ({ children }) => (
         text-align: center;
       }
 
-      .content {
+      .content.top-padding {
         padding-top: ${PAGE_TOP_PADDING}px;
       }
     `}</style>

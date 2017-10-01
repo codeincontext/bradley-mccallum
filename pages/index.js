@@ -75,7 +75,7 @@ export default class Index extends Component {
     const { artworksActive } = this.state;
 
     return (
-      <Layout>
+      <Layout topPadding={false}>
         <Head>
           <title>Home | Bradley McCallum</title>
         </Head>

@@ -66,6 +66,7 @@ const Header = ({ pathname, artworksActive }) => (
         </Link>
       </nav>
     </header>
+    <div className="header-placeholder" />
 
     <style jsx>{`
       header {
@@ -80,6 +81,11 @@ const Header = ({ pathname, artworksActive }) => (
         height: ${HEADER_HEIGHT}px;
         z-index: ${zIndex.header};
         border-bottom: 1px solid #e4e4e4;
+      }
+
+      .header-placeholder {
+        // An element to take up the header's height in the page flow
+        height: ${HEADER_HEIGHT}px;
       }
 
       header :global(.name) {
