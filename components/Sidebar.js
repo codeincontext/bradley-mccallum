@@ -13,6 +13,7 @@ import {
   SCROLL_DURATION,
   SIDEBAR_WIDTH,
   letterSpacing,
+  HEADER_HEIGHT,
   PAGE_TOP_PADDING,
 } from '~/lib/theme';
 
@@ -89,7 +90,7 @@ export default class Sidebar extends Component {
           ul {
             position: fixed;
             left: 0;
-            top: ${PAGE_TOP_PADDING}px;
+            top: ${HEADER_HEIGHT + PAGE_TOP_PADDING}px;
             width: ${SIDEBAR_WIDTH}px;
             margin: 0;
             padding: 0;
