@@ -9,6 +9,9 @@ import {
   letterSpacing,
   PAGE_TOP_PADDING,
 } from '~/lib/theme';
+import { initAnalytics } from '~/lib/analytics';
+
+initAnalytics();
 
 const Layout = ({ children, topPadding = true }) => (
   <div>
@@ -18,6 +21,8 @@ const Layout = ({ children, topPadding = true }) => (
         href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700"
         rel="stylesheet"
       />
+
+      <script async src="https://www.google-analytics.com/analytics.js" />
     </Head>
 
     <style global jsx>{`
