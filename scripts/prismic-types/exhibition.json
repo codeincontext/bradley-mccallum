@@ -10,25 +10,25 @@
     "uid": {
       "type": "UID",
       "config": {
-        "label": "URL"
+        "label": "Page URL"
       }
     },
     "venue": {
       "type": "Text",
       "config": {
-        "label": "Venue"
+        "label": "Exhibition venue"
       }
     },
     "location": {
       "type": "Text",
       "config": {
-        "label": "Location"
+        "label": "Exhibition location"
       }
     },
     "date": {
       "type": "Date",
       "config": {
-        "label": "Date"
+        "label": "Date of the exhibition"
       }
     },
     "curator": {
@@ -41,7 +41,7 @@
       "type": "Select",
       "config": {
         "options": ["group"],
-        "label": "Solo or group",
+        "label": "Solo or group exhibition",
         "placeholder": "solo"
       }
     },
@@ -50,7 +50,7 @@
       "config": {
         "select": "document",
         "customtypes": ["project"],
-        "label": "Featured in project (will create a link)"
+        "label": "Featured in project (this will create a link)"
       }
     },
     "body": {

@@ -4,13 +4,13 @@
       "type": "StructuredText",
       "config": {
         "single": "heading1",
-        "label": "Title"
+        "label": "Project title"
       }
     },
     "uid": {
       "type": "UID",
       "config": {
-        "label": "URL"
+        "label": "Project URL"
       }
     },
     "date": {
