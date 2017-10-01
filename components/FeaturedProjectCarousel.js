@@ -38,7 +38,6 @@ export default class FeaturedProjectCarousel extends React.Component {
         <Carousel
           onChange={this.handleIndexChange}
           selectedIndex={selectedIndex}
-          showIndicators={false}
         >
           {features
             .filter(({ image, project }) => image && project.uid)
@@ -58,19 +57,6 @@ export default class FeaturedProjectCarousel extends React.Component {
         </Carousel>
 
         <footer>
-          <ul className="control-dots">
-            {features.map((item, i) => (
-              <li
-                className={cx('dot', {
-                  selected: i === this.state.selectedIndex,
-                })}
-                onClick={this.handleDotClick}
-                value={i}
-                key={i}
-              />
-            ))}
-          </ul>
-
           <Link
             as={`/project/${selectedProject.uid}`} // URL exposed to the browser
             href={`/project?slug=${selectedProject.uid}`} // simplified URL for next.js client routing
@@ -104,32 +90,6 @@ export default class FeaturedProjectCarousel extends React.Component {
           footer {
             position: relative;
             height: ${FOOTER_HEIGHT}px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .control-dots {
-            padding-left: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-          }
-          .dot {
-            transition: opacity 0.25s ease-in;
-            opacity: 0.3;
-            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
-            background: ${colors.midGrey};
-            border-radius: 50%;
-            width: 8px;
-            height: 8px;
-            cursor: pointer;
-            margin: 0 8px;
-            list-style: none;
-          }
-          .dot.selected,
-          .dot:hover {
-            opacity: 1;
           }
 
           .tab {
