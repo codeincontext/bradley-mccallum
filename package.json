@@ -39,6 +39,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "heroku-postbuild": "npm run build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
     "lint": "eslint **/*.js",
