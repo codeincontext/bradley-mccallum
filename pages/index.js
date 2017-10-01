@@ -132,10 +132,9 @@ export default class Index extends Component {
             max-width: ${WIDE_CONTAINER_WIDTH}px;
             margin: 0 auto;
 
-            background: radial-gradient(${colors.black} 15%, transparent 16%),
-              radial-gradient(${colors.black} 15%, transparent 16%),
+            background: radial-gradient(${colors.black} 15%, transparent 19%),
               ${colors.lightGrey};
-            background-size: 7px 7px;
+            background-size: 5px 5px;
             background-position: -1px -1px;
             padding-bottom: ${spacing.s4};
             margin-bottom: ${spacing.s3};
