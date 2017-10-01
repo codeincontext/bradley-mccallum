@@ -184,6 +184,7 @@ export default class Project extends Component {
 
         <style jsx>{`
           h1 {
+            margin-top: 0;
             font-size: ${fonts.f24};
             font-weight: ${weights.bold};
           }
