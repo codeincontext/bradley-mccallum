@@ -13,6 +13,7 @@ import {
   SCROLL_DURATION,
   SIDEBAR_WIDTH,
   letterSpacing,
+  PAGE_TOP_PADDING,
 } from '~/lib/theme';
 
 const DEBOUNCE_INTERVAL = 100;
@@ -88,7 +89,7 @@ export default class Sidebar extends Component {
           ul {
             position: fixed;
             left: 0;
-            top: ${spacing.s8};
+            top: ${PAGE_TOP_PADDING}px;
             width: ${SIDEBAR_WIDTH}px;
             margin: 0;
             padding: 0;

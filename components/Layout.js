@@ -1,5 +1,12 @@
 import Head from 'next/head';
-import { colors, weights, spacing, fonts, letterSpacing } from '~/lib/theme';
+import {
+  colors,
+  weights,
+  spacing,
+  fonts,
+  letterSpacing,
+  PAGE_TOP_PADDING,
+} from '~/lib/theme';
 
 const Layout = ({ children }) => (
   <div>
@@ -33,7 +40,7 @@ const Layout = ({ children }) => (
       }
     `}</style>
 
-    {children}
+    <div className="content">{children}</div>
 
     <p className="copyright">
       &copy; Bradley McCallum {new Date().getFullYear()}
@@ -47,6 +54,10 @@ const Layout = ({ children }) => (
         font-size: ${fonts.f12};
         margin: ${spacing.s4} 0 ${spacing.s05};
         text-align: center;
+      }
+
+      .content {
+        padding-top: ${PAGE_TOP_PADDING}px;
       }
     `}</style>
   </div>
