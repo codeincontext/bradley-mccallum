@@ -14,7 +14,7 @@ const MainHeading = ({ children }) => (
 
       .heading {
         position: relative;
-        padding-top: ${spacing.s2};
+        padding-top: ${spacing.s4};
         margin-bottom: ${spacing.s2};
       }
 
