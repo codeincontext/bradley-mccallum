@@ -33,7 +33,8 @@ const MainHeading = ({ children }) => (
         background-size: 5px 5px;
       }
 
-      .heading > :global(*) {
+      .heading > :global(h1),
+      .heading > :global(h2) {
         font-weight: ${weights.light};
         font-size: ${fonts.f30};
         text-transform: uppercase;
