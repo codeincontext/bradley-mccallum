@@ -1,24 +1,24 @@
 {
-  "Main" : {
-    "biography" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
-        "label" : "Biography"
+  "Main": {
+    "biography": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
+        "label": "Biography"
       }
     },
-    "cv_file" : {
-      "type" : "Link",
-      "config" : {
-        "select" : "media",
-        "label" : "CV File"
+    "cv_file": {
+      "type": "Link",
+      "config": {
+        "select": "media",
+        "label": "CV File"
       }
     },
-    "cv_text" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3, heading4, heading5, strong, em, hyperlink, list-item, o-list-item, o-list-item",
-        "label" : "CV Text"
+    "cv_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading3, heading4, heading5, strong, em, hyperlink, list-item, o-list-item, o-list-item",
+        "label": "CV Text"
       }
     }
   }

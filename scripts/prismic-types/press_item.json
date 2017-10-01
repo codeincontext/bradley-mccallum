@@ -1,35 +1,35 @@
 {
-  "Main" : {
-    "publication" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "heading6",
-        "label" : "Publication"
+  "Main": {
+    "publication": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Publication"
       }
     },
-    "title" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Title",
-        "useAsTitle" : true
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "useAsTitle": true
       }
     },
-    "link" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Link"
+    "link": {
+      "type": "Link",
+      "config": {
+        "label": "Link"
       }
     },
-    "author" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Author"
+    "author": {
+      "type": "Text",
+      "config": {
+        "label": "Author"
       }
     },
-    "date" : {
-      "type" : "Date",
-      "config" : {
-        "label" : "Date"
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "Date"
       }
     }
   }
