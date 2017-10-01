@@ -1,24 +1,24 @@
 {
-  "Main" : {
-    "studio_details" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
-        "label" : "Studio Details"
+  "Main": {
+    "studio_details": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
+        "label": "Studio Details"
       }
     },
-    "conjunction_arts" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
-        "label" : "Conjunction Arts"
+    "conjunction_arts": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
+        "label": "Conjunction Arts"
       }
     },
-    "galleries" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
-        "label" : "Galleries"
+    "galleries": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading3, heading4, strong, em, hyperlink, list-item, o-list-item",
+        "label": "Galleries"
       }
     }
   }
