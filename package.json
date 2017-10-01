@@ -5,6 +5,7 @@
   "author": "Adam Howard",
   "dependencies": {
     "@researchgate/react-intersection-observer": "^0.3.1",
+    "autotrack": "^2.4.1",
     "contentful": "^4.5.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
