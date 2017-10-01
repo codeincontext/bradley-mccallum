@@ -4,7 +4,7 @@ import { colors, weights, spacing, fonts, letterSpacing } from '~/lib/theme';
 const Layout = ({ children }) => (
   <div>
     <Head>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="viewport" content="initial-scale=1.0, width=850" />
       <link
         href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700"
         rel="stylesheet"
