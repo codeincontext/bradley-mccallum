@@ -9,7 +9,7 @@ import {
   zIndex,
   HEADER_HEIGHT,
   SCROLL_OFFSET,
-  SCROLL_DURATION
+  SCROLL_DURATION,
 } from '~/lib/theme';
 
 const Header = ({ pathname, artworksActive }) => (
@@ -43,7 +43,9 @@ const Header = ({ pathname, artworksActive }) => (
           </ScrollLink>
         ) : (
           <Link href="/?artworks" prefetch>
-            <a className={pathname.startsWith('/project') && 'active'}>Artworks</a>
+            <a className={pathname.startsWith('/project') && 'active'}>
+              Artworks
+            </a>
           </Link>
         )}
 
@@ -91,6 +93,7 @@ const Header = ({ pathname, artworksActive }) => (
         font-size: ${fonts.f20};
         letter-spacing: 1.75px;
         transform: translateY(-5px);
+        cursor: pointer;
       }
 
       nav {
