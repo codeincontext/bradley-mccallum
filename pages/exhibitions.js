@@ -42,14 +42,23 @@ const Exhibition = ({
 export default class Exhibitions extends Component {
   static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
-    const exhibitionsResponse = await api.query(
-      Prismic.Predicates.at('document.type', 'exhibition'),
-      {
+    const exhibitionsResponses = await Promise.all([
+      api.query(Prismic.Predicates.at('document.type', 'exhibition'), {
         orderings: '[my.exhibition.date desc]',
         pageSize: 100,
-      }
-    );
-    const exhibitions = exhibitionsResponse.results.map(r => ({
+        page: 1,
+      }),
+      api.query(Prismic.Predicates.at('document.type', 'exhibition'), {
+        orderings: '[my.exhibition.date desc]',
+        pageSize: 100,
+        page: 2,
+      }),
+    ]);
+
+    const exhibitions = [
+      ...exhibitionsResponses[0].results,
+      ...exhibitionsResponses[1].results,
+    ].map(r => ({
       uid: r.uid,
       ...r.data,
       exhibition_type: r.data.exhibition_type || 'solo',
