@@ -1,5 +1,11 @@
 import Container from '~/components/Container';
-import { fonts, colors, weights, spacing } from '~/lib/theme';
+import {
+  fonts,
+  colors,
+  weights,
+  spacing,
+  CONTENT_ITEM_SPACING,
+} from '~/lib/theme';
 
 const MainHeading = ({ children }) => (
   <div className="root">
@@ -9,6 +15,7 @@ const MainHeading = ({ children }) => (
 
     <style jsx>{`
       .root {
+        margin-top: calc(${CONTENT_ITEM_SPACING} + 1rem);
         overflow-x: hidden;
       }
 

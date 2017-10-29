@@ -1,7 +1,13 @@
 import PrismicDom from 'prismic-dom';
 import Container from '~/components/Container';
 import ContentItem from '~/components/ContentItem';
-import { fonts, weights, HEADER_HEIGHT } from '~/lib/theme';
+import {
+  fonts,
+  weights,
+  HEADER_HEIGHT,
+  spacing,
+  CONTENT_ITEM_SPACING,
+} from '~/lib/theme';
 
 const Exhibition = ({
   exhibition: { title, venue, location, date, body, uid },
@@ -34,14 +40,20 @@ const Exhibition = ({
 
       h2 {
         font-size: ${fonts.f24};
+        margin: ${spacing.s1} 0;
       }
 
       .intro {
         font-size: ${fonts.f14};
+        margin-bottom: ${CONTENT_ITEM_SPACING};
       }
 
       .year {
         font-weight: ${weights.bold};
+      }
+
+      p {
+        margin: ${spacing.s1} 0;
       }
     `}</style>
   </section>

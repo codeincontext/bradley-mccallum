@@ -16,7 +16,7 @@ import Paragraph from '~/components/ContentItem/Paragraph';
 import PressItem from '~/components/PressItem';
 import Exhibition from '~/components/Exhibition';
 import YearListing from '~/components/YearListing';
-import { fonts, weights } from '~/lib/theme';
+import { fonts, weights, spacing } from '~/lib/theme';
 
 export default class Project extends Component {
   static async getInitialProps({ req, query, pathname }) {
@@ -96,19 +96,32 @@ export default class Project extends Component {
                   {project.long_title ||
                     PrismicDom.RichText.asText(project.title)}
                 </h1>
-                <p>{project.materials}</p>
-                <p>
-                  {project.year_text || new Date(project.date).getFullYear()}
-                </p>
-                {project.collaborators && <p>{project.collaborators}</p>}
-                {project.websiteLinkText && (
+
+                <div className="intro-section">
+                  <p>{project.materials}</p>
                   <p>
-                    Project website:{' '}
-                    <a href="{project.websiteLinkUrl}">
-                      {project.websiteLinkText}
-                    </a>
+                    {project.year_text || new Date(project.date).getFullYear()}
                   </p>
-                )}
+                </div>
+
+                <div className="intro-section">
+                  {project.collaborators && (
+                    <p>Collaborator/s: {project.collaborators}</p>
+                  )}
+                  {project.website_link_title &&
+                  project.website_link.url && (
+                    <p>
+                      Project website:{' '}
+                      <a
+                        href={project.website_link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.website_link_title}
+                      </a>
+                    </p>
+                  )}
+                </div>
               </div>
             </Container>
 
@@ -185,7 +198,7 @@ export default class Project extends Component {
         <style jsx>{`
           h1 {
             // Line up with top of sidebar
-            margin-top: 0;
+            margin: 0 0 1.25rem;
             line-height: 0.9;
 
             font-weight: ${weights.light};
@@ -197,6 +210,16 @@ export default class Project extends Component {
           .intro {
             font-size: ${fonts.f14};
           }
+
+          .intro-section {
+            margin-bottom: ${spacing.s2};
+            margin-bottom: 1.25rem;
+          }
+
+          .intro-section > p {
+            margin: 0 0 ${spacing.s05};
+          }
+
           ul {
             padding-left: 0;
           }

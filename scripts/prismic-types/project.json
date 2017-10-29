@@ -49,7 +49,7 @@
     "materials": {
       "type": "Text",
       "config": {
-        "label": "Materials"
+        "label": "Materials (uppercase after each comma)"
       }
     },
     "collaborators": {
