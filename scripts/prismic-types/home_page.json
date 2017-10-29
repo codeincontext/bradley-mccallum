@@ -26,6 +26,14 @@
         },
         "label": "Featured Projects"
       }
+    },
+    "cms_title": {
+      "type": "Text",
+      "config": {
+        "label": "CMS Title (not used on the site)",
+        "placeholder": "Just so we have a title in Prismic",
+        "useAsTitle" : true
+      }
     }
   }
 }
