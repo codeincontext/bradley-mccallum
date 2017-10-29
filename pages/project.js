@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
 import PrismicDom from 'prismic-dom';
+import cx from 'classnames';
 
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
@@ -16,7 +17,41 @@ import Paragraph from '~/components/ContentItem/Paragraph';
 import PressItem from '~/components/PressItem';
 import Exhibition from '~/components/Exhibition';
 import YearListing from '~/components/YearListing';
-import { fonts, weights, spacing } from '~/lib/theme';
+import {
+  fonts,
+  weights,
+  spacing,
+  HEADER_HEIGHT,
+  PAGE_TOP_PADDING,
+  CONTENT_ITEM_SPACING,
+} from '~/lib/theme';
+
+function getSidebarItems({ project, exhibitions, pressItems }) {
+  return [
+    {
+      label: PrismicDom.RichText.asText(project.title),
+      scrollName: 'artwork',
+    },
+    exhibitions.length && {
+      label: 'Exhibitions',
+      scrollName: 'exhibitions',
+    },
+    ...exhibitions.map(exhibition => ({
+      label: exhibition.location,
+      scrollName: scrollNameForExhibitionId(exhibition.uid),
+      parentName: 'exhibitions',
+    })),
+    project.civic_dialogues.length && {
+      label: 'Civic Dialogues',
+      scrollName: 'civic-dialogues',
+    },
+    pressItems.length && { label: 'Press', scrollName: 'press' },
+    project.acknowledgements.length && {
+      label: 'Acknowledgements',
+      scrollName: 'acknowledgements',
+    },
+  ].filter(item => item);
+}
 
 export default class Project extends Component {
   static async getInitialProps({ req, query, pathname }) {
@@ -51,6 +86,9 @@ export default class Project extends Component {
 
   render() {
     const { project, exhibitions, pressItems, pathname } = this.props;
+    const sidebarItems = getSidebarItems(this.props);
+    const lastSection = sidebarItems[sidebarItems.length - 1];
+    const lastSectionName = lastSection.parentName || lastSection.scrollName;
 
     return (
       <Layout>
@@ -61,35 +99,14 @@ export default class Project extends Component {
         </Head>
         <Header pathname={pathname} />
 
-        <Sidebar
-          items={[
-            {
-              label: PrismicDom.RichText.asText(project.title),
-              scrollName: 'artwork',
-            },
-            exhibitions.length && {
-              label: 'Exhibitions',
-              scrollName: 'exhibitions',
-            },
-            ...exhibitions.map(exhibition => ({
-              label: exhibition.location,
-              scrollName: scrollNameForExhibitionId(exhibition.uid),
-              parentName: 'exhibitions',
-            })),
-            project.civic_dialogues.length && {
-              label: 'Civic Dialogues',
-              scrollName: 'civic-dialogues',
-            },
-            pressItems.length && { label: 'Press', scrollName: 'press' },
-            project.acknowledgements.length && {
-              label: 'Acknowledgements',
-              scrollName: 'acknowledgements',
-            },
-          ].filter(item => item)}
-        />
+        <Sidebar items={sidebarItems} />
 
         <ScrollElement name="artwork">
-          <section>
+          <section
+            className={cx({
+              lastSection: lastSectionName === 'artwork',
+            })}
+          >
             <Container>
               <div className="intro">
                 <h1>
@@ -133,7 +150,11 @@ export default class Project extends Component {
         </ScrollElement>
 
         {!!exhibitions.length && (
-          <div>
+          <div
+            className={cx('section', {
+              lastSection: lastSectionName === 'exhibitions',
+            })}
+          >
             <ScrollElement name="exhibitions" />
             {exhibitions.map((exhibition, i) => (
               <ScrollElement
@@ -155,7 +176,11 @@ export default class Project extends Component {
 
         {!!project.civic_dialogues.length && (
           <ScrollElement name="civic-dialogues">
-            <section>
+            <section
+              className={cx('section', {
+                lastSection: lastSectionName === 'civic-dialogues',
+              })}
+            >
               <MainHeading>
                 <h2>Civic Dialogues</h2>
               </MainHeading>
@@ -169,7 +194,11 @@ export default class Project extends Component {
 
         {!!pressItems.length && (
           <ScrollElement name="press">
-            <section>
+            <section
+              className={cx('section', {
+                lastSection: lastSectionName === 'press',
+              })}
+            >
               <MainHeading>
                 <h2>Press</h2>
               </MainHeading>
@@ -186,7 +215,11 @@ export default class Project extends Component {
 
         {!!project.acknowledgements.length && (
           <ScrollElement name="acknowledgements">
-            <section>
+            <section
+              className={cx('section', {
+                lastSection: lastSectionName === 'acknowledgements',
+              })}
+            >
               <MainHeading>
                 <h2>Acknowledgements</h2>
               </MainHeading>
@@ -198,8 +231,7 @@ export default class Project extends Component {
         <style jsx>{`
           h1 {
             // Line up with top of sidebar
-            margin: 0 0 1.25rem;
-            line-height: 0.9;
+            margin: -0.3rem 0 1.25rem;
 
             font-weight: ${weights.light};
             font-size: ${fonts.f30};
@@ -212,7 +244,6 @@ export default class Project extends Component {
           }
 
           .intro-section {
-            margin-bottom: ${spacing.s2};
             margin-bottom: 1.25rem;
           }
 
@@ -222,6 +253,17 @@ export default class Project extends Component {
 
           ul {
             padding-left: 0;
+          }
+
+          .section {
+            margin-top: calc(${CONTENT_ITEM_SPACING} + 1rem);
+          }
+
+          .lastSection {
+            // 87px = extra tweak for copyright height
+            min-height: calc(
+              100vh - ${HEADER_HEIGHT}px - ${PAGE_TOP_PADDING}px - 87px
+            );
           }
         `}</style>
       </Layout>

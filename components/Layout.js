@@ -26,6 +26,10 @@ const Layout = ({ children, topPadding = true }) => (
     </Head>
 
     <style global jsx>{`
+      html {
+        height: 100%;
+      }
+
       body {
         font-family: 'Lato', sans-serif;
         font-weight: ${weights.light};
