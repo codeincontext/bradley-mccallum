@@ -45,6 +45,10 @@ const Layout = ({ children, topPadding = true }) => (
         box-sizing: border-box;
         letter-spacing: ${letterSpacing.regular};
       }
+
+      p {
+        margin: ${spacing.s1} 0;
+      }
     `}</style>
 
     <div className={cx('content', { 'top-padding': topPadding })}>
