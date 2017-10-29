@@ -8,8 +8,19 @@
       "text": {
         "type": "StructuredText",
         "config": {
-          "single": "heading3, heading4",
+          "single": "heading3",
           "label": "Heading"
+        }
+      },
+      "size": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "large",
+            "small"
+          ],
+          "default_value": "large",
+          "label": "Size"
         }
       }
     },
