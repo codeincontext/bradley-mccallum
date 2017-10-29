@@ -132,7 +132,7 @@ export default class Sidebar extends Component {
             display: block;
             position: absolute;
             left: 0;
-            top: calc(50% - ${spacing.s05} / 2);
+            top: ${spacing.s025};
             background: ${colors.black};
             width: ${spacing.s2};
             height: ${spacing.s05};
