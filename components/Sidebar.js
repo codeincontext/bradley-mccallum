@@ -104,7 +104,7 @@ export default class Sidebar extends Component {
 
           li {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
             font-size: ${fonts.f14};
             position: relative;
@@ -120,7 +120,7 @@ export default class Sidebar extends Component {
             margin-left: ${spacing.s2};
             font-size: ${fonts.f12};
             text-transform: initial;
-            margin-top: -${spacing.s05};
+            margin-top: -${spacing.s025};
           }
 
           li.active:not(.is-child) {
@@ -132,7 +132,7 @@ export default class Sidebar extends Component {
             display: block;
             position: absolute;
             left: 0;
-            top: calc(50% - ${spacing.s05} / 2);
+            top: ${spacing.s025};
             background: ${colors.black};
             width: ${spacing.s2};
             height: ${spacing.s05};

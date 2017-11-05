@@ -26,6 +26,10 @@ const Layout = ({ children, topPadding = true }) => (
     </Head>
 
     <style global jsx>{`
+      html {
+        height: 100%;
+      }
+
       body {
         font-family: 'Lato', sans-serif;
         font-weight: ${weights.light};
@@ -44,6 +48,10 @@ const Layout = ({ children, topPadding = true }) => (
       * {
         box-sizing: border-box;
         letter-spacing: ${letterSpacing.regular};
+      }
+
+      p {
+        margin: ${spacing.s1} 0;
       }
     `}</style>
 
