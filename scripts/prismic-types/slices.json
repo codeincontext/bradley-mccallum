@@ -75,11 +75,11 @@
         "type": "Image",
         "config": {
           "constraint": {
-            "width": 735,
+            "width": 1470,
             "height": null
           },
           "thumbnails": [],
-          "label": "Image"
+          "label": "Image. Landscape: min 1470px width for max quality. Portrait: min 735px width for max quality"
         }
       },
       "caption": {
@@ -123,7 +123,7 @@
   "image_banner": {
     "type": "Slice",
     "fieldset": "Image Banner",
-    "description": "Full width banner without captions",
+    "description": "Full width banner. Make sure there are enough images to fill a laptop screen",
     "icon": "view_column",
     "non-repeat": {},
     "repeat": {
@@ -132,10 +132,10 @@
         "config": {
           "constraint": {
             "width": null,
-            "height": 250
+            "height": 500
           },
           "thumbnails": [],
-          "label": "Image"
+          "label": "Image. Min 500px height for max quality"
         }
       }
     }
@@ -179,7 +179,7 @@
               "height": 400
             }
           ],
-          "label": "image"
+          "label": "Image. Min 1600px width for max quality"
         }
       }
     }
@@ -205,11 +205,11 @@
         "type": "Image",
         "config": {
           "constraint": {
-            "width": 735,
+            "width": 1470,
             "height": null
           },
           "thumbnails": [],
-          "label": "Image"
+          "label": "Image. Min 1470px width for max quality"
         }
       }
     }

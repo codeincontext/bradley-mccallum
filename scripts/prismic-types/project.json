@@ -30,11 +30,11 @@
       "type": "Image",
       "config": {
         "constraint": {
-          "width": 280,
+          "width": 550,
           "height": null
         },
         "thumbnails": [],
-        "label": "Main Image"
+        "label": "Main Image. Try to stick to similar ratios. Like 550x366px and 825x550px. 550px width for max quality"
       }
     }
   },
