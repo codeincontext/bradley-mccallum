@@ -61,5 +61,8 @@
   },
   "now": {
     "alias": "bradley-mccallum.now.sh"
+  },
+  "engines": {
+    "node": "8.2.x"
   }
 }
