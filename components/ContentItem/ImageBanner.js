@@ -9,9 +9,9 @@ const BANNER_HEIGHT = 250;
    It looks strange if the window size is similar to the banner width: there's a small scrollbar or a small gap.
 
    Use MQs to prevent this:
-   - Window thinner than banner: Set correct width for 200px height
+   - Window thinner than banner: Set correct width for 250px height
    - Window is close to the ideal banner size: Use flexbox to fit to size
-   - Window wider than banner: Set correct width for 200px height
+   - Window wider than banner: Set correct width for 250px height
  */
 }
 const cssForImage = ({ width, height, className, totalWidth }) => `
@@ -30,6 +30,8 @@ const cssForImage = ({ width, height, className, totalWidth }) => `
   @media (min-width: ${totalWidth * 1.1}px) {
     .${className} {
       width: ${width / height * BANNER_HEIGHT}px;
+      flex-basis: initial;
+      flex-grow: initial;
     }
   }
 `;

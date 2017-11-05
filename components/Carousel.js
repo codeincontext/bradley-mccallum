@@ -11,10 +11,6 @@ const Carousel = ({ children, selectedIndex, onChange }) => (
       showStatus={false}
       onChange={onChange}
       selectedItem={selectedIndex}
-      // TODO: Only works when source image isn't cached
-      // dynamicHeight looks at the size of img elements
-      // The homepage carousel doesn't use img elements but has a css-defined height anyway
-      dynamicHeight
       infiniteLoop
     >
       {children}
@@ -113,37 +109,8 @@ const Carousel = ({ children, selectedIndex, onChange }) => (
         min-width: 100%;
         margin: 0;
         position: relative;
-        text-align: center;
-        background: #000;
       }
       .root :global(.slide img) {
-        width: 100%;
-        vertical-align: top;
-        border: 0;
-      }
-
-      .root :global(.control-dots) {
-        position: absolute;
-        bottom: 0;
-        margin: 10px 0;
-        text-align: center;
-        width: 100%;
-      }
-      .root :global(.control-dots .dot) {
-        transition: opacity 0.25s ease-in;
-        opacity: 0.3;
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
-        background: ${colors.lightGrey};
-        border-radius: 50%;
-        width: 8px;
-        height: 8px;
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 8px;
-      }
-      .root :global(.control-dots .dot.selected),
-      .root :global(.control-dots .dot:hover) {
-        opacity: 1;
       }
     `}</style>
   </div>
