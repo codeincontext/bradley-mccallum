@@ -1,14 +1,7 @@
 import Head from 'next/head';
 import cx from 'classnames';
 
-import {
-  colors,
-  weights,
-  spacing,
-  fonts,
-  letterSpacing,
-  PAGE_TOP_PADDING,
-} from '~/lib/theme';
+import { colors, weights, spacing, fonts, letterSpacing, PAGE_TOP_PADDING } from '~/lib/theme';
 import { initAnalytics } from '~/lib/analytics';
 
 initAnalytics();
@@ -17,11 +10,12 @@ const Layout = ({ children, topPadding = true }) => (
   <div>
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=850" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700"
-        rel="stylesheet"
-      />
-
+      {/* favicon bits */}
+      <link rel="apple-touch-icon" sizes="72x72" href="/static/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
+      <meta name="theme-color" content="#ffffff" />
+      <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700" rel="stylesheet" />
       <script async src="https://www.google-analytics.com/analytics.js" />
     </Head>
 
@@ -55,13 +49,9 @@ const Layout = ({ children, topPadding = true }) => (
       }
     `}</style>
 
-    <div className={cx('content', { 'top-padding': topPadding })}>
-      {children}
-    </div>
+    <div className={cx('content', { 'top-padding': topPadding })}>{children}</div>
 
-    <p className="copyright">
-      &copy; Bradley McCallum {new Date().getFullYear()}
-    </p>
+    <p className="copyright">&copy; Bradley McCallum {new Date().getFullYear()}</p>
 
     {/* Used by react-intersection-observer */}
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver" />
