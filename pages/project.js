@@ -122,9 +122,7 @@ export default class Project extends Component {
                 </div>
 
                 <div className="intro-section">
-                  {project.collaborators && (
-                    <p>Collaborator/s: {project.collaborators}</p>
-                  )}
+                  {project.collaborators && <p>{project.collaborators}</p>}
                   {project.website_link_title &&
                   project.website_link.url && (
                     <p>
