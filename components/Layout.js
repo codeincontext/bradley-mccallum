@@ -23,6 +23,12 @@ const Layout = ({ children, topPadding = true }) => (
     <NormalizeCss />
 
     <style global jsx>{`
+      button {
+        border-radius: 0;
+      }
+    `}</style>
+
+    <style global jsx>{`
       html {
         height: 100%;
       }
