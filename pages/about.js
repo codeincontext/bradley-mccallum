@@ -20,8 +20,42 @@ export default class About extends Component {
     return { ...aboutPage.data, pathname };
   }
 
+  state = {
+    email: null,
+  };
+
+  componentDidMount() {
+    setTimeout(() => this.setEmail(), 500);
+  }
+
+  setEmail() {
+    const value = 'bradleymccallum^me.com'.replace('^', '@');
+    const paragraph = {
+      text: [
+        {
+          type: 'paragraph',
+          text: value,
+          spans: [
+            {
+              start: 0,
+              end: value.length,
+              type: 'hyperlink',
+              data: {
+                link_type: 'Web',
+                url: `mailto:${value}`,
+              },
+              url: `mailto:${value}`,
+            },
+          ],
+        },
+      ],
+    };
+    this.setState({ email: paragraph });
+  }
+
   render() {
     const { biography, cv_text, cv_file, pathname } = this.props;
+    const { email } = this.state;
 
     return (
       <Layout>
@@ -57,6 +91,8 @@ export default class About extends Component {
 
           <SmallHeading>CV</SmallHeading>
           <Paragraph item={{ text: cv_text }} />
+
+          {email && <Paragraph item={email} />}
         </ScrollElement>
 
         <style jsx>{``}</style>
