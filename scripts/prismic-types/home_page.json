@@ -16,11 +16,11 @@
             "type": "Image",
             "config": {
               "constraint": {
-                "width": 1440,
+                "width": 2530,
                 "height": null
               },
               "thumbnails": [],
-              "label": "Image. Landscape works best. eg: 1440x720px. Try on a few screens to check how it resizes"
+              "label": "Image. Landscape works best. eg: 2500px/1250px. Try on a few screens to check how it resizes"
             }
           }
         },
