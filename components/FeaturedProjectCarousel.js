@@ -1,6 +1,5 @@
 import PrismicDom from 'prismic-dom';
 import Link from 'next/link';
-import cx from 'classnames';
 
 import Image from '~/components/Image';
 import RichText from '~/components/RichText';
@@ -15,6 +14,31 @@ import {
 } from '~/lib/theme';
 
 const FOOTER_HEIGHT = 52;
+
+const Item = ({ image, project, prefetch }) => (
+  <Link
+    as={`/project/${project.uid}`} // URL exposed to the browser
+    href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
+    prefetch={prefetch}
+  >
+    <a className="root" />
+
+    <style jsx>{`
+      .root {
+        display: block;
+        background-size: cover;
+        background-position: center;
+        height: calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px);
+      }
+    `}</style>
+
+    <style jsx>{`
+      .root {
+        backgroundimage: url(${image.url});
+      }
+    `}</style>
+  </Link>
+);
 
 export default class FeaturedProjectCarousel extends React.Component {
   state = { selectedIndex: 0 };
@@ -42,25 +66,15 @@ export default class FeaturedProjectCarousel extends React.Component {
           {features
             .filter(({ image, project }) => image && project.uid)
             .map(({ image, project }, i) => (
-              <Link
-                as={`/project/${project.uid}`} // URL exposed to the browser
-                href={`/project?slug=${project.uid}`} // simplified URL for next.js client routing
-                prefetch={i === 0}
-                key={project.uid}
-              >
-                <a
-                  className="item"
-                  style={{ backgroundImage: `url(${image.url})` }}
-                />
-              </Link>
+              <Item image={image} key={project.uid} prefetch={i === 0} />
             ))}
         </Carousel>
 
         <footer>
           <Link
-            as={`/project/${selectedProject.uid}`} // URL exposed to the browser
-            href={`/project?slug=${selectedProject.uid}`} // simplified URL for next.js client routing
-            key={selectedProject.id}
+            as={`/project/${selectedProject.uid}`}
+            href={`/project?slug=${selectedProject.uid}`} // URL exposed to the browser
+            key={selectedProject.id} // simplified URL for next.js client routing
           >
             <a className="tab">
               <div className="year">
@@ -78,13 +92,6 @@ export default class FeaturedProjectCarousel extends React.Component {
           .root {
             opacity: 0.999;
             margin-bottom: ${spacing.s3};
-          }
-
-          .item {
-            display: block;
-            background-size: cover;
-            background-position: center;
-            height: calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px);
           }
 
           footer {

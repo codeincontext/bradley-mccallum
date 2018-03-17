@@ -3,38 +3,44 @@ import { CONTENT_ITEM_SPACING } from '~/lib/theme';
 
 const BANNER_HEIGHT = 250;
 
-{
-  /*
-   By default images have a fixed size and therefore the banner has a fixed width
-   It looks strange if the window size is similar to the banner width: there's a small scrollbar or a small gap.
+const BannerImage = ({ image, totalWidth }) => {
+  const { width, height } = image.dimensions;
+  return (
+    <div className="root">
+      <Image image={image} />
+      <style jsx>{`
+        /*
+          By default images have a fixed size and therefore the banner has a fixed width
+          It looks strange if the window size is similar to the banner width: there's a small scrollbar or a small gap.
 
-   Use MQs to prevent this:
-   - Window thinner than banner: Set correct width for 250px height
-   - Window is close to the ideal banner size: Use flexbox to fit to size
-   - Window wider than banner: Set correct width for 250px height
- */
-}
-const cssForImage = ({ width, height, className, totalWidth }) => `
-  .${className} {
-    width: ${width / height * BANNER_HEIGHT}px;
-  }
+          Use MQs to prevent this:
+          - Window thinner than banner: Set correct width for 250px height
+          - Window is close to the ideal banner size: Use flexbox to fit to size
+          - Window wider than banner: Set correct width for 250px height
+        */
+        .root {
+          width: ${width / height * BANNER_HEIGHT}px;
+        }
 
-  @media (min-width: ${totalWidth * 0.9}px) {
-    .${className} {
-      width: auto;
-      flex-basis: 0;
-      flex-grow: ${width / height};
-    }
-  }
+        @media (min-width: ${totalWidth * 0.9}px) {
+          .root {
+            width: auto;
+            flex-basis: 0;
+            flex-grow: ${width / height};
+          }
+        }
 
-  @media (min-width: ${totalWidth * 1.1}px) {
-    .${className} {
-      width: ${width / height * BANNER_HEIGHT}px;
-      flex-basis: initial;
-      flex-grow: initial;
-    }
-  }
-`;
+        @media (min-width: ${totalWidth * 1.1}px) {
+          .root {
+            width: ${width / height * BANNER_HEIGHT}px;
+            flex-basis: initial;
+            flex-grow: initial;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 const ImageBanner = ({ item }) => {
   const images = item.items
@@ -49,18 +55,9 @@ const ImageBanner = ({ item }) => {
 
   return (
     <div className="root">
-      {images.map(image => {
-        const { width, height } = image.dimensions;
-        const className = `banner-image-${width}-${height}`;
-        return (
-          <div className={`image ${className}`} key={image.url}>
-            <Image image={image} />
-            <style>
-              {cssForImage({ width, height, className, totalWidth })}
-            </style>
-          </div>
-        );
-      })}
+      {images.map(image => (
+        <BannerImage image={image} totalWidth={totalWidth} key={image.url} />
+      ))}
 
       <style jsx>{`
         .root {

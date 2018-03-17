@@ -28,7 +28,8 @@ const MainHeading = ({ children }) => (
         left: 0;
         z-index: -1;
 
-        background: radial-gradient(${colors.black} 15%, transparent 19%), ${colors.lightGrey};
+        background: radial-gradient(${colors.black} 15%, transparent 19%),
+          ${colors.lightGrey};
         background-size: 5px 5px;
       }
 

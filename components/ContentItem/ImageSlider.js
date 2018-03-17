@@ -1,5 +1,3 @@
-import cx from 'classnames';
-
 import Image from '~/components/Image';
 import Container from '~/components/Container';
 import Carousel from '~/components/Carousel';
@@ -12,7 +10,7 @@ const Item = ({ image }) => {
 
   return (
     <div className="root">
-      <div className={cx('item', { portrait })}>
+      <div className="item">
         <Image key={image.url} image={image} />
       </div>
 
@@ -23,11 +21,10 @@ const Item = ({ image }) => {
           justify-content: center;
           height: 100%;
         }
+      `}</style>
+      <style jsx>{`
         .item {
-          width: 100%;
-        }
-        .item.portrait {
-          width: 50%;
+          width: ${ratio < 1 ? 50 : 100}%;
         }
       `}</style>
     </div>

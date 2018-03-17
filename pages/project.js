@@ -2,7 +2,6 @@ import { Component } from 'react';
 import Head from 'next/head';
 import { Element as ScrollElement } from 'react-scroll';
 import PrismicDom from 'prismic-dom';
-import cx from 'classnames';
 
 import { getApi } from '~/lib/prismic';
 import { scrollNameForExhibitionId } from '~/lib/scrollNames';
@@ -53,6 +52,24 @@ function getSidebarItems({ project, exhibitions, pressItems }) {
   ].filter(item => item);
 }
 
+const Section = ({ tagName = 'section', lastSection, children }) => (
+  <tagName className="root">
+    {children}
+
+    <style jsx>{`
+      ${lastSection &&
+        `
+            .root {
+              // 87px = extra tweak for copyright height
+              min-height: calc(
+                100vh - ${HEADER_HEIGHT}px - ${PAGE_TOP_PADDING}px - 87px
+              );
+            }
+          `};
+    `}</style>
+  </tagName>
+);
+
 export default class Project extends Component {
   static async getInitialProps({ req, query, pathname }) {
     const api = await getApi(req);
@@ -102,11 +119,7 @@ export default class Project extends Component {
         <Sidebar items={sidebarItems} />
 
         <ScrollElement name="artwork">
-          <section
-            className={cx({
-              lastSection: lastSectionName === 'artwork',
-            })}
-          >
+          <Section lastSection={lastSectionName === 'artwork'}>
             <Container>
               <div className="intro">
                 <h1>
@@ -124,34 +137,32 @@ export default class Project extends Component {
                 <div className="intro-section">
                   {project.collaborators && <p>{project.collaborators}</p>}
                   {project.website_link_title &&
-                  project.website_link.url && (
-                    <p>
-                      Project website:{' '}
-                      <a
-                        href={project.website_link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.website_link_title}
-                      </a>
-                    </p>
-                  )}
+                    project.website_link.url && (
+                      <p>
+                        Project website:{' '}
+                        <a
+                          href={project.website_link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.website_link_title}
+                        </a>
+                      </p>
+                    )}
                 </div>
               </div>
             </Container>
 
-            {(project.body || [])
-              .map((contentItem, i) => (
-                <ContentItem item={contentItem} key={i} />
-              ))}
-          </section>
+            {(project.body || []).map((contentItem, i) => (
+              <ContentItem item={contentItem} key={i} />
+            ))}
+          </Section>
         </ScrollElement>
 
         {!!exhibitions.length && (
-          <div
-            className={cx('section', {
-              lastSection: lastSectionName === 'exhibitions',
-            })}
+          <Section
+            tagName="div"
+            lastSection={lastSectionName === 'exhibitions'}
           >
             <ScrollElement name="exhibitions" />
             {exhibitions.map((exhibition, i) => (
@@ -169,34 +180,25 @@ export default class Project extends Component {
                 <Exhibition exhibition={exhibition} />
               </ScrollElement>
             ))}
-          </div>
+          </Section>
         )}
 
         {!!project.civic_dialogues.length && (
           <ScrollElement name="civic-dialogues">
-            <section
-              className={cx('section', {
-                lastSection: lastSectionName === 'civic-dialogues',
-              })}
-            >
+            <Section lastSection={lastSectionName === 'civic-dialogues'}>
               <MainHeading>
                 <h2>Civic Dialogues</h2>
               </MainHeading>
-              {(project.civic_dialogues || [])
-                .map((contentItem, i) => (
-                  <ContentItem item={contentItem} key={i} />
-                ))}
-            </section>
+              {(project.civic_dialogues || []).map((contentItem, i) => (
+                <ContentItem item={contentItem} key={i} />
+              ))}
+            </Section>
           </ScrollElement>
         )}
 
         {!!pressItems.length && (
           <ScrollElement name="press">
-            <section
-              className={cx('section', {
-                lastSection: lastSectionName === 'press',
-              })}
-            >
+            <Section lastSection={lastSectionName === 'press'}>
               <MainHeading>
                 <h2>Press</h2>
               </MainHeading>
@@ -207,22 +209,18 @@ export default class Project extends Component {
                   </YearListing>
                 ))}
               </Container>
-            </section>
+            </Section>
           </ScrollElement>
         )}
 
         {!!project.acknowledgements.length && (
           <ScrollElement name="acknowledgements">
-            <section
-              className={cx('section', {
-                lastSection: lastSectionName === 'acknowledgements',
-              })}
-            >
+            <Section lastSection={lastSectionName === 'acknowledgements'}>
               <MainHeading>
                 <h2>Acknowledgements</h2>
               </MainHeading>
               <Paragraph item={{ text: project.acknowledgements }} />
-            </section>
+            </Section>
           </ScrollElement>
         )}
 

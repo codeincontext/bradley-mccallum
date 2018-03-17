@@ -3,10 +3,8 @@ import { colors } from '~/lib/theme';
 const Track = ({ buffered, filled, defaultFill, onChange, label }) => (
   <div className="root">
     <div className="track">
-      {buffered && (
-        <div className="buffer" style={{ width: `${buffered * 100 || 0}%` }} />
-      )}
-      <div className="fill" style={{ width: `${filled * 100 || 0}%` }} />
+      {buffered && <div className="buffer" />}
+      <div className="fill" />
       <input
         min="0"
         step="any"
@@ -61,6 +59,14 @@ const Track = ({ buffered, filled, defaultFill, onChange, label }) => (
 
       input[type='range']::-webkit-slider-thumb {
         pointer-events: none;
+      }
+    `}</style>
+    <style jsx>{`
+      .buffer {
+        width: ${buffered * 100 || 0}%;
+      }
+      .fill {
+        width: ${filled * 100 || 0}%;
       }
     `}</style>
   </div>

@@ -14,7 +14,7 @@ const Masonry = ({ projects, firstSection, measureRef, contentRect }) => {
   return (
     <div className="root" ref={measureRef}>
       {projectColumns.map((column, i) => (
-        <div style={{ width: `${100 / columnCount}%` }} key={i}>
+        <div className="column" key={i}>
           {column
             .filter(project => project)
             .map(project => (
@@ -32,6 +32,12 @@ const Masonry = ({ projects, firstSection, measureRef, contentRect }) => {
           display: flex;
           margin-left: -${COLUMN_SPACING}px;
           margin-right: -${COLUMN_SPACING}px;
+        }
+      `}</style>
+
+      <style jsx>{`
+        .column {
+          width: ${100 / columnCount}%;
         }
       `}</style>
     </div>
