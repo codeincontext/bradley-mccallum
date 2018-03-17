@@ -4,7 +4,7 @@ const RichText = ({ text }) => (
   <span>
     <span
       dangerouslySetInnerHTML={{
-        __html: PrismicDom.RichText.asHtml(text)
+        __html: PrismicDom.RichText.asHtml(text),
       }}
     />
 

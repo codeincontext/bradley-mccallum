@@ -124,26 +124,25 @@ export default class Project extends Component {
                 <div className="intro-section">
                   {project.collaborators && <p>{project.collaborators}</p>}
                   {project.website_link_title &&
-                  project.website_link.url && (
-                    <p>
-                      Project website:{' '}
-                      <a
-                        href={project.website_link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.website_link_title}
-                      </a>
-                    </p>
-                  )}
+                    project.website_link.url && (
+                      <p>
+                        Project website:{' '}
+                        <a
+                          href={project.website_link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.website_link_title}
+                        </a>
+                      </p>
+                    )}
                 </div>
               </div>
             </Container>
 
-            {(project.body || [])
-              .map((contentItem, i) => (
-                <ContentItem item={contentItem} key={i} />
-              ))}
+            {(project.body || []).map((contentItem, i) => (
+              <ContentItem item={contentItem} key={i} />
+            ))}
           </section>
         </ScrollElement>
 
@@ -182,10 +181,9 @@ export default class Project extends Component {
               <MainHeading>
                 <h2>Civic Dialogues</h2>
               </MainHeading>
-              {(project.civic_dialogues || [])
-                .map((contentItem, i) => (
-                  <ContentItem item={contentItem} key={i} />
-                ))}
+              {(project.civic_dialogues || []).map((contentItem, i) => (
+                <ContentItem item={contentItem} key={i} />
+              ))}
             </section>
           </ScrollElement>
         )}

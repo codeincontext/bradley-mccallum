@@ -24,8 +24,9 @@ const Exhibition = ({
       </div>
     </Container>
 
-    {(body || [])
-      .map((contentItem, i) => <ContentItem item={contentItem} key={i} />)}
+    {(body || []).map((contentItem, i) => (
+      <ContentItem item={contentItem} key={i} />
+    ))}
 
     <style jsx>{`
       section {
