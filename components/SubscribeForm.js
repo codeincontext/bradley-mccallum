@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import jsonp from 'jsonp';
-import cx from 'classnames';
 
 import Container from '~/components/Container';
 import {
@@ -67,7 +66,7 @@ class SubscribeForm extends Component {
 
     return (
       <Container>
-        <div className={cx('root', status)}>
+        <div className="root">
           <form action={ACTION} method="post" noValidate>
             <label htmlFor="email">Email Address</label>
             <div className="fields">
@@ -97,17 +96,9 @@ class SubscribeForm extends Component {
             </p>
           </form>
         </div>
-
         <style jsx>{`
           .root {
             margin: 0 auto ${CONTENT_ITEM_SPACING};
-          }
-
-          .sending {
-          }
-          .error {
-          }
-          .success {
           }
 
           label {

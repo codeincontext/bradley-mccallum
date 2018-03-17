@@ -3,11 +3,8 @@ const Image = ({ image }) => {
   const { url, alt, dimensions } = image;
 
   return (
-    <div
-      className="root"
-      style={{ paddingTop: `${dimensions.height / dimensions.width * 100}%` }}
-    >
-      <img src={image.url} alt={image.alt} />
+    <div className="root">
+      <img src={url} alt={alt} />
 
       <style jsx>{`
         .root {
@@ -20,6 +17,12 @@ const Image = ({ image }) => {
           top: 0;
           left: 0;
           width: 100%;
+        }
+      `}</style>
+
+      <style jsx>{`
+        .root {
+          paddingtop: ${dimensions.height / dimensions.width * 100}%;
         }
       `}</style>
     </div>

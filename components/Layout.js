@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import cx from 'classnames';
 
 import {
   colors,
@@ -82,26 +81,23 @@ const Layout = ({ children, topPadding = true }) => (
       }
     `}</style>
 
-    <div className={cx('content', { 'top-padding': topPadding })}>
-      {children}
-    </div>
-
+    <div className="content">{children}</div>
     <p className="copyright">
       &copy; Bradley McCallum {new Date().getFullYear()}
     </p>
-
     {/* Used by react-intersection-observer */}
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver" />
-
     <style jsx>{`
       .copyright {
         font-size: ${fonts.f12};
         margin: ${spacing.s4} 0 ${spacing.s05};
         text-align: center;
       }
+    `}</style>
 
-      .content.top-padding {
-        padding-top: ${PAGE_TOP_PADDING}px;
+    <style jsx>{`
+      .content {
+        padding-top: ${topPadding ? PAGE_TOP_PADDING : 0}px;
       }
     `}</style>
   </div>

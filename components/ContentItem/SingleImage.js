@@ -1,5 +1,3 @@
-import cx from 'classnames';
-
 import Image from '~/components/Image';
 import Container from '~/components/Container';
 import Caption from '~/components/Caption';
@@ -10,11 +8,10 @@ const SingleImage = ({ item }) => {
     return null;
   }
   const ratio = item.image.dimensions.width / item.image.dimensions.height;
-  const portrait = ratio < 1;
 
   return (
     <Container>
-      <figure className={cx('root', { portrait })}>
+      <figure className="root">
         <Image image={item.image} />
         <Caption>{item.caption}</Caption>
       </figure>
@@ -22,12 +19,13 @@ const SingleImage = ({ item }) => {
       <style jsx>{`
         .root {
           margin: 0 0 ${CONTENT_ITEM_SPACING};
-        }
 
-        .portrait {
-          width: 50%;
-          margin-left: auto;
-          margin-right: auto;
+          ${ratio < 1 &&
+            `
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+          `};
         }
       `}</style>
     </Container>

@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import cx from 'classnames';
 import { Link as ScrollLink, scrollSpy } from 'react-scroll';
 import debounce from 'lodash.debounce';
 
@@ -19,6 +18,71 @@ import {
 
 const DEBOUNCE_INTERVAL = 100;
 
+const Item = ({ item, active, isChild }) => {
+  const showUnderline = active && !isChild;
+  return (
+    <li>
+      <ScrollLink
+        to={item.scrollName}
+        spy
+        isDynamic
+        smooth
+        duration={SCROLL_DURATION}
+        offset={SCROLL_OFFSET}
+        onSetActive={() => this.handleSetActive(item)}
+      >
+        {item.label}
+      </ScrollLink>
+
+      <style jsx>{`
+        li {
+          list-style: none;
+          margin-bottom: 0.75rem;
+          text-transform: uppercase;
+          font-size: ${fonts.f14};
+          position: relative;
+          padding-left: ${spacing.s4};
+          cursor: pointer;
+
+          ${isChild &&
+            `
+            margin-left: ${spacing.s2};
+            font-size: ${fonts.f12};
+            text-transform: initial;
+            margin-top: -${spacing.s025};
+            ${isActive &&
+              `
+              font-weight: ${weights.regular};
+              font-style: italic;
+            `}
+          `} ${!isChild &&
+            isActive &&
+            `
+            font-weight: ${weights.bold};
+          `};
+        }
+
+        ${!isChild &&
+          isActive &&
+          `
+          li:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: ${spacing.s025};
+            background: ${colors.black};
+            width: ${spacing.s2};
+            height: ${spacing.s05};
+          }
+        `} li :global(a) {
+          letter-spacing: ${letterSpacing.tight};
+        }
+      `}</style>
+    </li>
+  );
+};
+
 export default class Sidebar extends Component {
   state = { activeItem: null, atBottom: false };
 
@@ -28,7 +92,9 @@ export default class Sidebar extends Component {
     this.handleOnScroll = debounce(
       this.handleOnScroll.bind(this),
       DEBOUNCE_INTERVAL,
-      { trailing: true }
+      {
+        trailing: true,
+      }
     );
   }
 
@@ -61,29 +127,17 @@ export default class Sidebar extends Component {
       : this.state.activeItem || items[0];
 
     return (
-      <ul className={cx({ hidden })}>
+      <ul>
         {items.map(item => (
-          <li
-            className={cx({
-              active:
-                activeItem.scrollName === item.scrollName ||
-                activeItem.parentName === item.scrollName,
-              'is-child': !!item.parentName,
-            })}
+          <Item
+            item={item}
+            active={
+              activeItem.scrollName === item.scrollName ||
+              activeItem.parentName === item.scrollName
+            }
+            isChild={!!item.parentName}
             key={item.scrollName}
-          >
-            <ScrollLink
-              to={item.scrollName}
-              spy
-              isDynamic
-              smooth
-              duration={SCROLL_DURATION}
-              offset={SCROLL_OFFSET}
-              onSetActive={() => this.handleSetActive(item)}
-            >
-              {item.label}
-            </ScrollLink>
-          </li>
+          />
         ))}
 
         <style jsx>{`
@@ -97,50 +151,11 @@ export default class Sidebar extends Component {
             z-index: ${zIndex.sidebar};
             transition: opacity 0.25s ease-in;
           }
+        `}</style>
 
-          ul.hidden {
-            opacity: 0;
-          }
-
-          li {
-            list-style: none;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            font-size: ${fonts.f14};
-            position: relative;
-            padding-left: ${spacing.s4};
-            cursor: pointer;
-          }
-
-          li :global(a) {
-            letter-spacing: ${letterSpacing.tight};
-          }
-
-          li.is-child {
-            margin-left: ${spacing.s2};
-            font-size: ${fonts.f12};
-            text-transform: initial;
-            margin-top: -${spacing.s025};
-          }
-
-          li.active:not(.is-child) {
-            font-weight: ${weights.bold};
-          }
-
-          li.active:not(.is-child):after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 0;
-            top: ${spacing.s025};
-            background: ${colors.black};
-            width: ${spacing.s2};
-            height: ${spacing.s05};
-          }
-
-          li.active.is-child {
-            font-weight: ${weights.regular};
-            font-style: italic;
+        <style jsx>{`
+          ul {
+            opacity: ${hidden ? 0 : 1};
           }
         `}</style>
       </ul>

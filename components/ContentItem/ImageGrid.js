@@ -33,13 +33,47 @@ const LIGHTBOX_THEME = {
   },
 };
 
-// We can either define a number of columns or a minimum image size a-la https://github.com/neptunian/react-photo-gallery#user-guide--best-practice
+const GridImage = ({ image, min_width, onClick }) => (
+  <div className="root" onClick={onClick}>
+    <Image image={image.thumbnail} />
+
+    <style jsx>{`
+      .root {
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin: 5px;
+        cursor: pointer;
+      }
+    `}</style>
+
+    <style jsx>{`
+      .root {
+        flex-basis: ${min_width};
+      }
+    `}</style>
+  </div>
+);
+
+const Spacer = ({ min_width }) => (
+  <div className="root">
+    <style jsx>{`
+      .root {
+        flex-grow: 1;
+        flex-shrink: 0;
+        height: 0;
+        margin: 0 5px;
+      }
+    `}</style>
+
+    <style jsx>{`
+      .root {
+        flex-basis: ${min_width};
+      }
+    `}</style>
+  </div>
+);
 
 export default class ImageGrid extends Component {
-  constructor(props) {
-    super();
-  }
-
   state = {
     currentImage: 0,
     lightboxIsOpen: false,
@@ -68,27 +102,21 @@ export default class ImageGrid extends Component {
       <Container>
         <div className="root">
           <div className="images">
-            {items.filter(({ image }) => image.url).map(({ image }, i) => (
-              <div
-                className="image"
-                style={{ flexBasis: min_width }}
-                key={image.url}
-                onClick={e => this.openLightbox(i, e)}
-              >
-                <Image image={image.thumbnail} />
-              </div>
-            ))}
+            {items
+              .filter(({ image }) => image.url)
+              .map(({ image }, i) => (
+                <GridImage
+                  image={image}
+                  minWidth={min_width}
+                  onClick={e => openLightbox(i, e)}
+                  key={image.url}
+                />
+              ))}
             {/* We want images on all rows to have the same size.
               By default, if the last row has fewer items than the rows above,
               flex-grow will expand them to fill the space.
               Adding spacer elements makes sure that the last row matches the other rows */}
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                className="image spacer"
-                style={{ flexBasis: min_width }}
-                key={i}
-              />
-            ))}
+            {Array.from({ length: 5 }).map((_, i) => <Spacer key={i} />)}
           </div>
 
           <Lightbox
@@ -114,16 +142,6 @@ export default class ImageGrid extends Component {
             margin: -5px;
             display: flex;
             flex-wrap: wrap;
-          }
-          .image {
-            flex-grow: 1;
-            flex-shrink: 0;
-            margin: 5px;
-            cursor: pointer;
-          }
-          .spacer {
-            height: 0;
-            margin: 0 5px;
           }
         `}</style>
       </Container>

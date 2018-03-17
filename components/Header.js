@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
-import cx from 'classnames';
 import {
   fonts,
   colors,
@@ -19,7 +18,7 @@ const Header = ({ pathname, artworksActive }) => (
       {pathname === '/' ? (
         <ScrollLink
           to="top"
-          className={cx('name', { active: artworksActive })}
+          className={`name ${artworksActive ? 'active' : ''}`}
           smooth
           duration={500}
         >

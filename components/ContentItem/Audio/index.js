@@ -1,5 +1,4 @@
 import videoConnect from 'react-html5video';
-import cx from 'classnames';
 
 import Container from '~/components/Container';
 import Caption from '~/components/Caption';
@@ -80,7 +79,7 @@ class Audio extends React.Component {
 
             <button
               aria-label={volume <= 0 ? 'Unmute audio' : 'Mute audio'}
-              className={cx('volumeButton', { muted: volume <= 0 })}
+              className="volumeButton"
               onClick={onVolumeClick}
               type="button"
             />
@@ -159,14 +158,17 @@ class Audio extends React.Component {
               background-repeat: no-repeat;
               background-size: contain;
             }
-            .volumeButton.muted {
-              opacity: 0.75;
-            }
 
             .volume {
               width: 48px;
               margin-left: 6px;
               margin-right: 20px;
+            }
+          `}</style>
+
+          <style jsx>{`
+            .volumeButton {
+              opacity: ${volume > 0 ? 1 : 0.75};
             }
           `}</style>
         </div>
