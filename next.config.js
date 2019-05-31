@@ -5,21 +5,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = {
-  webpack: config => {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env.CONTENTFUL_SPACE': JSON.stringify(
-          process.env.CONTENTFUL_SPACE
-        ),
-        'process.env.CONTENTFUL_ACCESS_TOKEN': JSON.stringify(
-          process.env.CONTENTFUL_ACCESS_TOKEN
-        ),
-        'process.env.CONTENTFUL_PREVIEW_TOKEN': JSON.stringify(
-          process.env.CONTENTFUL_PREVIEW_TOKEN
-        ),
-      })
-    );
+  target: 'serverless',
 
-    return config;
+  env: {
+    CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
+    CONTENTFUL_ACCESS_TOKEN: JSON.stringify(
+      process.env.CONTENTFUL_ACCESS_TOKEN
+    ),
+    CONTENTFUL_PREVIEW_TOKEN: JSON.stringify(
+      process.env.CONTENTFUL_PREVIEW_TOKEN
+    ),
   },
 };

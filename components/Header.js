@@ -35,7 +35,7 @@ const Header = ({ pathname, artworksActive }) => (
         {pathname === '/' ? (
           <ScrollLink
             to="artworks"
-            className={artworksActive && 'active'}
+            className={cx({ active: artworksActive })}
             smooth
             duration={SCROLL_DURATION}
             offset={SCROLL_OFFSET}
@@ -44,25 +44,27 @@ const Header = ({ pathname, artworksActive }) => (
           </ScrollLink>
         ) : (
           <Link href="/?artworks" prefetch>
-            <a className={pathname.startsWith('/project') && 'active'}>
+            <a className={cx({ active: pathname.startsWith('/project') })}>
               Artworks
             </a>
           </Link>
         )}
 
         <Link href="/exhibitions" prefetch>
-          <a className={pathname === '/exhibitions' && 'active'}>Exhibitions</a>
+          <a className={cx({ active: pathname === '/exhibitions' })}>
+            Exhibitions
+          </a>
         </Link>
         <Link href="/bibliography" prefetch>
-          <a className={pathname === '/bibliography' && 'active'}>
+          <a className={cx({ active: pathname === '/bibliography' })}>
             Bibliography
           </a>
         </Link>
         <Link href="/about" prefetch>
-          <a className={pathname === '/about' && 'active'}>About</a>
+          <a className={cx({ active: pathname === '/about' })}>About</a>
         </Link>
         <Link href="/contact" prefetch>
-          <a className={pathname === '/contact' && 'active'}>Contact</a>
+          <a className={cx({ active: pathname === '/contact' })}>Contact</a>
         </Link>
       </nav>
     </header>
