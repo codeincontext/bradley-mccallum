@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "bradleymccallum.com",
+  "alias": ["bradleymccallum.com"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/project/(?<slug>[^/]+)$",
+      "dest": "/project?slug=$slug"
+    }
+  ]
+}

@@ -1,24 +1,25 @@
 {
   "name": "bradley-mccallum",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "author": "Adam Howard",
   "dependencies": {
     "@researchgate/react-intersection-observer": "^0.3.1",
+    "acorn": "^6.1.1",
     "autotrack": "^2.4.1",
     "contentful": "^4.5.0",
     "dotenv": "^4.0.0",
-    "express": "^4.15.3",
+    "express": "^4.17.1",
     "jsonp": "^0.2.1",
     "lodash.chunk": "^4.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.groupby": "^4.6.0",
     "lodash.zip": "^4.2.0",
-    "next": "^4.2.3",
+    "next": "^8.1.0",
     "prismic-dom": "^1.2.8",
     "prismic-javascript": "^1.1.6",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-html5video": "^2.3.0",
     "react-images": "^0.5.5",
     "react-measure": "^2.0.2",
@@ -31,7 +32,7 @@
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-with-warnings": "^0.2.0",
     "eslint-config-prettier": "^2.4.0",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
@@ -39,29 +40,21 @@
     "prettier": "^1.11.1"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "now dev",
     "build": "next build",
-    "heroku-postbuild": "npm run build",
-    "start": "NODE_ENV=production node server.js",
-    "deploy": "now rm bradley-mccallum --safe --yes && now --public && now alias",
+    "now-build": "next build",
     "lint": "eslint **/*.js",
     "prettier": "prettier --write '**/*.js' --ignore-path=.gitignore",
     "//commented precommit": "lint-staged",
     "build-prismic-type": "node scripts/build-prismic-type"
   },
   "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier ---write",
-      "git add"
-    ]
+    "*.{js,json,css}": ["prettier ---write", "git add"]
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5",
     "printWidth": 80
-  },
-  "now": {
-    "alias": "bradleymccallum.com"
   },
   "engines": {
     "node": "8.2.x"
