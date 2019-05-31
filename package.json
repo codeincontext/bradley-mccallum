@@ -7,7 +7,6 @@
     "@researchgate/react-intersection-observer": "^0.3.1",
     "acorn": "^6.1.1",
     "autotrack": "^2.4.1",
-    "contentful": "^4.5.0",
     "dotenv": "^4.0.0",
     "express": "^4.17.1",
     "jsonp": "^0.2.1",
@@ -49,7 +48,10 @@
     "build-prismic-type": "node scripts/build-prismic-type"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["prettier ---write", "git add"]
+    "*.{js,json,css}": [
+      "prettier ---write",
+      "git add"
+    ]
   },
   "prettier": {
     "singleQuote": true,
