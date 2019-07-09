@@ -59,6 +59,6 @@
     "printWidth": 80
   },
   "engines": {
-    "node": "8.2.x"
+    "node": "8.10.x"
   }
 }
